@@ -39,9 +39,9 @@ lflag = true;
 
 //misc
 
-level = 1;
+level = 0;
 xp = 0;
-maxxp = level * 2;
+maxxp = 4;
 
 spd = 3;
 
