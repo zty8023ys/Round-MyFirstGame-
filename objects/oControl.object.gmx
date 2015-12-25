@@ -48,7 +48,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// "P" for pause the game
+            <string>/// "P" for pause the game
 
 scr_get_input();
 if (pause_key &amp;&amp; global.pause == 1) {

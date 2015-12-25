@@ -1,7 +1,7 @@
 if (depth == -20) {
     switch(identity) {
         case 1:     
-            //单人游戏
+            // 单人游戏
             with(oButtom) {
                 visible = false;
             }
@@ -10,10 +10,16 @@ if (depth == -20) {
             break;
         
         case 2: 
+            // 局域网
+            with(oButtom) {
+                visible = false;
+            }
+            oInformation.depth = -15;
+            oInformation.visible = true;
             break;
             
         case 3:
-            //帮助
+            // 帮助
             with(oButtom) {
                 visible = false;
             }
@@ -22,7 +28,7 @@ if (depth == -20) {
             break;
 
         case 4:
-            //退出
+            // 退出
             game_end();
             break;
     }
@@ -31,7 +37,7 @@ if (depth == -20) {
 if (depth == -21) {
     switch(identity) {
         case 1: 
-        //状态
+        // 状态
             with(oButtom) {
                 visible = false;
             }
@@ -40,7 +46,7 @@ if (depth == -21) {
             break;
         
         case 2:
-        //升级
+        // 升级
             with(oButtom){
                 depth = -22;
                 alarm[0] = 1;
@@ -48,7 +54,7 @@ if (depth == -21) {
             break;
             
         case 3:
-        //技能
+        // 技能
             with(oButtom) {
                 visible = false;
             }
@@ -57,7 +63,7 @@ if (depth == -21) {
             break;
             
         case 4:
-        //结束
+        // 结束
             scr_next_round();
             break;
     }
@@ -67,7 +73,7 @@ if (depth == -21) {
 if (depth == -22 && timeout) {
         switch(identity) {
             case 1: 
-            //兑换1点
+            // 兑换1点
                 with(oHeroStats) {
                     if(movepoint >= 1){
                         movepoint -= 1;
@@ -80,7 +86,7 @@ if (depth == -22 && timeout) {
                 break;
             
             case 2:
-            //兑换全部
+            // 兑换全部
                 with(oHeroStats) {
                     if (movepoint >= 1) {
                         while (movepoint >= 1) {
@@ -95,16 +101,16 @@ if (depth == -22 && timeout) {
                 break;
                 
             case 3:
-            //战斗升级
-                if(oHeroStats.movepoint >= 1 && lflag){
-                    oHeroStats.movepoint -= 1;
+            // 战斗升级
+                if(oHeroStats.movepoint >= 2 && lflag){
+                    oHeroStats.movepoint -= 2;
                     lflag = false;
                     room = atk01;
                 }
                 break;
                 
             case 4:
-            //返回
+            // 返回
                 with(oButtom) {
                     depth = -21;
                     timeout = false;
