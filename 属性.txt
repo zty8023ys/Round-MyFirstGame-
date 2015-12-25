@@ -1,0 +1,33 @@
+depth {
+
+    oInformation :
+    -16 : 技能
+    -17 : 状态
+    -18 : 符文选择
+    -19 : 帮助
+
+    oButtom :
+    -20 : 初始界面
+    -21 : 单人游戏界面
+    -22 : 升级
+}
+
+hero stats {
+
+    rune,
+    movepoint,
+    passtitiveskill,
+    stamina,
+    level,
+    xp,
+
+    hp,
+    defense,
+
+    attack,
+    critchance,
+    critdamage,
+    lifeleech,
+    knockback,
+    
+}

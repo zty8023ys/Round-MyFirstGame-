@@ -30,7 +30,9 @@ event_inherited();
 
 
 
-hp = oHeroStats.maxhp;
+maxhp = oHeroStats.maxhp;
+hp = maxhp;
+
 
 spd = oHeroStats.spd; // 移动速度
 vspd = 0;
@@ -147,6 +149,8 @@ if (state == scr_attack_state &amp;&amp; attacked == true) {
           <argument>
             <kind>1</kind>
             <string>/// Draw the shadow &amp; stats
+event_inherited();
+
 draw_sprite(sShadow,image_index,x,y);
 draw_self();
 
