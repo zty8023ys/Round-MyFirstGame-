@@ -30,7 +30,31 @@ image_speed = 0;
 depth = -20;
 identity = 0;
 draw_set_font(font0);
+timeout = false;
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>timeout = true;
 </string>
           </argument>
         </arguments>
@@ -142,6 +166,7 @@ if (depth == -20) {
         case 4:draw_text(x,y,"退出"); break;
     }
 }
+
 if (depth == -21) {
 
     // show the movepoint
@@ -152,6 +177,20 @@ if (depth == -21) {
         case 2:draw_text(x,y,"升级"); break;
         case 3:draw_text(x,y,"技能"); break;
         case 4:draw_text(x,y,"结束"); break;
+    }
+}
+
+
+// level up
+if (depth == -22) {
+    // show the movepoint
+    draw_text(544,64,"行动点" + string(oHeroStats.movepoint) + "/" + string(oHeroStats.maxmovepoint));
+    
+    switch(identity) {
+        case 1:draw_text(x,y,"兑换1点"); break;
+        case 2:draw_text(x,y,"兑换全部"); break;
+        case 3:draw_text(x,y,"战斗升级"); break;
+        case 4:draw_text(x,y,"返回"); break;
     }
 }
 </string>

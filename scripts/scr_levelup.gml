@@ -7,6 +7,8 @@ with(oHeroStats){
     defense += adddefense;
     maxhp += addhp;
     hp = maxhp;
-    oHero.hp = hp;
+    if (instance_exists(oHero)) {
+        oHero.hp = hp;
+    }
     stamina = maxstamina;
 }

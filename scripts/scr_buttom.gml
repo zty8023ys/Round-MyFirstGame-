@@ -41,10 +41,9 @@ if (depth == -21) {
         
         case 2:
         //升级
-            if(oHeroStats.movepoint >= 1 && lflag){
-                oHeroStats.movepoint -= 1;
-                lflag = false;
-                room = atk01;
+            with(oButtom){
+                depth = -22;
+                alarm[0] = 1;
             }
             break;
             
@@ -62,4 +61,54 @@ if (depth == -21) {
             scr_next_round();
             break;
     }
+}
+
+// level up
+if (depth == -22 && timeout) {
+        switch(identity) {
+            case 1: 
+            //兑换1点
+                with(oHeroStats) {
+                    if(movepoint >= 1){
+                        movepoint -= 1;
+                        xp += 4;
+                        if (xp >= maxxp) {
+                            scr_levelup();
+                        }
+                    }
+                }
+                break;
+            
+            case 2:
+            //兑换全部
+                with(oHeroStats) {
+                    if (movepoint >= 1) {
+                        while (movepoint >= 1) {
+                            xp += 4;
+                            if (xp >= maxxp) {
+                                scr_levelup();
+                            }
+                            movepoint--;
+                        }
+                    }
+                }
+                break;
+                
+            case 3:
+            //战斗升级
+                if(oHeroStats.movepoint >= 1 && lflag){
+                    oHeroStats.movepoint -= 1;
+                    lflag = false;
+                    room = atk01;
+                }
+                break;
+                
+            case 4:
+            //返回
+                with(oButtom) {
+                    depth = -21;
+                    timeout = false;
+                }
+                break;
+        }
 }
