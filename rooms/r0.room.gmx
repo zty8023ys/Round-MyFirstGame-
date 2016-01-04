@@ -57,10 +57,10 @@
   <instances>
     <instance objName="oHeroStats" x="32" y="0" name="inst_AE9026A3" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oControl" x="0" y="0" name="inst_A66C384C" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oButtom" x="160" y="160" name="inst_CF25E3A6" locked="0" code="identity = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oButtom" x="480" y="160" name="inst_4CDD1B93" locked="0" code="identity = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oButtom" x="160" y="288" name="inst_D8517A0C" locked="0" code="identity = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oButtom" x="480" y="288" name="inst_F3396B78" locked="0" code="identity = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oButton" x="160" y="160" name="inst_CF25E3A6" locked="0" code="identity = 1;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oButton" x="480" y="160" name="inst_4CDD1B93" locked="0" code="identity = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oButton" x="160" y="288" name="inst_D8517A0C" locked="0" code="identity = 3;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oButton" x="480" y="288" name="inst_F3396B78" locked="0" code="identity = 4;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oInformation" x="0" y="0" name="inst_1A88BD0B" locked="0" code="depth = -19;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>

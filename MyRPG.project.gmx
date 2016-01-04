@@ -26,7 +26,7 @@
     <sprite>sprites\sNextroom</sprite>
     <sprite>sprites\sRegenHp</sprite>
     <sprite>sprites\sPause</sprite>
-    <sprite>sprites\sButtom</sprite>
+    <sprite>sprites\sButton</sprite>
     <sprite>sprites\sInformation</sprite>
   </sprites>
   <backgrounds name="background">
@@ -39,7 +39,8 @@
       <script>scripts\scr_chance.gml</script>
       <script>scripts\scr_next_round.gml</script>
       <script>scripts\scr_area.gml</script>
-      <script>scripts\scr_buttom.gml</script>
+      <script>scripts\scr_button.gml</script>
+      <script>scripts\go_room.gml</script>
     </scripts>
     <scripts name="HeroStates">
       <scripts name="help">
@@ -91,7 +92,7 @@
       <object>objects\oDamage</object>
     </objects>
     <object>objects\oControl</object>
-    <object>objects\oButtom</object>
+    <object>objects\oButton</object>
     <object>objects\oInformation</object>
   </objects>
   <rooms name="rooms">

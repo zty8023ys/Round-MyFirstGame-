@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// goto other room
-new_room = noone;
+next_room = noone;
 </string>
           </argument>
         </arguments>
@@ -50,11 +50,13 @@ new_room = noone;
           <argument>
             <kind>1</kind>
             <string>/// goto next room
-if (room_exists(new_room)) {
-    with(oButtom){
-        depth = -21;
+if (room_exists(next_room)) {
+    if (next_room == atk01) {
+        with(oButton){
+            depth = -21;
+        }
     }
-    other.room = new_room;
+    go_room(next_room);
 }
 </string>
           </argument>

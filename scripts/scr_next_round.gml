@@ -1,4 +1,7 @@
 // next round
+oHeroStats.hp = oHeroStats.maxhp; // 每回合满血
+
+
 if (r < 10) {
     with(oHeroStats) {
         r += 1;
@@ -12,3 +15,4 @@ if (r < 10) {
         
     }
 }
+

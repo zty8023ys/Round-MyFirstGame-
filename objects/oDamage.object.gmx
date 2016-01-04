@@ -94,6 +94,7 @@ if (instance_exists(other) &amp;&amp; instance_exists(creator)) {
                 oHero.hp = hp;
             }
             other.hp -= oHeroStats.truedamage;
+            other.maxhp *= (1-oHeroStats.dealperhp/100);
         } else {
         
             //damage TO the hero

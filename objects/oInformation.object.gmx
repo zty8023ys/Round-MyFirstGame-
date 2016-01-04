@@ -88,7 +88,7 @@ if (visible) {
     //back from help(pick rune) to main menu
     if (backpressed &amp;&amp; backarea) {
         visible = false;
-        with(oButtom) {
+        with(oButton) {
             visible = true;
         }
     }
@@ -97,7 +97,7 @@ if (visible) {
     if (runepressed &amp;&amp; depth == -18 &amp;&amp; runearea) {
         visible = false;
                 
-        with(oButtom) {
+        with(oButton) {
             depth = -21;
             // begin the game at depth -21
             visible = true;
@@ -233,7 +233,7 @@ if (skillarea) {
     
 if (depth == -19) {
     draw_text(320,32,"帮助");
-    draw_text(320,200, "    开始游戏时需要先选择一个英雄词缀作为角色初始化条件。
+    draw_text(320,200, "    开始游戏时需要先选择一个符文作为角色初始化条件。
     #    第一回合有1点行动点，第二回合有2点行动点，#以此类推，共10回合，共计55点行动点。
     #    右上角显示该回合可用行动点，该回合还有行动点时，#可以选择换取经验者或者换取技能等级。
     #    点击回合结束可以结束当前回合，#当第10回合结束后，双方进行战斗。
@@ -242,7 +242,7 @@ if (depth == -19) {
 
 // draw pick rune information
 if (depth == -18) {
-    draw_text(320,32,"选择一个英雄词缀");
+    draw_text(320,32,"选择一个符文");
     draw_text(320,200, "    焚 （增35%攻击力，减20%生命与防御）
     #磐 （增35%生命与防御，减20%攻击力）
     #怒 （增30%暴击几率，减35%暴击总伤害）");

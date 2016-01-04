@@ -153,7 +153,10 @@ event_inherited();
 
 draw_sprite(sShadow,image_index,x,y);
 draw_self();
-
+if (r &gt; 10) {
+    draw_set_halign(fa_center);
+    draw_text(x, y+20, "COMING SOON!");
+}
 </string>
           </argument>
         </arguments>
