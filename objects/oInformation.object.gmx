@@ -223,113 +223,41 @@ if (skillarea) {
             <kind>1</kind>
             <string>/// draw the information
 
-// draw help
+// set draw
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
     draw_set_colour(c_red);
     draw_button(576-32,320-16,576+32,320+16,!(mouse_check_button(mb_left)&amp;&amp;scr_area(576,320,64,32)));
     draw_set_colour(c_black);
     draw_text(576,320,"返回");
+
+switch(depth) { 
+// draw by depth
+    case -19:
+        //help
+        scr_draw_help();
+        break;
     
-if (depth == -19) {
-    draw_text(320,32,"帮助");
-    draw_text(320,200, "    开始游戏时需要先选择一个符文作为角色初始化条件。
-    #    第一回合有1点行动点，第二回合有2点行动点，#以此类推，共10回合，共计55点行动点。
-    #    右上角显示该回合可用行动点，该回合还有行动点时，#可以选择换取经验者或者换取技能等级。
-    #    点击回合结束可以结束当前回合，#当第10回合结束后，双方进行战斗。
-    #    '↑ ↓ ← →'移动，'X'攻击，'Z'冲刺");
-}
-
-// draw pick rune information
-if (depth == -18) {
-    draw_text(320,32,"选择一个符文");
-    draw_text(320,200, "    焚 （增35%攻击力，减20%生命与防御）
-    #磐 （增35%生命与防御，减20%攻击力）
-    #怒 （增30%暴击几率，减35%暴击总伤害）");
-    draw_set_colour(c_red);
-    draw_button(128-16,320-16,128+16,320+16,!(mouse_check_button(mb_left)&amp;&amp;scr_area(128,320,32,32)));
-    draw_button(192-16,320-16,192+16,320+16,!(mouse_check_button(mb_left)&amp;&amp;scr_area(192,320,32,32)));
-    draw_button(256-16,320-16,256+16,320+16,!(mouse_check_button(mb_left)&amp;&amp;scr_area(256,320,32,32)));
-    draw_set_colour(c_black);
-    draw_text(128,320,"焚");
-    draw_text(192,320,"磐");
-    draw_text(256,320,"怒");
-}
-
-if (depth == -17) {
-    with(oHeroStats) {
-        draw_set_halign(fa_center);
-        draw_text(544,64,"行动点" + string(movepoint) + "/" + string(maxmovepoint));
-        draw_text(320,32,"英雄状态");
-                
-        //draw the stats
-        draw_set_halign(fa_left);
-        switch(global.rune) {
-            case 1: draw_text(64,96,"符文：焚");break;
-            case 2: draw_text(64,96,"符文：磐");break;
-            case 3: draw_text(64,96,"符文：怒");break;
-        }
-        draw_text(64,128,"等级：  " + string(level) + "(" + string(xp) + "/" + string(maxxp) + ")");
-        draw_text(64,160,"生命值：" + string(hp) + "/" + string(maxhp));
-        draw_text(64,192,"攻击力：" + string(attack));
-        draw_text(64,224,"防御力：" + string(defense));
-        if (lifeleech &gt; 0) {
-            draw_text(64,256,"生命吸取：" + string(lifeleech) + "%");
-            if (critchance &gt; 0) {
-                draw_text(64,288,"暴击几率：" + string(critchance) + "%");
-                draw_text(64,320,"暴击伤害：" + string(critdamage) + "%");
-            }
-        } else {
-            if (critchance &gt; 0) {
-                draw_text(64,256,"暴击几率：" + string(critchance) + "%");
-                draw_text(64,288,"暴击伤害：" + string(critdamage) + "%");
-            }
-        }
-    }
-}
-
-if (depth == -16) {
-    draw_text(320,32,"技能列表");
-    with(oHeroStats) {
-        draw_set_halign(fa_center);
-        draw_text(544,64,"行动点" + string(movepoint) + "/" + string(maxmovepoint));
-        draw_set_halign(fa_left);
-        draw_set_valign(fa_top);
-        draw_text(64,64, 
-        "恩赐解脱：攻击时有"+string(critchance)+"%几率暴击 #目前等级： " + string(critchance_lv)+ "(升级所需行动点：" + string(critchance_mp)+")" 
-        
-        + "##嗜血狂暴：生命值恢复所造成伤害的"+string(lifeleech)+"% #目前等级： " + string(lifeleech_lv)+ "(升级所需行动点：" + string(lifeleech_mp)+")"
-        
-        + "##破釜沉舟：攻击击溃对方"+string(dealperhp)+"%最大生命值 #目前等级： " + string(dealperhp_lv)+ "(升级所需行动点：" + string(dealperhp_mp)+")" 
-            
-        + "##凌波微步：冲刺技能消耗耐力减少"+string(dashreduceeffect)+"点 #目前等级： " + string(dashreduce_lv)+ "(升级所需行动点：" + string(dashreduce_mp)+")"
-        
-        
-        );    
-        draw_set_colour(c_red);
-        draw_button(450-16,100-16,450+16,100+16,!(mouse_check_button(mb_left)&amp;&amp;scr_area(450,100,32,32)));
-        draw_button(450-16,175-16,450+16,175+16,!(mouse_check_button(mb_left)&amp;&amp;scr_area(450,175,32,32)));
-        draw_button(450-16,250-16,450+16,250+16,!(mouse_check_button(mb_left)&amp;&amp;scr_area(450,250,32,32)));
-        draw_button(450-16,325-16,450+16,325+16,!(mouse_check_button(mb_left)&amp;&amp;scr_area(450,325,32,32)));
-        draw_set_colour(c_black);
-        draw_set_halign(fa_center);
-        draw_set_valign(fa_middle);
-        draw_text(450,100,"+");
-        draw_text(450,175,"+");
-        draw_text(450,250,"+");
-        draw_text(450,325,"+");
-    }
+    // draw pick rune information
+    case -18:
+        // select rune
+        scr_draw_rune();
+        break;
     
+    case -17:
+        // show hero stats
+        scr_draw_herostats();
+        break;
+    
+    case -16:
+        // show skills list
+        scr_draw_skills();
+        break;
+        
+    case -15:   // show wait
+       scr_draw_wait();
+       break;
 }
-
-
-if (depth == -15) {
-    draw_text(room_width/2, room_height/2, "COMING SOON...");
-}
-
-
-
-
 </string>
           </argument>
         </arguments>

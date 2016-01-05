@@ -39,8 +39,26 @@
       <script>scripts\scr_chance.gml</script>
       <script>scripts\scr_next_round.gml</script>
       <script>scripts\scr_area.gml</script>
-      <script>scripts\scr_button.gml</script>
       <script>scripts\go_room.gml</script>
+      <scripts name="network">
+        <script>scripts\scr_server.gml</script>
+        <script>scripts\scr_client.gml</script>
+        <script>scripts\scr_received_packet.gml</script>
+      </scripts>
+      <scripts name="information">
+        <script>scripts\scr_draw_rune.gml</script>
+        <script>scripts\scr_draw_help.gml</script>
+        <script>scripts\scr_draw_herostats.gml</script>
+        <script>scripts\scr_draw_wait.gml</script>
+        <script>scripts\scr_draw_skills.gml</script>
+      </scripts>
+      <scripts name="button">
+        <script>scripts\scr_button.gml</script>
+        <script>scripts\scr_button_begin.gml</script>
+        <script>scripts\scr_button_game.gml</script>
+        <script>scripts\scr_button_network.gml</script>
+        <script>scripts\scr_button_level.gml</script>
+      </scripts>
     </scripts>
     <scripts name="HeroStates">
       <scripts name="help">
@@ -94,6 +112,8 @@
     <object>objects\oControl</object>
     <object>objects\oButton</object>
     <object>objects\oInformation</object>
+    <object>objects\oServer</object>
+    <object>objects\oClient</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r0</room>

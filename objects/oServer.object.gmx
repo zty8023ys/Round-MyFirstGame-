@@ -2,9 +2,9 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
-  <persistent>-1</persistent>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,67 +25,45 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// hero stats
-// font0
-draw_set_font(font0);
+            <string>/// Create server
+var port = PORT;
+var type = network_socket_tcp;
+maxclients = 1;
 
-//hero stats
+server = network_create_server(type, port,maxclients);
 
-//globalvar
-globalvar rune, r, lflag;
-rune = 0;
-r = 1;
-lflag = true;
+socket = noone;
 
-//misc
+isConnection = false;
 
-level = 0;
-xp = 0;
-maxxp = 4;
+//show the local IP adress
+randomize();
+var port = irandom_range(49152,65535);
+var host = network_create_server(network_socket_udp, port, 5);
 
-spd = 3;
+if (host &lt; 0)
+{
+    show_message('Failed to create a broadcast server');
+    game_end();
+}
+else
+{
+    var sock = network_create_socket(network_socket_udp);
+    var buff = buffer_create(32, buffer_fixed, 1);
 
-maxstamina = 10;
-stamina = maxstamina;
-dashcost = 5;
+    buffer_fill(buff, 0, buffer_bool, 0, 32);
+    network_send_broadcast(sock, port, buff, buffer_get_size(buff));
 
-maxmovepoint = r;
-movepoint = maxmovepoint;
-//life
-
-maxhp = 100;
-addhp = 10;
-hp = maxhp;
-
-lifeleech = 0;
-liferecovery = 0;
-
-defense = 10;
-adddefense = 1;
-
-//attack
-attack = 20;
-addattack = 2;
-truedamage = attack;
-
-//accuracy = 1;
-
-critchance = 5 ;
-critdamage = 200;
-crit = false;
-
-
-knockback = 20;
-
-
-// skill list
-scr_skill_list();
+    network_destroy(sock);
+    buffer_delete(buff);
+}
+hostip = "127.0.0.1";
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="2" enumb="0">
+    <event eventtype="7" enumb="68">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -102,13 +80,40 @@ scr_skill_list();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// recovery
+            <string>/// Check for clients and data
+hostip = string(ds_map_find_value(async_load, "ip"));
+
+var type_event = async_load[? "type"];
+switch(type_event) {
+    case network_type_connect: 
+        // Add the client to the socket variable
+        socket = async_load[? "socket"];
+        with(oInformation) {
+            depth = -18;
+        }
+        isConnettion = true;
+        break;
+    
+    case  network_type_disconnect:
+        // Remove the client from the socket variable
+        show_message("Disconnect,Game Over.");
+        game_end();
+        break;
+    
+    case network_type_data:
+        // Handle the data 
+        var buffer = async_load[? "buffer"];
+        buffer_seek(buffer, buffer_seek_start, 0);
+        scr_received_packet(buffer);
+        break;
+
+}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="3" enumb="0">
+    <event eventtype="7" enumb="3">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -125,62 +130,7 @@ scr_skill_list();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// recovery
-if (global.pause) exit;
-
-if (room == atk01 || room == atk02) {
-    if (stamina &lt;= maxstamina - 1 &amp;&amp; alarm[0] &lt;= 0) {
-        stamina += 1;
-        alarm[0] = room_speed / 3;
-    }
-    if (stamina &gt; maxstamina - 1 &amp;&amp; stamina &lt; maxstamina  &amp;&amp; alarm[0] &lt;= 0) {
-        stamina += .5;
-        alarm[0] = room_speed / 6;
-    }
-}
-
-if(hp &lt;=0) {
-    hp = 0;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="64">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// draw stats
-if (room == atk01 || room == atk02) {
-    draw_set_halign(fa_left);
-    draw_text(20,20,"当前回合：" + string(r));
-    switch(global.rune) {
-        case 1: draw_text(20,40,"符文：焚");break;
-        case 2: draw_text(20,40,"符文：磐");break;
-        case 3: draw_text(20,40,"符文：怒");break;
-    }
-    draw_text(20,60,"等级：  " + string(level) + "(" + string(xp) + "/" + string(maxxp) + ")");
-    draw_text(20,80,"生命值：" + string(hp) + "/" + string(maxhp));
-    draw_text(20,100,"耐力：" + string(stamina) + "/" + string(maxstamina));
-    draw_text(20,120,"攻击力：" + string(attack));
-    draw_text(20,140,"防御力：" + string(defense));
-}
-
+            <string>network_destroy(server);
 </string>
           </argument>
         </arguments>

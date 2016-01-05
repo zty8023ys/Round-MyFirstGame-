@@ -32,6 +32,7 @@ identity = 0;
 draw_set_font(font0);
 timeout = false;
 
+clicked = false;
 </string>
           </argument>
         </arguments>
@@ -78,7 +79,6 @@ timeout = false;
           <argument>
             <kind>1</kind>
             <string>image_index = 0;
-
 </string>
           </argument>
         </arguments>
@@ -101,11 +101,10 @@ timeout = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (visible &amp;&amp; image_index == 1) {
+            <string>if (image_index == 1) {
     image_index = 0;
     scr_button();
 }
-
 </string>
           </argument>
         </arguments>
@@ -128,8 +127,7 @@ timeout = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = 1;
-
+            <string>if (visible) image_index = 1;
 </string>
           </argument>
         </arguments>
@@ -191,6 +189,15 @@ if (depth == -22) {
         case 2:draw_text(x,y,"兑换全部"); break;
         case 3:draw_text(x,y,"战斗升级"); break;
         case 4:draw_text(x,y,"返回"); break;
+    }
+}
+
+if (depth == -23) {
+    switch(identity) {
+        case 1:draw_text(x,y,"创建游戏"); break;
+        case 2:draw_text(x,y,"加入游戏"); break;
+        case 3:draw_text(x,y,"更多(暂无)"); break;
+        case 4:draw_text(x,y,"返回菜单"); break;
     }
 }
 </string>
