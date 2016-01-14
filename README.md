@@ -4,10 +4,9 @@
 基本架构已经完成，正在学习联网方案，之后即可加入最终的PvP系统，最后会对数值进行平衡，增加新技能与天赋系统。
 **素材来源于 [HeartBeast Studios](http://www.heartbeaststudios.com/)**
 
-#鉴于百度越来越不要脸（把血友病吧卖个野鸡专家野鸡医院），以后会尽量不用百度的东西，抵制百度，从我做起！
 
 #[点我下载（Google源）](https://drive.google.com/open?id=0B_iqAG1M4dRJODkwMjlfbWFhaVk)
-#[点我下载（Dropbox源）](https://www.dropbox.com/s/b7fpl30s2o5ca8f/MyRPG.exe?dl=0)
+#[点我下载（备用）](ftp://round:rrr@45.78.58.127/MyRPG.exe)
 
 
 
