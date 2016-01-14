@@ -1,9 +1,9 @@
 ///scr_move_state
 scr_get_input();
 
-if (dash_key && dir_key && oHeroStats.stamina >= oHeroStats.dashcost) {
+if (dash_key && dir_key && stamina >= dashcost) {
     state = scr_dash_state;
-    oHeroStats.stamina -= oHeroStats.dashcost;
+    stamina -= dashcost;
     alarm[0] = room_speed / 6;
 }
 
@@ -22,11 +22,12 @@ if (xaxis == 0 && yaxis == 0) {
     scr_get_face();
 }
 
-// get the hspd and vspd
+
+//get hspd and vspd
 hspd = lengthdir_x(len, dir);
 vspd = lengthdir_y(len, dir);
 
-// move
+//move
 phy_position_x += hspd;
 phy_position_y += vspd;
 

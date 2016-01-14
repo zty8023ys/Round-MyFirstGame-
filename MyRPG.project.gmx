@@ -40,10 +40,12 @@
       <script>scripts\scr_next_round.gml</script>
       <script>scripts\scr_area.gml</script>
       <script>scripts\go_room.gml</script>
+      <script>scripts\scr_impulse.gml</script>
       <scripts name="network">
         <script>scripts\scr_server.gml</script>
         <script>scripts\scr_client.gml</script>
         <script>scripts\scr_received_packet.gml</script>
+        <script>scripts\scr_send_key.gml</script>
       </scripts>
       <scripts name="information">
         <script>scripts\scr_draw_rune.gml</script>
@@ -62,7 +64,6 @@
     </scripts>
     <scripts name="HeroStates">
       <scripts name="help">
-        <script>scripts\scr_recovery.gml</script>
         <script>scripts\scr_levelup.gml</script>
         <script>scripts\scr_skill_list.gml</script>
         <script>scripts\scr_passitive.gml</script>
@@ -87,6 +88,7 @@
       <script>scripts\scr_monster_stall_state.gml</script>
       <script>scripts\scr_monster_wander_state.gml</script>
     </scripts>
+    <script>scripts\scr_what_today.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -97,7 +99,6 @@
       <objects name="hero">
         <object>objects\oDashEffect</object>
         <object>objects\oHero</object>
-        <object>objects\oHeroStats</object>
       </objects>
       <object>objects\oEnemySlime</object>
     </objects>
@@ -108,6 +109,7 @@
       <object>objects\oXp</object>
       <object>objects\oRegenHp</object>
       <object>objects\oDamage</object>
+      <object>objects\oTrap</object>
     </objects>
     <object>objects\oControl</object>
     <object>objects\oButton</object>

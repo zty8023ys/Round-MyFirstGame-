@@ -2,9 +2,9 @@
 <object>
   <spriteName>sHeroDown</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>oParent</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -28,13 +28,6 @@
             <string>/// Set Fixed Rotation
 event_inherited();
 
-
-
-maxhp = oHeroStats.maxhp;
-hp = maxhp;
-
-
-spd = oHeroStats.spd; // 移动速度
 vspd = 0;
 hspd = 0;
 xaxis = 0; // X轴方向，水平(h)
@@ -46,6 +39,105 @@ image_speed = 0; // 人物静止帧数
 scr_get_input();
 state = scr_move_state;
 face = RIGHT;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Herostats
+/// hero stats
+// font0
+draw_set_font(font0);
+
+//hero stats
+
+//globalvar
+globalvar rune, r, lflag;
+rune = 0;
+r = 1;
+lflag = true;
+
+//misc
+
+level = 0;
+xp = 0;
+maxxp = 4;
+
+spd = 3;// 移动速度
+
+maxstamina = 10;
+stamina = maxstamina;
+dashcost = 5;
+
+maxmovepoint = r;
+movepoint = maxmovepoint;
+//life
+
+maxhp = 100;
+addhp = 10;
+hp = maxhp;
+
+lifeleech = 0;
+liferecovery = 0;
+
+defense = 10;
+adddefense = 1;
+
+//attack
+attack = 20;
+addattack = 2;
+truedamage = attack;
+
+//accuracy = 1;
+
+critchance = 5 ;
+critdamage = 200;
+crit = false;
+
+
+knockback = 20;
+
+
+// skill list
+scr_skill_list();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// recovery
 </string>
           </argument>
         </arguments>
@@ -103,6 +195,39 @@ script_execute(state);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// recovery
+/// recovery
+if (global.pause) exit;
+
+if (room == atk01 || room == atk02) {
+    if (stamina &lt; maxstamina &amp;&amp; alarm[1] &lt;= 0) {
+        stamina = min(stamina+1,maxstamina);
+        alarm[1] = room_speed / 3;
+    }
+}
+
+hp = max(hp,0);
+
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="7" enumb="7">
       <action>
@@ -131,6 +256,66 @@ if (state == scr_attack_state &amp;&amp; attacked == true) {
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>phy_fixed_rotation = true; 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// draw stats
+if (room == atk01 || room == atk02) {
+    draw_set_halign(fa_left);
+    draw_text(20,20,"当前回合：" + string(r));
+    switch(global.rune) {
+        case 1: draw_text(20,40,"符文：焚");break;
+        case 2: draw_text(20,40,"符文：磐");break;
+        case 3: draw_text(20,40,"符文：怒");break;
+    }
+    draw_text(20,60,"等级：  " + string(level) + "(" + string(xp) + "/" + string(maxxp) + ")");
+    draw_text(20,80,"生命值：" + string(hp) + "/" + string(maxhp));
+    draw_text(20,100,"耐力：" + string(stamina) + "/" + string(maxstamina));
+    draw_text(20,120,"攻击力：" + string(attack));
+    draw_text(20,140,"防御力：" + string(defense));
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -150,9 +335,8 @@ if (state == scr_attack_state &amp;&amp; attacked == true) {
             <kind>1</kind>
             <string>/// Draw the shadow &amp; stats
 event_inherited();
-
 draw_sprite(sShadow,image_index,x,y);
-draw_self();
+
 if (r &gt; 10) {
     draw_set_halign(fa_center);
     draw_text(x, y+20, "COMING SOON!");
@@ -175,9 +359,9 @@ if (r &gt; 10) {
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>2,14</point>
-    <point>12,14</point>
-    <point>12,20</point>
-    <point>2,20</point>
+    <point>0,12</point>
+    <point>14,12</point>
+    <point>14,20</point>
+    <point>0,20</point>
   </PhysicsShapePoints>
 </object>

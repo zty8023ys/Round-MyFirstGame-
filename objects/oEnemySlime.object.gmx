@@ -34,6 +34,7 @@ alarm[0] = room_speed * irandom_range(2, 5);
 targetx = 0;
 targety = 0;
 sight = 64;
+knockback = 10;
 </string>
           </argument>
         </arguments>
@@ -177,35 +178,12 @@ if (state != scr_monster_stall_state) {
         var damage = instance_create(other.x+xdir, other.y+ydir, oDamage);
         damage.creator = id;
         damage.damage = 10;
-        damage.knockback = 5;
+        damage.knockback = knockback;
         state = scr_monster_stall_state;
         alarm[1] = room_speed;    
     }
 
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>event_inherited();
 </string>
           </argument>
         </arguments>
@@ -224,12 +202,11 @@ if (state != scr_monster_stall_state) {
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
-    <point>18,2</point>
-    <point>24,10</point>
-    <point>18,12</point>
-    <point>6,12</point>
-    <point>2,10</point>
-    <point>2,8</point>
-    <point>10,2</point>
+    <point>6,4</point>
+    <point>14,0</point>
+    <point>26,10</point>
+    <point>18,14</point>
+    <point>6,14</point>
+    <point>0,8</point>
   </PhysicsShapePoints>
 </object>

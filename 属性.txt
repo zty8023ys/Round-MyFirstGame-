@@ -16,6 +16,12 @@ depth {
     
 }
 
+rune {
+    1 : ·Ù
+    2 : ÅÍ
+    3 : Å­
+}
+
 hero stats {
 
     rune,

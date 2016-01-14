@@ -1,6 +1,6 @@
 // next round
 if (r < 10) {
-    with(oHeroStats) {
+    with(oHero) {
         r += 1;
         maxmovepoint = r;
         movepoint = maxmovepoint;
@@ -22,7 +22,6 @@ if (r < 10) {
 } else {
     if (r >= 10) {
         room = atk02;
-        oHeroStats.hp = oHeroStats.maxhp;
-        oHero.hp = oHeroStats.hp;
+        oHero.hp = oHero.maxhp;
     }
 }

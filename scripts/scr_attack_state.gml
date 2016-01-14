@@ -17,8 +17,8 @@ switch(sprite_index) {
     break;
 }
 
-    var xx = phy_position_x;
-    var yy = phy_position_y;
+    var xx = x;
+    var yy = y;
 if (image_index >= 3 && attacked == false) {
     switch(sprite_index) {
         case sHeroAttackUp :  
@@ -42,15 +42,15 @@ if (image_index >= 3 && attacked == false) {
     
     var damage = instance_create(xx, yy, oDamage);
     damage.creator = id;
-    with(oHeroStats) {
-        crit = scr_chance(critchance/100);
-        if (crit) {
-            truedamage = attack * (critdamage/100);
-        } else {
-            truedamage = attack;
-        }
-        damage.damage = truedamage;
-        damage.knockback = knockback;
+    crit = scr_chance(critchance/100);
+    if (crit) {
+        truedamage = attack * (critdamage/100);
+    } else {
+        truedamage = attack;
     }
+
+    damage.damage = truedamage;
+    damage.knockback = knockback;
+
     attacked = true;
 }

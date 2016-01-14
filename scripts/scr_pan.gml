@@ -1,5 +1,5 @@
 //符文 ： 磐
-with(oHeroStats) {
+with(oHero) {
     attack *= 0.8;
     addattack *= 0.8;
     maxhp *= 1.35;

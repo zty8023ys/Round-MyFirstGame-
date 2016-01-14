@@ -82,7 +82,7 @@ if (hp &lt;= 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// collide
+            <string>///collision
 </string>
           </argument>
         </arguments>
@@ -105,7 +105,7 @@ if (hp &lt;= 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// collide
+            <string>///collision
 </string>
           </argument>
         </arguments>

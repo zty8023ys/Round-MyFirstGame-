@@ -33,7 +33,7 @@ var ip = get_string("请输入主机IP：","192.168.99.215");
 
 socket = network_create_socket(type);
 
-isConnettion = false;
+sendstats = false;
 
 connetion = network_connect(socket, ip, port);
 
@@ -43,6 +43,90 @@ if (connetion &gt;= 0) {
         visible = true;
     }
     isConnetion = true;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (room == atk02) {
+    buffer = buffer_create(1024,buffer_fixed, 1);
+    with(oHeroStats2){
+        if (!sendstats) {
+            sendstats = true;
+            buffer_seek(buffer,buffer_seek_start,0);
+            buffer_write(buffer,buffer_u8,HEROSTATS);
+            buffer_write(buffer,buffer_u8,level);
+            buffer_write(buffer,buffer_u8,maxhp);
+            buffer_write(buffer,buffer_u8,attack);
+            buffer_write(buffer,buffer_u8,defense);
+            buffer_write(buffer,buffer_u8,dashcost);
+            buffer_write(buffer,buffer_u8,lifeleech);
+            buffer_write(buffer,buffer_u8,dealperhp);
+            buffer_write(buffer,buffer_u8,critchance);
+            buffer_write(buffer,buffer_u8,critdamage);
+            network_send_packet(socket, buffer, buffer_tell(buffer));
+        } else {
+            buffer_seek(buffer,buffer_seek_start,0);
+            buffer_write(buffer,buffer_u8,FIGHTSTATS);
+            buffer_write(buffer,buffer_u8,dir_key);
+            buffer_write(buffer,buffer_u8,xaxis);
+            buffer_write(buffer,buffer_u8,yaxis);
+            buffer_write(buffer,buffer_u8,dash_key);
+            buffer_write(buffer,buffer_u8,attack_key);
+            network_send_packet(socket, buffer, buffer_tell(buffer));
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="68">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Check for clients and data
+
+var type_event = async_load[? "type"];
+switch(type_event) {
+    case network_type_data:
+        // Handle the data 
+        var buffer = async_load[? "buffer"];
+        buffer_seek(buffer, buffer_seek_start, 0);
+        scr_received_packet(buffer);
+        break;
 }
 </string>
           </argument>

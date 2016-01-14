@@ -118,15 +118,12 @@ if (visible) {
             scr_nu();
             // 3: 怒
         }
-        
-        // visible the hero stats
-        oHeroStats.visible = true;
 
     }
     
     //learn skills
     if (skillpressed &amp;&amp; depth == -16 &amp;&amp; skillarea) {
-        with(oHeroStats) {
+        with(oHero) {
             if (scr_area(450,100,32,32) &amp;&amp; movepoint &gt;= critchance_mp &amp;&amp; critchanceflag){
                 critchance_lv += 1;
                 critchance += addcritchance;

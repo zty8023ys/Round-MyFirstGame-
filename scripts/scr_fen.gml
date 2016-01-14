@@ -1,5 +1,5 @@
 //符文 ： 焚
-with(oHeroStats) {
+with(oHero) {
     attack *= 1.35;
     addattack *= 1.35;
     maxhp *= 0.8;

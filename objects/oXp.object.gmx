@@ -83,7 +83,7 @@ if (instance_exists(oHero)){
           <argument>
             <kind>1</kind>
             <string>/// give player xp
-with(oHeroStats) {
+with(oHero) {
     xp += oXp.xp;
     if (xp &gt;= maxxp) {
         scr_levelup();
@@ -109,6 +109,6 @@ instance_destroy();
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
     <point>2,2</point>
-    <point>4,4</point>
+    <point>2,2</point>
   </PhysicsShapePoints>
 </object>

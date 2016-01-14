@@ -1,14 +1,11 @@
 /// level up
-with(oHeroStats){
+with(oHero){
     xp -= maxxp;
     level += 1;    
     attack += addattack;
     defense += adddefense;
     maxhp += addhp;
     hp = maxhp;
-    if (instance_exists(oHero)) {
-        oHero.hp = hp;
-    }
     stamina = maxstamina;
     switch(level) {
         case 1:

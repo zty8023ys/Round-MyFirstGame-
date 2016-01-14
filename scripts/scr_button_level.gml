@@ -3,7 +3,7 @@ if (depth == -22) {
         switch(identity) {
             case 1: 
             // 兑换1点
-                with(oHeroStats) {
+                with(oHero) {
                     if(movepoint >= 1){
                         movepoint -= 1;
                         xp += 4;
@@ -16,7 +16,7 @@ if (depth == -22) {
             
             case 2:
             // 兑换全部
-                with(oHeroStats) {
+                with(oHero) {
                     if (movepoint >= 1) {
                         while (movepoint >= 1) {
                             xp += 4;
@@ -35,8 +35,8 @@ if (depth == -22) {
                 
             case 3:
             // 战斗升级
-                if(oHeroStats.movepoint >= 2 && lflag){
-                    oHeroStats.movepoint -= 2;
+                if(oHero.movepoint >= 2 && lflag){
+                    oHero.movepoint -= 2;
                     lflag = false;
                     go_room(atk01);
                 }

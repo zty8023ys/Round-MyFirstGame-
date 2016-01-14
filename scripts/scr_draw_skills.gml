@@ -1,5 +1,5 @@
     draw_text(320,32,"技能列表");
-    with(oHeroStats) {
+    with(oHero) {
         draw_set_halign(fa_center);
         draw_text(544,64,"行动点" + string(movepoint) + "/" + string(maxmovepoint));
         draw_set_halign(fa_left);

@@ -459,7 +459,10 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="6">
+    <constants number="9">
+      <constant name="KEY_MSGID">1</constant>
+      <constant name="FIGHTSTATS">2</constant>
+      <constant name="HEROSTATS">1</constant>
       <constant name="PORT">418</constant>
       <constant name="RIGHT">0</constant>
       <constant name="UP">1</constant>

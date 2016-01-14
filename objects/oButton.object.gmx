@@ -168,7 +168,7 @@ if (depth == -20) {
 if (depth == -21) {
 
     // show the movepoint
-    draw_text(544,64,"行动点" + string(oHeroStats.movepoint) + "/" + string(oHeroStats.maxmovepoint));
+    draw_text(544,64,"行动点" + string(oHero.movepoint) + "/" + string(oHero.maxmovepoint));
     
     switch(identity) {
         case 1:draw_text(x,y,"状态"); break;
@@ -182,7 +182,7 @@ if (depth == -21) {
 // level up
 if (depth == -22) {
     // show the movepoint
-    draw_text(544,64,"行动点" + string(oHeroStats.movepoint) + "/" + string(oHeroStats.maxmovepoint));
+    draw_text(544,64,"行动点" + string(oHero.movepoint) + "/" + string(oHero.maxmovepoint));
     
     switch(identity) {
         case 1:draw_text(x,y,"兑换1点"); break;
