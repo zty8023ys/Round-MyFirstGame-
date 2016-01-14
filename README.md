@@ -6,8 +6,8 @@
 
 
 #[点我下载（Google源）](https://drive.google.com/open?id=0B_iqAG1M4dRJODkwMjlfbWFhaVk)
-#[点我下载（备用）](ftp://round:rrr@45.78.58.127/MyRPG.exe)
 
+#备用下载地址：ftp://round:rrr@45.78.58.127/MyRPG.exe
 
 
 #更新日志
