@@ -7,7 +7,7 @@
 
 #[点我下载（Google源）](https://drive.google.com/open?id=0B_iqAG1M4dRJODkwMjlfbWFhaVk)
 
-#备用下载地址：ftp://round:rrr@45.78.58.127/MyRPG.exe
+#[备用下载（个人VPS网速不太好,见谅）](https://45.58.54.172/round_v0.3.exe)
 
 
 #更新日志
