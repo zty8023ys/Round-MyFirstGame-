@@ -38,7 +38,7 @@ if (depth == -22) {
                 if(oHero.movepoint >= 2 && lflag){
                     oHero.movepoint -= 2;
                     lflag = false;
-                    go_room(atk01);
+                    scr_go_room(atk01);
                 }
                 break;
                 

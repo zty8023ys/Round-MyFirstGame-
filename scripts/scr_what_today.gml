@@ -1,5 +1,3 @@
 /*
-1.collision
-2.local network
-3.make a trap or a totem
-4.good AI & summoner boss
+切换房间位置变化
+技能更新:借力打力

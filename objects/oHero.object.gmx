@@ -37,8 +37,15 @@ dir = 0;
 attacked = false;
 image_speed = 0; // 人物静止帧数
 scr_get_input();
+
+dir_key = (up_key || down_key || left_key || right_key);
+// get the axis
+xaxis = (right_key - left_key);
+yaxis = (down_key - up_key);
+isdash = false;
+isattack = false;
 state = scr_move_state;
-face = RIGHT;
+face = DOWN;
 </string>
           </argument>
         </arguments>
@@ -65,6 +72,7 @@ face = RIGHT;
 draw_set_font(font0);
 
 //hero stats
+name = "AA";
 
 //globalvar
 globalvar rune, r, lflag;
@@ -91,6 +99,7 @@ movepoint = maxmovepoint;
 maxhp = 100;
 addhp = 10;
 hp = maxhp;
+temphp = hp;
 
 lifeleech = 0;
 liferecovery = 0;
@@ -115,6 +124,39 @@ knockback = 20;
 
 // skill list
 scr_skill_list();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/*
+if (instance_exists(oClient)) {
+    with (oClient) {
+        scr_send_end(server);
+    }
+}
+if (instance_exists(oServer)) {
+    with (oServer) {
+        scr_send_end(client);
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -161,7 +203,7 @@ scr_skill_list();
           <argument>
             <kind>1</kind>
             <string>/// back to move state
-
+isdash = false;
 state = scr_move_state;
 </string>
           </argument>
@@ -221,9 +263,40 @@ if (room == atk01 || room == atk02) {
         alarm[1] = room_speed / 3;
     }
 }
-
-hp = max(hp,0);
-
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// send hp
+if (hp &gt; temphp) {
+    if (instance_exists(oClient)) {
+        with (oClient) {
+            scr_send_recovery_hp(oHero.hp,server);
+        }
+    }
+    if (instance_exists(oServer)) {
+        with (oServer) {
+            scr_send_recovery_hp(oHero.hp,client);
+        }
+    }
+    temphp = hp;
+}
 </string>
           </argument>
         </arguments>
@@ -310,6 +383,7 @@ if (room == atk01 || room == atk02) {
     draw_text(20,100,"耐力：" + string(stamina) + "/" + string(maxstamina));
     draw_text(20,120,"攻击力：" + string(attack));
     draw_text(20,140,"防御力：" + string(defense));
+    draw_text(20,160, string(mouse_x)+ "," +string(mouse_y));
 }
 </string>
           </argument>
@@ -336,11 +410,6 @@ if (room == atk01 || room == atk02) {
             <string>/// Draw the shadow &amp; stats
 event_inherited();
 draw_sprite(sShadow,image_index,x,y);
-
-if (r &gt; 10) {
-    draw_set_halign(fa_center);
-    draw_text(x, y+20, "COMING SOON!");
-}
 </string>
           </argument>
         </arguments>

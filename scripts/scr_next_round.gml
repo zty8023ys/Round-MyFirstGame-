@@ -20,8 +20,8 @@ if (r < 10) {
         }
     }
 } else {
-    if (r >= 10) {
-        room = atk02;
-        oHero.hp = oHero.maxhp;
+    r = 99;
+    if (!global.lan) {
+        scr_go_room(atk02);
     }
 }

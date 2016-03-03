@@ -58,7 +58,7 @@ if (room_exists(next_room)) {
             visible = true;
         }
     }
-    go_room(next_room);
+    scr_go_room(next_room);
 }
 </string>
           </argument>

@@ -9,11 +9,7 @@ switch(identity) {
     
     case 3: 
         //广域网联机
-        with(oButton) {
-            visible = false;
-        }
-        oInformation.visible = true;
-        oInformation.depth = -15;
+        scr_button_ip();
         break;
     
     case 4: 

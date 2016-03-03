@@ -251,9 +251,16 @@ switch(depth) {
         scr_draw_skills();
         break;
         
-    case -15:   // show wait
+    case -15:   // show wait for client
        scr_draw_wait();
        break;
+       
+    case -14:   // show wait for other
+       scr_draw_wait_other();
+       break;
+    
+    case -13:
+        scr_draw_trueip();
 }
 </string>
           </argument>
@@ -272,5 +279,8 @@ switch(depth) {
   <PhysicsObjectFriction>0.200000002980232</PhysicsObjectFriction>
   <PhysicsObjectAwake>-1</PhysicsObjectAwake>
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
-  <PhysicsShapePoints/>
+  <PhysicsShapePoints>
+    <point>0,0</point>
+    <point>320,320</point>
+  </PhysicsShapePoints>
 </object>

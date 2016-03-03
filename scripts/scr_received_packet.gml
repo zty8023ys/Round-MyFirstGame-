@@ -4,31 +4,63 @@ var buffer = argument[0];
 var msgid = buffer_read(buffer, buffer_u8);
 
 
-    // Get the socket ID - this is the CLIENT socket ID. We can use this as a "key" for this client
-    var clientid = async_load[? "id"];
+switch(msgid) {
 
-    if( msgid==KEY_MSGID )    
-    {
+    case READY_MSGID :
+        if (room == r0 && oInformation.depth == -14) {
+            scr_read_buffer(buffer);
+            var buffer = buffer_create(1024,buffer_fixed,1);
+            buffer_seek(buffer,buffer_seek_start,0);
+            buffer_write(buffer, buffer_u8, READY_MSGID);
+            buffer_write(buffer, buffer_f32, oHero.maxhp);
+            buffer_write(buffer, buffer_f32, oHero.defense);
+            if (instance_exists(oServer)) {
+                var send = network_send_packet(client,buffer,buffer_tell(buffer));
+                buffer_delete(buffer);
+            } else {
+                var send = network_send_packet(server,buffer,buffer_tell(buffer));
+                buffer_delete(buffer);
+            }
+            if (send) scr_go_room(atk02);
+        }
+        break;
+    case KEY_MSGID :
         // Read the key that was sent
-        var key = buffer_read(buff, buffer_s16 );
-        // And it's up/down state
-        var updown = buffer_read(buff, buffer_s16 );
-    
-        // translate keypress into an index for our player array.
-        if( key==vk_left ) {
-            key=LEFT_KEY;
+        if (room == atk02) {
+            var sendkey = buffer_read(buffer, buffer_u8);
+            // And it's up/down state
+            oEX.keylist[sendkey] = buffer_read(buffer, buffer_u8);
         }
-        else if( key==vk_right ) {
-            key=RIGHT_KEY;
-        }
-        else if( key==vk_space ) {
-            key=JUMP_KEY;
-        }
-         
-        // translate updown into a bool for the player array       
-        if( updown==0 ){
-            inst.keys[key] = false;
-        }else{
-            inst.keys[key] = true;
-        }
-    }
+        break;
+        
+    case HP_MSGID :
+            // get the hp from oEX
+            oHero.hp = buffer_read(buffer,buffer_f32);
+        break;
+
+        
+    case MAXHP_MSGID :
+            oHero.maxhp = buffer_read(buffer, buffer_f32);
+        break;
+        
+    case RECHP_MSGID :
+            oEX.hp = buffer_read(buffer,buffer_f32);
+        break;
+        
+                
+    case POS_MSGID :
+            with(oEX) {
+                phy_position_x = buffer_read(buffer,buffer_f32);
+                phy_position_y = buffer_read(buffer,buffer_f32);
+            }            
+            with(oHero) {
+                phy_position_x = buffer_read(buffer,buffer_f32);
+                phy_position_y = buffer_read(buffer,buffer_f32);
+            }
+        break;
+        
+    case GAME_END :
+        show_message("You lose!");
+        game_end();
+        break;
+}

@@ -28,6 +28,7 @@
     <sprite>sprites\sPause</sprite>
     <sprite>sprites\sButton</sprite>
     <sprite>sprites\sInformation</sprite>
+    <sprite>sprites\sBoss</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bGrass</background>
@@ -36,16 +37,23 @@
   <scripts name="scripts">
     <scripts name="Help">
       <script>scripts\scr_get_input.gml</script>
+      <script>scripts\scr_get_input_network.gml</script>
       <script>scripts\scr_chance.gml</script>
       <script>scripts\scr_next_round.gml</script>
       <script>scripts\scr_area.gml</script>
-      <script>scripts\go_room.gml</script>
+      <script>scripts\scr_go_room.gml</script>
       <script>scripts\scr_impulse.gml</script>
       <scripts name="network">
         <script>scripts\scr_server.gml</script>
         <script>scripts\scr_client.gml</script>
         <script>scripts\scr_received_packet.gml</script>
         <script>scripts\scr_send_key.gml</script>
+        <script>scripts\scr_wait_other.gml</script>
+        <script>scripts\scr_read_buffer.gml</script>
+        <script>scripts\scr_send_hp.gml</script>
+        <script>scripts\scr_send_maxhp.gml</script>
+        <script>scripts\scr_send_recovery_hp.gml</script>
+        <script>scripts\scr_send_end.gml</script>
       </scripts>
       <scripts name="information">
         <script>scripts\scr_draw_rune.gml</script>
@@ -53,6 +61,8 @@
         <script>scripts\scr_draw_herostats.gml</script>
         <script>scripts\scr_draw_wait.gml</script>
         <script>scripts\scr_draw_skills.gml</script>
+        <script>scripts\scr_draw_wait_other.gml</script>
+        <script>scripts\scr_draw_trueip.gml</script>
       </scripts>
       <scripts name="button">
         <script>scripts\scr_button.gml</script>
@@ -60,6 +70,7 @@
         <script>scripts\scr_button_game.gml</script>
         <script>scripts\scr_button_network.gml</script>
         <script>scripts\scr_button_level.gml</script>
+        <script>scripts\scr_button_ip.gml</script>
       </scripts>
     </scripts>
     <scripts name="HeroStates">
@@ -75,8 +86,10 @@
         </scripts>
       </scripts>
       <script>scripts\scr_attack_state.gml</script>
+      <script>scripts\scr_attack_state_new.gml</script>
       <script>scripts\scr_dash_state.gml</script>
       <script>scripts\scr_move_state.gml</script>
+      <script>scripts\scr_move_state_new.gml</script>
     </scripts>
     <scripts name="MonsterStates">
       <scripts name="help">
@@ -99,6 +112,7 @@
       <objects name="hero">
         <object>objects\oDashEffect</object>
         <object>objects\oHero</object>
+        <object>objects\oEX</object>
       </objects>
       <object>objects\oEnemySlime</object>
     </objects>

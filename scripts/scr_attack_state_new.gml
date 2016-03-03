@@ -1,4 +1,4 @@
-/// scr_attack_state
+/// scr_attack_state_new
 
 image_speed = .5;
 
@@ -39,17 +39,10 @@ if (image_index >= 3 && attacked == false) {
         yy += 2;
         break;
     }
-    temphp = hp;
+    
     var damage = instance_create(xx, yy, oDamage);
     damage.creator = id;
-    crit = scr_chance(critchance/100);
-    if (crit) {
-        truedamage = attack * (critdamage/100);
-    } else {
-        truedamage = attack;
-    }
-
-    damage.damage = truedamage;
+    damage.damage = attack;
     damage.knockback = knockback;
 
     attacked = true;

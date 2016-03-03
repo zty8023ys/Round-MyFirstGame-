@@ -1,20 +1,16 @@
 ///scr_move_state
-scr_get_input();
-dir_key = (up_key || down_key || left_key || right_key);
 // get the axis
+scr_get_input_network();
 xaxis = (right_key - left_key);
 yaxis = (down_key - up_key);
 
-if (dash_key && dir_key && stamina >= dashcost) {
-    isdash = true;
+if (dash_key && dir_key ) {
     state = scr_dash_state;
-    stamina -= dashcost;
     alarm[0] = room_speed / 6;
 }
 
 if (attack_key) {
-    isattack = true;
-    state = scr_attack_state;
+    state = scr_attack_state_new;
 }
 
 // get direction

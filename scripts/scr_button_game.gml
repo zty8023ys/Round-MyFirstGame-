@@ -27,11 +27,6 @@ switch(identity) {
         
     case 4:
     // 结束
-        if (r < 10) {
-            scr_next_round();
-        } else {
-            r = 99;
-            go_room(atk02);
-        }
+        scr_next_round();
         break;
 }
