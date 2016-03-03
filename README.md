@@ -5,12 +5,19 @@
 **素材来源于 [HeartBeast Studios](http://www.heartbeaststudios.com/)**
 
 
-#[点我下载（Google源）](https://drive.google.com/open?id=0B_iqAG1M4dRJODkwMjlfbWFhaVk)
-
-#[备用下载（个人VPS网速不太好,见谅）](http://45.58.54.172/round_v0.3.exe)
+#[点我下载]http://45.58.54.172/Round_v1.0.exe))
 
 
 #更新日志
+
+v1.0正式版：
+## 系统更新：
+* 完成了局域网对战功能。
+* 快去和你的小伙伴对战吧!
+## BUG修复：
+* 修复了史莱姆原地抽风的bug。
+
+
 #v0.3
 ##系统更新：
 * 删除了对象oHeroStats，将其完全转移到oHero中，为下一步增加联网系统做准备。
