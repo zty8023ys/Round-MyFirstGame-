@@ -95,6 +95,9 @@ if (instance_exists(other) &amp;&amp; instance_exists(creator)) {
             other.maxhp *= (1-oHero.dealperhp/100);
         } else {
             //damage TO the hero
+            if (!audio_is_playing(hurt)) {
+                audio_play_sound(hurt,10,false);
+            }
             if (other.object_index == oHero) {
                 other.hp -= damage * (1-other.defense/100);
             }

@@ -1,5 +1,8 @@
 /// level up
 with(oHero){
+    if (room != r0) {
+        audio_play_sound(nextlevel,10,false);
+    }
     xp -= maxxp;
     level += 1;    
     attack += addattack;

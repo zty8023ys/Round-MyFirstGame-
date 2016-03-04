@@ -14,7 +14,6 @@ if(goroom == atk01) {
 
 if (goroom == atk02) {
     oHero.visible = true;
-    
     if (global.lan) {
         oEX.visible = true;
     }

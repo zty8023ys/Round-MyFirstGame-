@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>
+
+audio_play_sound(bgm,1,true);
+
 globalvar lan, pause, isReady;
 lan = 0;
 pause = 0;
@@ -105,7 +108,8 @@ if (pause_key &amp;&amp; global.pause == 1) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with(oHero) {
+            <string>
+with(oHero) {
     hp = maxhp;
 }
 with(oEX) {

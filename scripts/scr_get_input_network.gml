@@ -12,6 +12,3 @@ dash_key = keylist[ord("Z")];
 attack_key = keylist[ord("X")];
 
 
-// get the axis
-xaxis = (right_key - left_key);
-yaxis = (down_key - up_key);

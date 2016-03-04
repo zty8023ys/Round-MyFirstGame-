@@ -1,6 +1,9 @@
 ///scr_move_state
 scr_get_input();
 dir_key = (up_key || down_key || left_key || right_key);
+if (dir_key && !audio_is_playing(wark1)) {
+    audio_play_sound(wark1, 10, false);
+}
 // get the axis
 xaxis = (right_key - left_key);
 yaxis = (down_key - up_key);

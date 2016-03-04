@@ -51,7 +51,11 @@ if (image_index >= 3 && attacked == false) {
 
     damage.damage = truedamage;
     damage.knockback = knockback;
-
+    
+if (!attacked) {
+    var atksound = choose(atk1,atk2);
+    audio_play_sound(atksound,10,false);
+}
     attacked = true;
     isattack = false;
 }

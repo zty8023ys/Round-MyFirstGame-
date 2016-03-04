@@ -36,12 +36,7 @@ len = 0;
 dir = 0;
 attacked = false;
 image_speed = 0; // 人物静止帧数
-scr_get_input();
 
-dir_key = (up_key || down_key || left_key || right_key);
-// get the axis
-xaxis = (right_key - left_key);
-yaxis = (down_key - up_key);
 isdash = false;
 isattack = false;
 state = scr_move_state;
@@ -72,7 +67,7 @@ face = DOWN;
 draw_set_font(font0);
 
 //hero stats
-name = "AA";
+name = "↓";
 
 //globalvar
 globalvar rune, r, lflag;
@@ -129,7 +124,7 @@ scr_skill_list();
         </arguments>
       </action>
     </event>
-    <event eventtype="1" enumb="0">
+    <event eventtype="2" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -146,17 +141,7 @@ scr_skill_list();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*
-if (instance_exists(oClient)) {
-    with (oClient) {
-        scr_send_end(server);
-    }
-}
-if (instance_exists(oServer)) {
-    with (oServer) {
-        scr_send_end(client);
-    }
-}
+            <string>///
 </string>
           </argument>
         </arguments>
@@ -383,7 +368,6 @@ if (room == atk01 || room == atk02) {
     draw_text(20,100,"耐力：" + string(stamina) + "/" + string(maxstamina));
     draw_text(20,120,"攻击力：" + string(attack));
     draw_text(20,140,"防御力：" + string(defense));
-    draw_text(20,160, string(mouse_x)+ "," +string(mouse_y));
 }
 </string>
           </argument>
@@ -410,6 +394,10 @@ if (room == atk01 || room == atk02) {
             <string>/// Draw the shadow &amp; stats
 event_inherited();
 draw_sprite(sShadow,image_index,x,y);
+draw_set_halign(fa_center);
+draw_set_font(font1);
+draw_text(x,y-22,name);
+draw_set_font(font0);
 </string>
           </argument>
         </arguments>

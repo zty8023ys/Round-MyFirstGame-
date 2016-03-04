@@ -83,6 +83,7 @@ if (instance_exists(oHero)){
           <argument>
             <kind>1</kind>
             <string>/// give player xp
+audio_play_sound(gainxp,10,false);
 with(oHero) {
     xp += oXp.xp;
     if (xp &gt;= maxxp) {

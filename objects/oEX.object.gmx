@@ -37,10 +37,10 @@ dir = 0;
 attacked = false;
 image_speed = 0; // 人物静止帧数
 image_index = 2;
+image_blend = c_orange;
 face = DOWN;
 state = scr_move_state_new;
 
-changename = false;
 keylist[vk_down] = 0;
 keylist[vk_up] = 0;
 keylist[vk_left] = 0;
@@ -90,9 +90,6 @@ defense = 10;
 attack = 0;
 
 knockback = 20;
-
-// skill list
-//scr_skill_list();
 </string>
           </argument>
         </arguments>
@@ -330,6 +327,10 @@ if (state == scr_attack_state_new &amp;&amp; attacked == true) {
             <string>/// Draw the shadow &amp; stats
 draw_sprite(sShadow,image_index,x,y);
 event_inherited();
+draw_set_font(font1);
+draw_set_halign(fa_center);
+draw_text(x,y-22,name);
+draw_set_font(font0);
 </string>
           </argument>
         </arguments>

@@ -4,7 +4,16 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\wark1</sound>
+    <sound>sound\bgm</sound>
+    <sound>sound\dash1</sound>
+    <sound>sound\atk1</sound>
+    <sound>sound\atk2</sound>
+    <sound>sound\gainxp</sound>
+    <sound>sound\hurt</sound>
+    <sound>sound\nextlevel</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sWall</sprite>
     <sprites name="Hero">
@@ -42,7 +51,6 @@
       <script>scripts\scr_next_round.gml</script>
       <script>scripts\scr_area.gml</script>
       <script>scripts\scr_go_room.gml</script>
-      <script>scripts\scr_impulse.gml</script>
       <scripts name="network">
         <script>scripts\scr_server.gml</script>
         <script>scripts\scr_client.gml</script>
@@ -105,6 +113,7 @@
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
+    <font>fonts\font1</font>
   </fonts>
   <objects name="objects">
     <objects name="lifeform">
@@ -123,7 +132,6 @@
       <object>objects\oXp</object>
       <object>objects\oRegenHp</object>
       <object>objects\oDamage</object>
-      <object>objects\oTrap</object>
     </objects>
     <object>objects\oControl</object>
     <object>objects\oButton</object>

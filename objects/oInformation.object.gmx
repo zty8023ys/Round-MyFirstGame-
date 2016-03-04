@@ -94,6 +94,7 @@ if (visible) {
     }
     
     //go to begin page
+    var runearea = (scr_area(128,320,32,32) || scr_area(192,320,32,32) || scr_area(256,320,32,32));
     if (runepressed &amp;&amp; depth == -18 &amp;&amp; runearea) {
         visible = false;
                 
@@ -118,7 +119,6 @@ if (visible) {
             scr_nu();
             // 3: 怒
         }
-
     }
     
     //learn skills
@@ -186,7 +186,7 @@ if (backarea) {
 }
 
 //rune area
-runearea = (scr_area(128,320,32,32) || scr_area(192,320,32,32) || scr_area(256,320,32,32));
+var runearea = (scr_area(128,320,32,32) || scr_area(192,320,32,32) || scr_area(256,320,32,32));
 if (runearea) {
     runepressed = true;
 }

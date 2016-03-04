@@ -15,7 +15,7 @@
         draw_text(64,192,"攻击力：" + string(attack));
         draw_text(64,224,"防御力：" + string(defense));
         if (lifeleech > 0) {
-            draw_text(64,256,"生命吸取：" + string(lifeleech) + "%");
+            draw_text(64,256,"生命偷取：" + string(lifeleech) + "%");
             if (critchance > 0) {
                 draw_text(64,288,"暴击几率：" + string(critchance) + "%");
                 draw_text(64,320,"暴击伤害：" + string(critdamage) + "%");
