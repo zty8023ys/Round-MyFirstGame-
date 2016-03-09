@@ -6,7 +6,6 @@
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\wark1</sound>
-    <sound>sound\bgm</sound>
     <sound>sound\dash1</sound>
     <sound>sound\atk1</sound>
     <sound>sound\atk2</sound>
@@ -38,6 +37,8 @@
     <sprite>sprites\sButton</sprite>
     <sprite>sprites\sInformation</sprite>
     <sprite>sprites\sBoss</sprite>
+    <sprite>sprites\sGround</sprite>
+    <sprite>sprites\sKey</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bGrass</background>
@@ -62,6 +63,7 @@
         <script>scripts\scr_send_maxhp.gml</script>
         <script>scripts\scr_send_recovery_hp.gml</script>
         <script>scripts\scr_send_end.gml</script>
+        <script>scripts\scr_ping.gml</script>
       </scripts>
       <scripts name="information">
         <script>scripts\scr_draw_rune.gml</script>
@@ -105,11 +107,11 @@
         <script>scripts\scr_moster_choese_next_state.gml</script>
       </scripts>
       <script>scripts\scr_monster_chase_state.gml</script>
-      <script>scripts\scr_monster_idle_state.gml</script>
       <script>scripts\scr_monster_stall_state.gml</script>
+      <script>scripts\scr_monster_idle_state.gml</script>
       <script>scripts\scr_monster_wander_state.gml</script>
     </scripts>
-    <script>scripts\scr_what_today.gml</script>
+    <script>scripts\TODO_LIST.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -132,6 +134,8 @@
       <object>objects\oXp</object>
       <object>objects\oRegenHp</object>
       <object>objects\oDamage</object>
+      <object>objects\oGround</object>
+      <object>objects\oKey</object>
     </objects>
     <object>objects\oControl</object>
     <object>objects\oButton</object>

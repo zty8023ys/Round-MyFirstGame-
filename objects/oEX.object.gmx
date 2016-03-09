@@ -79,7 +79,7 @@ spd = 3;// 移动速度
 
 //life
 
-maxhp = 100;
+maxhp = 500;
 tempmaxhp = maxhp;
 hp = maxhp;
 temphp = hp;
@@ -302,6 +302,32 @@ if (state == scr_attack_state_new &amp;&amp; attacked == true) {
           <argument>
             <kind>1</kind>
             <string>phy_fixed_rotation = true; 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(instance_exists(oClient) &amp;&amp; oClient.ping &gt;= 0) {
+    draw_set_halign(fa_center);
+    draw_text(550,25,"Ping:" + string(oClient.ping) + "ms");
+}
 </string>
           </argument>
         </arguments>

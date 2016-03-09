@@ -23,7 +23,7 @@
     <option_android_arch_x86>True</option_android_arch_x86>
     <option_android_build_tools_version>23.0.1</option_android_build_tools_version>
     <option_android_build_version>0</option_android_build_version>
-    <option_android_color_depth>0</option_android_color_depth>
+    <option_android_color_depth>1</option_android_color_depth>
     <option_android_compile_sdk_version>23</option_android_compile_sdk_version>
     <option_android_display_name>MyRPG</option_android_display_name>
     <option_android_facebook_app_display_name></option_android_facebook_app_display_name>
@@ -53,7 +53,7 @@
     <option_android_licensing_key></option_android_licensing_key>
     <option_android_major_version>1</option_android_major_version>
     <option_android_min_sdk_version>9</option_android_min_sdk_version>
-    <option_android_minor_version>0</option_android_minor_version>
+    <option_android_minor_version>2</option_android_minor_version>
     <option_android_mmedia_ads>0</option_android_mmedia_ads>
     <option_android_moga>0</option_android_moga>
     <option_android_mopub_ads>0</option_android_mopub_ads>
@@ -63,9 +63,9 @@
     <option_android_orient_portrait_flipped>True</option_android_orient_portrait_flipped>
     <option_android_orientation>2</option_android_orientation>
     <option_android_ouya_icon>Configs\Default\android\icons\ouyaIcon.png</option_android_ouya_icon>
-    <option_android_package_company>companyname</option_android_package_company>
+    <option_android_package_company>ztory_studio</option_android_package_company>
     <option_android_package_domain>com</option_android_package_domain>
-    <option_android_package_product>MyRPG</option_android_package_product>
+    <option_android_package_product>round</option_android_package_product>
     <option_android_permission_flags>8</option_android_permission_flags>
     <option_android_pocketchange_enable>0</option_android_pocketchange_enable>
     <option_android_pocketchange_id></option_android_pocketchange_id>
@@ -467,7 +467,7 @@
     <option_version_copyright>Ztory Studio</option_version_copyright>
     <option_version_description>K.O. your friend.</option_version_description>
     <option_version_major>1</option_version_major>
-    <option_version_minor>1</option_version_minor>
+    <option_version_minor>2</option_version_minor>
     <option_version_product>Ztory Studio</option_version_product>
     <option_version_release>0</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
@@ -546,7 +546,7 @@
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>
-    <option_windows_mainor_version>1</option_windows_mainor_version>
+    <option_windows_mainor_version>2</option_windows_mainor_version>
     <option_windows_major_version>1</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info>Ztory Studio</option_windows_product_info>
@@ -647,7 +647,9 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="18">
+    <constants number="21">
+      <constant name="ISANDROID">1</constant>
+      <constant name="GRD_MSGID">10</constant>
       <constant name="RECHP_MSGID">7</constant>
       <constant name="POS_MSGID">6</constant>
       <constant name="READY_MSGID">2</constant>
@@ -657,7 +659,7 @@
       <constant name="KEY_MSGID">3</constant>
       <constant name="FIGHTSTATS">2</constant>
       <constant name="HEROSTATS">1</constant>
-      <constant name="PORT">418</constant>
+      <constant name="PORT">32976</constant>
       <constant name="GAME_END">8</constant>
       <constant name="RIGHT">0</constant>
       <constant name="UP">1</constant>
@@ -666,6 +668,7 @@
       <constant name="ATTACK">4</constant>
       <constant name="DASH">5</constant>
       <constant name="DASH_COST">5</constant>
+      <constant name="PING_MSGID">9</constant>
     </constants>
   </ConfigConstants>
 </Config>

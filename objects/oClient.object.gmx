@@ -26,33 +26,100 @@
           <argument>
             <kind>1</kind>
             <string>/// Create client
-var port = PORT;
+port = PORT;
 var type = network_socket_tcp;
-
-var ip = get_string("请输入主机IP：","192.168.227.1");
 
 server = network_create_socket(type);
 
-sendstats = false;
-
+var ip = get_string("请输入主机IP：","127.0.0.1");
+    
 connetion = network_connect(server, ip, port);
 
-if (connetion &gt;= 0) {
-    with(oInformation){
-        depth = -18;
-        visible = true;
+    if (connetion &gt;= 0) {
+        with(oInformation){
+            depth = -18;
+            visible = true;
+        }
+        global.lan = true;
+        with(oHero) {phy_position_x += 40;}
+        instance_create(oHero.x, oHero.y, oEX);
+    } else {
+        show_message("连接失败.");
+        game_end();
     }
-    global.lan = true;
-    with(oHero) {phy_position_x += 40;}
-    instance_create(oHero.x, oHero.y, oEX);
-}
+sendstats = false;
 
+
+isping = false;
+sendping = false;
+letsping = true;
+ping = 0;
+pingtimes = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// ping 间隔
+letsping = true;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
     <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///keep alive (ping)
+if (!isping &amp;&amp; !sendping &amp;&amp; letsping) {
+    scr_ping(server);
+    sendping = true;
+    temptime = current_time;
+    pingtimes += 1; 
+    letsping = false;
+}
+
+if (isping) {
+    ping = current_time - temptime;
+    isping = false;
+    sendping = false;
+    alarm[0] = room_speed;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -145,7 +212,7 @@ scr_wait_other();
           <argument>
             <kind>1</kind>
             <string>/// when you win
-if (oEX.hp &lt;= 0) {
+if (room != r0 &amp;&amp; oEX.hp &lt;= 0) {
     scr_send_hp(-1,server);
 }
 </string>
@@ -171,11 +238,11 @@ if (oEX.hp &lt;= 0) {
           <argument>
             <kind>1</kind>
             <string>/// Check for clients and data
+hostip = string(async_load[? "ip"]);
 
 var type_event = async_load[? "type"];
 switch(type_event) {
     case network_type_disconnect:
-        show_message("Game Over!");
         game_end();
         break;
 
@@ -211,30 +278,6 @@ switch(type_event) {
             <kind>1</kind>
             <string>network_destroy(connetion);
 network_destroy(server);
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>draw_text(oEX.x,oEX.y,string(down_key));
-draw_text(oEX.x,oEX.y,string(up_key));
 </string>
           </argument>
         </arguments>

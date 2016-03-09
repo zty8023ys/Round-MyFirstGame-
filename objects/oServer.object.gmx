@@ -31,7 +31,6 @@ var type = network_socket_tcp;
 maxclients = 1;
 
 server = network_create_server(type, port,maxclients);
-
 client = noone;
 
 
@@ -44,8 +43,8 @@ instance_create(oHero.x + 40,oHero.y,oEX);
 
 //show the local IP adress
 randomize();
-var port = irandom_range(49152,65535);
-var host = network_create_server(network_socket_udp, port, 5);
+var udpport = 6511;
+var host = network_create_server(network_socket_udp, udpport, 5);
 
 if (host &lt; 0)
 {
@@ -58,12 +57,13 @@ else
     var buff = buffer_create(32, buffer_fixed, 1);
 
     buffer_fill(buff, 0, buffer_bool, 0, 32);
-    network_send_broadcast(sock, port, buff, buffer_get_size(buff));
+    network_send_broadcast(sock, udpport, buff, buffer_get_size(buff));
 
     network_destroy(sock);
     buffer_delete(buff);
 }
-hostip = "127.0.0.1";
+hostip = "0.0.0.0";
+findip = false;
 </string>
           </argument>
         </arguments>
@@ -222,6 +222,16 @@ if (oEX.hp &lt;= 0) {
             <kind>1</kind>
             <string>/// Check for clients and data
 hostip = string(async_load[? "ip"]);
+/*
+if (hostip != "0.0.0.0") {
+   var buffer = buffer_create(1024,buffer_fixed,1);
+   buffer_seek(buffer,buffer_seek_start,0);
+   buffer_write(buffer,buffer_u8,IP_MSGID);
+   buffer_write(buffer,buffer_s32,hostip);
+   network_send_broadcast(client,6511,buffer,buffer_tell(buffer));
+   buffer_delete(buffer);
+}
+*/
 
 var type_event = async_load[? "type"];
 switch(type_event) {
@@ -235,7 +245,6 @@ switch(type_event) {
         break;
     
     case  network_type_disconnect:
-        // Remove the client from the socket variable
         game_end();
         break;
     

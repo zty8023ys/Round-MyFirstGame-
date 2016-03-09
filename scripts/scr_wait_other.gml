@@ -12,6 +12,7 @@ if (global.r == 99 && room == r0) {
     buffer_write(buffer,buffer_u8, READY_MSGID);
     buffer_write(buffer,buffer_f32,oHero.maxhp);
     buffer_write(buffer,buffer_f32,oHero.defense);
+    buffer_write(buffer, buffer_u32, oControl.seed);
     if (instance_exists(oServer)) {
         network_send_packet(client,buffer,buffer_tell(buffer));
     } else {

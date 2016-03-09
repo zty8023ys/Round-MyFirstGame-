@@ -10,10 +10,16 @@ if (global.lan) {
 
 if(goroom == atk01) {
     oHero.visible = true;
+//    with(oKey) {
+//        visible = true;
+//    }
 }
 
 if (goroom == atk02) {
     oHero.visible = true;
+  //  with(oKey) {
+   //     visible = true;
+  //  }
     if (global.lan) {
         oEX.visible = true;
     }
@@ -22,6 +28,9 @@ if (goroom == atk02) {
 
 if (goroom == r0) {
     oHero.visible = false;
+ //   with(oKey) {
+ //       visible = false;
+ //   }
 }
 with(oHero) {
     hp = maxhp;

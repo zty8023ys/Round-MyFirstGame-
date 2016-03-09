@@ -14,6 +14,7 @@ switch(msgid) {
             buffer_write(buffer, buffer_u8, READY_MSGID);
             buffer_write(buffer, buffer_f32, oHero.maxhp);
             buffer_write(buffer, buffer_f32, oHero.defense);
+            buffer_write(buffer, buffer_u32, oControl.seed);
             if (instance_exists(oServer)) {
                 var send = network_send_packet(client,buffer,buffer_tell(buffer));
                 buffer_delete(buffer);
@@ -62,5 +63,19 @@ switch(msgid) {
     case GAME_END :
         show_message("You lose!");
         game_end();
+        break;
+        
+    case PING_MSGID :
+        if (instance_exists(oServer)) {
+            //scr_ping(client);
+            network_send_packet(client,argument[0],buffer_tell(buffer));
+            buffer_delete(argument[0]);
+        } else if(instance_exists(oClient)) {
+            oClient.isping = true;
+        }
+        break;
+        
+    case GRD_MSGID :
+        oGround.ground = buffer_read(buffer,buffer_u8);
         break;
 }

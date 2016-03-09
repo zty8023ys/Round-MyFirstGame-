@@ -91,8 +91,8 @@ maxmovepoint = r;
 movepoint = maxmovepoint;
 //life
 
-maxhp = 100;
-addhp = 10;
+maxhp = 500;
+addhp = 50;
 hp = maxhp;
 temphp = hp;
 
@@ -119,6 +119,52 @@ knockback = 20;
 
 // skill list
 scr_skill_list();
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// set key
+isandroid = ISANDROID;
+if (isandroid) {
+    winheight = 0;
+    winwidth = 0;
+    windx = 0;
+    winleftx = 0;
+    winlefty = 0;
+    winrightx = 0;
+    winrighty = 0;
+    winupx = 0;
+    winupy = 0;
+    windownx = 0;
+    windowny = 0;
+    winatkx = 0;
+    winatky = 0;
+    windashx = 0;
+    windashy = 0;
+    winleft = 0;
+    winright = 0;
+    winup = 0;
+    windown = 0;
+    winatk = 0;
+    windash = 0;
+}
+
 </string>
           </argument>
         </arguments>
@@ -212,12 +258,15 @@ state = scr_move_state;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// pause
+            <string>/// Move the player
 if (global.pause) exit;
 
-/// Move the player
+
 event_inherited();
+if (room == atk01 || room == atk02) {
 script_execute(state);
+}
+
 </string>
           </argument>
         </arguments>
@@ -336,6 +385,58 @@ if (state == scr_attack_state &amp;&amp; attacked == true) {
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (isandroid &amp;&amp; room != r0) {
+//winheight = 100;
+//winwidth = 100;
+winheight = window_get_height();
+winwidth = window_get_width();
+windx = winheight/10;
+
+winleftx = windx * 1;
+winlefty = windx * 5.5;
+
+winrightx = winleftx + windx * 3;
+winrighty = winlefty;
+winupx = winleftx + windx * 1.5;
+winupy = winlefty - windx * 1.5;
+windownx = winleftx + windx * 1.5;
+windowny = winlefty + windx * 1.5;
+winatkx = winheight - winleftx + 6 * windx ;
+winatky = winlefty;
+windashx = winheight - winrightx + 6 * windx ;
+windashy = winlefty;
+scale = windx*2/64;
+winleft = virtual_key_add(winleftx,winlefty,2*windx,2*windx,vk_left);
+winright = virtual_key_add(winrightx,winrighty,2*windx,2*windx,vk_right);
+winup = virtual_key_add(winupx,winupy,2*windx,2*windx,vk_up);
+windown = virtual_key_add(windownx,windowny,2*windx,2*windx,vk_down);
+
+
+winatk = virtual_key_add(windashx,windashy,2*windx,2*windx,ord('Z'));
+
+windash = virtual_key_add(winatkx,winatky,2*windx,2*windx,ord('X'));
+
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="8" enumb="64">
       <action>
@@ -368,6 +469,14 @@ if (room == atk01 || room == atk02) {
     draw_text(20,100,"耐力：" + string(stamina) + "/" + string(maxstamina));
     draw_text(20,120,"攻击力：" + string(attack));
     draw_text(20,140,"防御力：" + string(defense));
+    if (isandroid) {
+        draw_sprite_ext( sKey, 0, winleftx, winlefty, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 1, winupx, winupy, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 2, winrightx, winrighty, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 3, windownx, windowny, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 4, windashx, windashy, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 5, winatkx, winatky, scale, scale, 0, c_white, .25 );
+    }
 }
 </string>
           </argument>
