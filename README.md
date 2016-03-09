@@ -7,7 +7,7 @@
 
 #[点我下载电脑版](http://45.58.54.172/game/round/Round_v1.2.0.exe)
 #[点我下载安卓版](http://45.58.54.172/game/round/Round_v1.2.0.apk)
-#广域网联机方案:Hamchi,使用方法以及下载地址: [点我下载Hamchi](http://45.58.54.172/game/hamachi.zip)
+#广域网联机方案:Hamchi,使用方法以及下载地址: [点我下载Hamachi](http://45.58.54.172/game/hamachi.zip)
 # **由于我用的是单文件形式,所以360有可能会误报.保证无毒.**
 
 #更新日志
