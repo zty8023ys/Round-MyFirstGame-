@@ -9,8 +9,8 @@
 ![联机界面](/image/联机界面.png)
 ![状态界面+技能界面.](/image/状态界面+技能界面.png)
 ![升级界面](/image/升级界面.png)
-![战斗界面2.](/image/战斗界面2.ng)
-![战斗界面3.](/image/战斗界面3.png)
+![战斗界面](/image/战斗界面.png)
+![战斗界面3](/image/战斗界面3.png)
 
 #[点我下载电脑版](http://45.58.54.172/game/round/Round_v1.2.0.exe)
 #[点我下载安卓版](http://45.58.54.172/game/round/Round_v1.2.0.apk)
