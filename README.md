@@ -3,7 +3,15 @@
 使用Gamemaker:Studio制作的一款局域网对战策略类Arpg游戏。
 基本架构已经完成，正在对数值进行平衡，增加新技能与天赋系统。
 **图片素材来源于 [HeartBeast Studios](http://www.heartbeaststudios.com/)**
-![Alt text](/image/战斗界面.png "Optional title")
+# 游戏截图
+![Alt text](/image/主界面.png)
+![Alt text](/image/帮助.png)
+![Alt text](/image/联机界面.png)
+![Alt text](/image/单人游戏.png)
+![Alt text](/image/状态界面.png)
+![Alt text](/image/战斗界面2.png)
+![Alt text](/image/战斗界面.png)
+![Alt text](/image/战斗界面3.png)
 
 #[点我下载电脑版](http://45.58.54.172/game/round/Round_v1.2.0.exe)
 #[点我下载安卓版](http://45.58.54.172/game/round/Round_v1.2.0.apk)
