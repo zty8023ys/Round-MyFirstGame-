@@ -4,18 +4,20 @@
 基本架构已经完成，正在对数值进行平衡，增加新技能与天赋系统。
 **图片素材来源于 [HeartBeast Studios](http://www.heartbeaststudios.com/)**
 # 游戏截图
-![Alt text](/image/主界面.png)
-![Alt text](/image/帮助.png)
-![Alt text](/image/联机界面.png)
-![Alt text](/image/单人游戏.png)
-![Alt text](/image/状态界面.png)
-![Alt text](/image/战斗界面2.png)
-![Alt text](/image/战斗界面.png)
-![Alt text](/image/战斗界面3.png)
+![主页面](/image/主页面.png)
+![帮助界面+单人游戏](/image/帮助界面+单人游戏.png)
+![联机界面](/image/联机界面.png)
+![状态界面+技能界面.](/image/状态界面+技能界面.png)
+![升级界面](/image/升级界面.png)
+![战斗界面](/image/战斗界面.png)
+![战斗界面3](/image/战斗界面3.png)
 
-# [点我下载电脑版](http://45.58.54.172/game/round/Round_v1.2.0.exe)
-# [点我下载安卓版](http://45.58.54.172/game/round/Round_v1.2.0.apk)
-# 广域网联机方案:Hamchi,使用方法以及下载地址: [点我下载Hamachi](http://45.58.54.172/game/hamachi.zip)
+#[点我下载电脑版](http://45.58.54.172/game/round/Round_v1.2.1.exe)
+#[点我下载安卓版](http://45.58.54.172/game/round/Round_v1.2.1.apk)
+#广域网联机方案:
+* 1.VPN,以WIN8.1为例,网络右键-属性-设置新的连接或网络-连接到工作区-否,创建新连接-使用我的Internet连接-Internet地址:ztory.f3322.net-创建-在右侧单击新出现的VPN-连接-帐号round-密码round-确定-已连接后打开游戏即可
+* 2.Hamchi,使用方法以及下载地址: [点我下载Hamachi](http://45.58.54.172/game/hamachi.zip)
+
 # **由于我用的是单文件形式,所以360有可能会误报.保证无毒.**
 
 # 即将到来:
