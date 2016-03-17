@@ -12,8 +12,8 @@
 ![战斗界面](/image/战斗界面.png)
 ![战斗界面3](/image/战斗界面3.png)
 
-#[点我下载电脑版](http://45.58.54.172/game/round/Round_v1.2.0.exe)
-#[点我下载安卓版](http://45.58.54.172/game/round/Round_v1.2.0.apk)
+#[点我下载电脑版](http://45.58.54.172/game/round/Round_v1.2.1.exe)
+#[点我下载安卓版](http://45.58.54.172/game/round/Round_v1.2.1.apk)
 #广域网联机方案:
 * 1.VPN,以WIN8.1为例,网络右键-属性-设置新的连接或网络-连接到工作区-否,创建新连接-使用我的Internet连接-Internet地址:ztory.f3322.net-创建-在右侧单击新出现的VPN-连接-帐号round-密码round-确定-已连接后打开游戏即可
 * 2.Hamchi,使用方法以及下载地址: [点我下载Hamachi](http://45.58.54.172/game/hamachi.zip)
