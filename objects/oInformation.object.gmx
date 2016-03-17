@@ -142,10 +142,10 @@ if (visible) {
                 movepoint -= dealperhp_mp;
                 dealperhpflag = false;
             }
-            if (scr_area(450,325,32,32) &amp;&amp; movepoint &gt;= dashreduce_mp &amp;&amp; dashreduceflag){
+            if (scr_area(450,325,32,32) &amp;&amp; movepoint &gt;= dashreduce_mp &amp;&amp; dashreduceflag &amp;&amp; dashreduceeffect  &lt; updashreduce){
                 dashreduce_lv += 1;
-                dashcost -= dashreduce;
-                dashreduceeffect += dashreduce;
+                dashreduceeffect = min(updashreduce,dashreduceeffect+dashreduce);
+                dashcost = DASH_COST - dashreduceeffect;
                 movepoint -= dashreduce_mp;
                 dashreduceflag = false;
             }

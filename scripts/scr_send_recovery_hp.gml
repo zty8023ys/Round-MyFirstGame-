@@ -2,7 +2,7 @@
 
 var hp = argument[0];
 hp = min(hp,oHero.maxhp);
-var buffer = buffer_create(1024,buffer_fixed,1);
+var buffer = buffer_create(BUFFERSIZE,buffer_fixed,1);
 buffer_seek(buffer,buffer_seek_start,0);
 
 buffer_write(buffer, buffer_u8, RECHP_MSGID);

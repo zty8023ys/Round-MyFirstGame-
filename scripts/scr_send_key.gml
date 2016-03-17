@@ -6,7 +6,7 @@ send a key through socket
 ///  arg1 : down=0, up=1
 ///  arg2 : socket
 
-var buffer = buffer_create(1024,buffer_fixed,1);
+var buffer = buffer_create(BUFFERSIZE,buffer_fixed,1);
 
 buffer_seek(buffer, buffer_seek_start, 0);
 

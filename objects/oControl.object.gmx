@@ -30,11 +30,10 @@ globalvar lan, pause, isReady, version;
 lan = 0;
 pause = 0;
 isReady = 0;
-seed = current_second;
 
 isandroid = ISANDROID;
 
-version = 120;
+version = 121;
 newversion = version;
 status = -1;
 http_get("http://45.58.54.172/game/round/round_version.php");
@@ -114,7 +113,7 @@ if (pause_key &amp;&amp; global.pause == 1) {
           <argument>
             <kind>1</kind>
             <string>status = async_load[? "status"];
-if (status &gt;= 0) {
+if (status &gt; 0) {
     newversion = real(async_load[? "result"]);
     var baiwei = round(newversion/100);
     var shiwei = round(newversion/10) - baiwei*10;

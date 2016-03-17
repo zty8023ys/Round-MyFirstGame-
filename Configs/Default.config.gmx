@@ -22,10 +22,10 @@
     <option_android_arch_mipsr2sf>false</option_android_arch_mipsr2sf>
     <option_android_arch_x86>True</option_android_arch_x86>
     <option_android_build_tools_version>23.0.1</option_android_build_tools_version>
-    <option_android_build_version>0</option_android_build_version>
+    <option_android_build_version>1</option_android_build_version>
     <option_android_color_depth>1</option_android_color_depth>
     <option_android_compile_sdk_version>23</option_android_compile_sdk_version>
-    <option_android_display_name>MyRPG</option_android_display_name>
+    <option_android_display_name>Round</option_android_display_name>
     <option_android_facebook_app_display_name></option_android_facebook_app_display_name>
     <option_android_facebook_appid></option_android_facebook_appid>
     <option_android_facebook_enable>0</option_android_facebook_enable>
@@ -469,7 +469,7 @@
     <option_version_major>1</option_version_major>
     <option_version_minor>2</option_version_minor>
     <option_version_product>Ztory Studio</option_version_product>
-    <option_version_release>0</option_version_release>
+    <option_version_release>1</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
     <option_win8_advertising_key></option_win8_advertising_key>
@@ -550,7 +550,7 @@
     <option_windows_major_version>1</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info>Ztory Studio</option_windows_product_info>
-    <option_windows_release_version>0</option_windows_release_version>
+    <option_windows_release_version>1</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
     <option_windows_save_location>0</option_windows_save_location>
@@ -647,7 +647,8 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="21">
+    <constants number="22">
+      <constant name="BUFFERSIZE">64</constant>
       <constant name="ISANDROID">1</constant>
       <constant name="GRD_MSGID">10</constant>
       <constant name="RECHP_MSGID">7</constant>

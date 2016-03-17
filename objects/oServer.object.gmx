@@ -163,7 +163,7 @@ if (instance_exists(oHero)) {
             <kind>1</kind>
             <string>/// postion
 if (room == atk02) {
-    var buffer = buffer_create(1024,buffer_fixed,1);
+    var buffer = buffer_create(BUFFERSIZE,buffer_fixed,1);
     buffer_seek(buffer,buffer_seek_start,0);
     
     buffer_write(buffer,buffer_u8,POS_MSGID);
@@ -222,16 +222,6 @@ if (oEX.hp &lt;= 0) {
             <kind>1</kind>
             <string>/// Check for clients and data
 hostip = string(async_load[? "ip"]);
-/*
-if (hostip != "0.0.0.0") {
-   var buffer = buffer_create(1024,buffer_fixed,1);
-   buffer_seek(buffer,buffer_seek_start,0);
-   buffer_write(buffer,buffer_u8,IP_MSGID);
-   buffer_write(buffer,buffer_s32,hostip);
-   network_send_broadcast(client,6511,buffer,buffer_tell(buffer));
-   buffer_delete(buffer);
-}
-*/
 
 var type_event = async_load[? "type"];
 switch(type_event) {

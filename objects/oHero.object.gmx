@@ -85,7 +85,7 @@ spd = 3;// 移动速度
 
 maxstamina = 10;
 stamina = maxstamina;
-dashcost = 5;
+dashcost = DASH_COST;
 
 maxmovepoint = r;
 movepoint = maxmovepoint;
@@ -140,11 +140,11 @@ scr_skill_list();
           <argument>
             <kind>1</kind>
             <string>/// set key
-isandroid = ISANDROID;
-if (isandroid) {
     winheight = 0;
     winwidth = 0;
     windx = 0;
+isandroid = ISANDROID;
+if (isandroid) {
     winleftx = 0;
     winlefty = 0;
     winrightx = 0;
@@ -401,37 +401,43 @@ if (state == scr_attack_state &amp;&amp; attacked == true) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (isandroid &amp;&amp; room != r0) {
+            <string>
 //winheight = 100;
 //winwidth = 100;
 winheight = window_get_height();
 winwidth = window_get_width();
 windx = winheight/10;
+scale = 1 * windx*2/64;
+fontscale = scale * 0.8;
+if (isandroid &amp;&amp; room != r0) {
+winleftx = windx * .5;
+winlefty = windx * 5;
 
-winleftx = windx * 1;
-winlefty = windx * 5.5;
-
-winrightx = winleftx + windx * 3;
+winrightx = winleftx + windx * 4;
 winrighty = winlefty;
-winupx = winleftx + windx * 1.5;
-winupy = winlefty - windx * 1.5;
-windownx = winleftx + windx * 1.5;
-windowny = winlefty + windx * 1.5;
-winatkx = winheight - winleftx + 6 * windx ;
+winupx = winleftx + windx * 2;
+winupy = winlefty - windx * 2;
+windownx = winupx;
+windowny = winupy + windx * 4;
+winatkx = winheight - winleftx + 5 * windx ;
 winatky = winlefty;
-windashx = winheight - winrightx + 6 * windx ;
+windashx = winheight - winrightx + 5 * windx ;
 windashy = winlefty;
-scale = windx*2/64;
-winleft = virtual_key_add(winleftx,winlefty,2*windx,2*windx,vk_left);
-winright = virtual_key_add(winrightx,winrighty,2*windx,2*windx,vk_right);
-winup = virtual_key_add(winupx,winupy,2*windx,2*windx,vk_up);
-windown = virtual_key_add(windownx,windowny,2*windx,2*windx,vk_down);
+winleft = virtual_key_add(winleftx,winlefty,3*windx,3*windx,vk_left);
+winright = virtual_key_add(winrightx,winrighty,3*windx,3*windx,vk_right);
+winup = virtual_key_add(winupx,winupy,3*windx,3*windx,vk_up);
+windown = virtual_key_add(windownx,windowny,3*windx,3*windx,vk_down);
 
 
 winatk = virtual_key_add(windashx,windashy,2*windx,2*windx,ord('Z'));
 
 windash = virtual_key_add(winatkx,winatky,2*windx,2*windx,ord('X'));
-
+/*
+virtual_key_show(winup);
+virtual_key_show(winatk);
+virtual_key_show(winright);
+virtual_key_show(windash);
+*/
 }
 </string>
           </argument>
@@ -458,24 +464,25 @@ windash = virtual_key_add(winatkx,winatky,2*windx,2*windx,ord('X'));
             <string>/// draw stats
 if (room == atk01 || room == atk02) {
     draw_set_halign(fa_left);
-    draw_text(20,20,"当前回合：" + string(r));
+    draw_text_transformed(.5 * windx,.5 * windx,"当前回合：" + string(r),fontscale,fontscale,0);
     switch(global.rune) {
-        case 1: draw_text(20,40,"符文：焚");break;
-        case 2: draw_text(20,40,"符文：磐");break;
-        case 3: draw_text(20,40,"符文：怒");break;
+        case 1: draw_text_transformed(.5 * windx,windx,"符文：焚",fontscale,fontscale,0);break;
+        case 2: draw_text_transformed(.5 * windx,windx,"符文：磐",fontscale,fontscale,0);break;
+        case 3: draw_text_transformed(.5 * windx,windx,"符文：怒",fontscale,fontscale,0);break;
     }
-    draw_text(20,60,"等级：  " + string(level) + "(" + string(xp) + "/" + string(maxxp) + ")");
-    draw_text(20,80,"生命值：" + string(hp) + "/" + string(maxhp));
-    draw_text(20,100,"耐力：" + string(stamina) + "/" + string(maxstamina));
-    draw_text(20,120,"攻击力：" + string(attack));
-    draw_text(20,140,"防御力：" + string(defense));
+    draw_text_transformed(.5 * windx,1.5 * windx,"等级：  " + string(level) + "(" + string(xp) + "/" + string(maxxp) + ")",fontscale,fontscale,0);
+    draw_text_transformed(.5 * windx,2 * windx,"生命值：" + string(hp) + "/" + string(maxhp),fontscale,fontscale,0);
+    draw_text_transformed(.5 * windx,2.5 * windx,"耐力：" + string(stamina) + "/" + string(maxstamina),fontscale,fontscale,0);
+    draw_text_transformed(.5 * windx,3 * windx,"攻击力：" + string(attack),fontscale,fontscale,0);
+    draw_text_transformed(.5 * windx,3.5 * windx,"防御力：" + string(defense),fontscale,fontscale,0);
+
     if (isandroid) {
-        draw_sprite_ext( sKey, 0, winleftx, winlefty, scale, scale, 0, c_white, .25 );
-        draw_sprite_ext( sKey, 1, winupx, winupy, scale, scale, 0, c_white, .25 );
-        draw_sprite_ext( sKey, 2, winrightx, winrighty, scale, scale, 0, c_white, .25 );
-        draw_sprite_ext( sKey, 3, windownx, windowny, scale, scale, 0, c_white, .25 );
-        draw_sprite_ext( sKey, 4, windashx, windashy, scale, scale, 0, c_white, .25 );
-        draw_sprite_ext( sKey, 5, winatkx, winatky, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 0, winleftx+.5*windx, winlefty+.5*windx, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 1, winupx+.5*windx, winupy+.5*windx, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 2, winrightx+.5*windx, winrighty+.5*windx, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 3, windownx+.5*windx, windowny+.5*windx, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 4, windashx, windashy+.5*windx, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 5, winatkx, winatky+.5*windx, scale, scale, 0, c_white, .25 );
     }
 }
 </string>
