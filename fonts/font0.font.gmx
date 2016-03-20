@@ -184,12 +184,12 @@
     <range0>65306,65306</range0>
   </ranges>
   <glyphs>
-    <glyph character="32791" x="286" y="2" w="21" h="22" shift="23" offset="2"/>
-    <glyph character="38596" x="224" y="27" w="20" h="22" shift="23" offset="1"/>
+    <glyph character="20914" x="304" y="125" w="17" h="22" shift="23" offset="2"/>
+    <glyph character="58" x="401" y="223" w="4" h="19" shift="7" offset="1"/>
     <glyph character="108" x="413" y="223" w="4" h="18" shift="6" offset="1"/>
     <glyph character="21021" x="380" y="75" w="19" h="21" shift="23" offset="2"/>
-    <glyph character="122" x="63" y="223" w="10" h="19" shift="10" offset="0"/>
     <glyph character="39564" x="49" y="2" w="23" h="21" shift="23" offset="0"/>
+    <glyph character="122" x="63" y="223" w="10" h="19" shift="10" offset="0"/>
     <glyph character="24191" x="145" y="125" w="18" h="21" shift="23" offset="2"/>
     <glyph character="21319" x="128" y="100" w="18" h="22" shift="23" offset="2"/>
     <glyph character="8594" x="103" y="173" w="21" h="16" shift="23" offset="1"/>
@@ -210,12 +210,12 @@
     <glyph character="65289" x="123" y="223" w="9" h="21" shift="23" offset="1"/>
     <glyph character="35813" x="2" y="125" w="18" h="21" shift="23" offset="2"/>
     <glyph character="20808" x="2" y="100" w="19" h="21" shift="23" offset="3"/>
+    <glyph character="34880" x="420" y="100" w="20" h="19" shift="23" offset="2"/>
     <glyph character="21512" x="292" y="27" w="22" h="20" shift="23" offset="1"/>
+    <glyph character="36755" x="168" y="2" w="22" h="21" shift="23" offset="1"/>
     <glyph character="23581" x="225" y="125" w="18" h="21" shift="23" offset="3"/>
     <glyph character="31561" x="85" y="125" w="18" h="21" shift="23" offset="2"/>
     <glyph character="99" x="157" y="223" w="10" h="18" shift="10" offset="0"/>
-    <glyph character="34880" x="420" y="100" w="20" h="19" shift="23" offset="2"/>
-    <glyph character="36755" x="168" y="2" w="22" h="21" shift="23" offset="1"/>
     <glyph character="106" x="262" y="223" w="6" h="23" shift="6" offset="-1"/>
     <glyph character="118" x="289" y="198" w="12" h="19" shift="12" offset="0"/>
     <glyph character="20108" x="250" y="173" w="17" h="18" shift="23" offset="3"/>
@@ -454,13 +454,13 @@
     <glyph character="36896" x="246" y="27" w="20" h="22" shift="23" offset="3"/>
     <glyph character="117" x="26" y="223" w="11" h="18" shift="13" offset="1"/>
     <glyph character="124" x="439" y="223" w="1" h="23" shift="11" offset="5"/>
+    <glyph character="38596" x="224" y="27" w="20" h="22" shift="23" offset="1"/>
     <glyph character="34" x="419" y="223" w="6" h="9" shift="8" offset="1"/>
+    <glyph character="32791" x="286" y="2" w="21" h="22" shift="23" offset="2"/>
     <glyph character="72" x="287" y="173" w="16" h="19" shift="18" offset="1"/>
     <glyph character="75" x="76" y="198" w="14" h="18" shift="14" offset="1"/>
     <glyph character="85" x="391" y="173" w="15" h="19" shift="17" offset="1"/>
     <glyph character="20849" x="159" y="51" w="20" h="21" shift="23" offset="1"/>
-    <glyph character="20914" x="304" y="125" w="17" h="22" shift="23" offset="2"/>
-    <glyph character="58" x="401" y="223" w="4" h="19" shift="7" offset="1"/>
   </glyphs>
   <kerningPairs/>
   <image>font0.png</image>

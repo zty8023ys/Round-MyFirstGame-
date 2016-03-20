@@ -111,7 +111,7 @@ if (!isping &amp;&amp; !sendping &amp;&amp; letsping) {
 }
 
 if (isping) {
-    ping = current_time - temptime;
+    ping = round((current_time - temptime)/room_speed);
     isping = false;
     sendping = false;
     alarm[0] = room_speed;

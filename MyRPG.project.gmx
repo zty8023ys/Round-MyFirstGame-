@@ -36,7 +36,6 @@
     <sprite>sprites\sPause</sprite>
     <sprite>sprites\sButton</sprite>
     <sprite>sprites\sInformation</sprite>
-    <sprite>sprites\sBoss</sprite>
     <sprite>sprites\sGround</sprite>
     <sprite>sprites\sKey</sprite>
   </sprites>
@@ -100,6 +99,7 @@
       <script>scripts\scr_dash_state.gml</script>
       <script>scripts\scr_move_state.gml</script>
       <script>scripts\scr_move_state_new.gml</script>
+      <script>scripts\scr_d.gml</script>
     </scripts>
     <scripts name="MonsterStates">
       <scripts name="help">
@@ -126,6 +126,7 @@
         <object>objects\oEX</object>
       </objects>
       <object>objects\oEnemySlime</object>
+      <object>objects\oKingofSlime</object>
     </objects>
     <objects name="ground">
       <object>objects\oNextRoom</object>
