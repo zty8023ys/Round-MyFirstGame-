@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>
-regenhp = 10;
+regenhp = 20;
 </string>
           </argument>
         </arguments>
@@ -51,7 +51,7 @@ regenhp = 10;
             <kind>1</kind>
             <string>/// give player hp
 with(oHero) {
-    hp = min(hp + oRegenHp.regenhp, maxhp);
+    hp = min(hp + maxhp * oRegenHp.regenhp/100, maxhp);
 }
 instance_destroy();
 </string>

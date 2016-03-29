@@ -1,5 +1,11 @@
 ///scr_move_state
 scr_get_input();
+
+if (isstun) {
+    state = scr_stun_state;
+    alarm[0] = stuntime;
+}
+
 dir_key = (up_key || down_key || left_key || right_key);
 if (dir_key && !audio_is_playing(wark1)) {
     audio_play_sound(wark1, 10, false);

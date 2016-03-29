@@ -20,6 +20,6 @@ if (r < 10) {
 } else {
     r = 99;
     if (!global.lan) {
-        scr_go_room(atk02);
+        scr_go_room(atk03);
     }
 }

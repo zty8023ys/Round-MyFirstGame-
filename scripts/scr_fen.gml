@@ -1,10 +1,10 @@
 //符文 ： 焚
 with(oHero) {
-    attack *= 1.35;
-    addattack *= 1.35;
-    maxhp *= 0.8;
+    attack *= fenatk;
+    addattack *= fenatk;
+    maxhp *= fendef;
     hp = maxhp;
-    addhp *= 0.8;
-    defense *= 0.8;
-    adddefense *= 0.8;
+    addhp *= fendef;
+    defense *= fendef;
+    adddefense *= fendef;
 }

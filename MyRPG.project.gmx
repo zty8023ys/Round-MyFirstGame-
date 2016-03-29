@@ -38,6 +38,7 @@
     <sprite>sprites\sInformation</sprite>
     <sprite>sprites\sGround</sprite>
     <sprite>sprites\sKey</sprite>
+    <sprite>sprites\sStun</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bGrass</background>
@@ -90,8 +91,8 @@
         <script>scripts\scr_get_face.gml</script>
         <scripts name="rune">
           <script>scripts\scr_fen.gml</script>
-          <script>scripts\scr_nu.gml</script>
           <script>scripts\scr_pan.gml</script>
+          <script>scripts\scr_nu.gml</script>
         </scripts>
       </scripts>
       <script>scripts\scr_attack_state.gml</script>
@@ -99,7 +100,7 @@
       <script>scripts\scr_dash_state.gml</script>
       <script>scripts\scr_move_state.gml</script>
       <script>scripts\scr_move_state_new.gml</script>
-      <script>scripts\scr_d.gml</script>
+      <script>scripts\scr_stun_state.gml</script>
     </scripts>
     <scripts name="MonsterStates">
       <scripts name="help">
@@ -110,6 +111,7 @@
       <script>scripts\scr_monster_stall_state.gml</script>
       <script>scripts\scr_monster_idle_state.gml</script>
       <script>scripts\scr_monster_wander_state.gml</script>
+      <script>scripts\scr_slime_dash_state.gml</script>
     </scripts>
     <script>scripts\TODO_LIST.gml</script>
   </scripts>
@@ -126,7 +128,8 @@
         <object>objects\oEX</object>
       </objects>
       <object>objects\oEnemySlime</object>
-      <object>objects\oKingofSlime</object>
+      <object>objects\oEnemyKSlime</object>
+      <object>objects\oEnemyKingofSlime</object>
     </objects>
     <objects name="ground">
       <object>objects\oNextRoom</object>
@@ -134,20 +137,22 @@
       <object>objects\oWall</object>
       <object>objects\oXp</object>
       <object>objects\oRegenHp</object>
-      <object>objects\oDamage</object>
       <object>objects\oGround</object>
       <object>objects\oKey</object>
     </objects>
     <object>objects\oControl</object>
+    <object>objects\oDamage</object>
     <object>objects\oButton</object>
     <object>objects\oInformation</object>
     <object>objects\oServer</object>
     <object>objects\oClient</object>
+    <object>objects\oStun</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r0</room>
     <room>rooms\atk01</room>
     <room>rooms\atk02</room>
+    <room>rooms\atk03</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

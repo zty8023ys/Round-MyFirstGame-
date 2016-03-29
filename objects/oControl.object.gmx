@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>0</visible>
+  <visible>-1</visible>
   <depth>0</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -26,17 +26,18 @@
           <argument>
             <kind>1</kind>
             <string>
-globalvar lan, pause, isReady, version;
+globalvar lan, pause, isReady, version, timecost;
 lan = 0;
 pause = 0;
 isReady = 0;
+timecost = -1;
 
-isandroid = ISANDROID;
-
-version = 121;
+version = 130;
 newversion = version;
 status = -1;
 http_get("http://45.58.54.172/game/round/round_version.php");
+
+isandroid = ISANDROID;
 </string>
           </argument>
         </arguments>
@@ -82,13 +83,24 @@ http_get("http://45.58.54.172/game/round/round_version.php");
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// "P" for pause the game
+            <string>///game state
 
 pause_key = keyboard_check_pressed(ord("P"));
 if (pause_key &amp;&amp; global.pause == 1) {
     global.pause = 0;
 } else if (pause_key &amp;&amp; global.pause == 0) {
     global.pause = 1;
+}
+if (room == atk03) {
+    global.timecost++;
+    if(!instance_exists(oHero)) {
+        show_message("胜败乃兵家常事，请大侠重新来过");
+        game_end();
+    }
+    if(!instance_exists(oEnemyKingofSlime) &amp;&amp; !instance_exists(oEnemyKSlime)) {
+        show_message("你战胜了史莱姆之王，耗时："  + string(global.timecost/room_speed) + "秒");
+        game_end();
+    }
 }
 </string>
           </argument>
@@ -113,13 +125,13 @@ if (pause_key &amp;&amp; global.pause == 1) {
           <argument>
             <kind>1</kind>
             <string>status = async_load[? "status"];
-if (status &gt; 0) {
+if (status != -1) {
     newversion = real(async_load[? "result"]);
     var baiwei = round(newversion/100);
     var shiwei = round(newversion/10) - baiwei*10;
     var gewei = newversion - baiwei*100 - shiwei*10;
     
-    if (version != newversion) {
+    if (version != newversion &amp;&amp; newversion != 0) {
         if (!isandroid) {
             get_string("您的旧版本已不可用, 请复制以下最新版下载地址进行下载:" ,"http://45.58.54.172/game/round/Round_v" + string(baiwei) + "." + string(shiwei) + "." + string(gewei) + ".exe");
         } else {
@@ -127,6 +139,32 @@ if (status &gt; 0) {
         }
         game_end();
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if(room == atk03) {
+    draw_set_halign(fa_center);
+    draw_text_transformed(oHero.winatkx,.5 * oHero.windx,"耗时:" + string(global.timecost/room_speed) + "秒",oHero.fontscale,oHero.fontscale,0);
 }
 </string>
           </argument>

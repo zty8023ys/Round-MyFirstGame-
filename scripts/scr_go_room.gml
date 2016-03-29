@@ -1,36 +1,18 @@
 ///scr_go_room(room);
 var goroom = argument[0];
-oHero.x = 192;
-oHero.y = 192;
-
-if (global.lan) {
-    oEX.x = 384;
-    oEX.y = 192;
-}
-
-if(goroom == atk01) {
-    oHero.visible = true;
-//    with(oKey) {
-//        visible = true;
-//    }
-}
-
-if (goroom == atk02) {
-    oHero.visible = true;
-  //  with(oKey) {
-   //     visible = true;
-  //  }
-    if (global.lan) {
-        oEX.visible = true;
-    }
-}
 
 
 if (goroom == r0) {
     oHero.visible = false;
- //   with(oKey) {
- //       visible = false;
- //   }
+} else {
+    oHero.x = 192;
+    oHero.y = 192;
+    oHero.visible = true;
+    if (global.lan && goroom ==atk02) {
+        oEX.x = 384;
+        oEX.y = 192;
+        oEX.visible = true;
+    }
 }
 with(oHero) {
     hp = maxhp;

@@ -30,6 +30,8 @@ phy_fixed_rotation = true; // 自动修正转向
 maxhp = 50;
 hp = maxhp;
 defense = 0;
+
+hplost = 0;
 </string>
           </argument>
         </arguments>
@@ -58,14 +60,16 @@ depth = -y;
 
 hp = min(maxhp, hp);
 hp = max(hp,0);
-
-if (hp &lt;= 0) {
-    if (oHero.hp &lt;=0 &amp;&amp; room == atk01) {
-        scr_go_room(r0);
+    if (hp &lt;= 0) {
+        if (oHero.hp &lt;=0 &amp;&amp; room == atk01) {
+        
+        with(oHero){
+            scr_go_room(r0);
+        }
     } else {
-        instance_destroy();
+            instance_destroy();
+        }
     }
-}
 </string>
           </argument>
         </arguments>
