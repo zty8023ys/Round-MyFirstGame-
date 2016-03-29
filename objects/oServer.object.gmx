@@ -162,7 +162,7 @@ if (instance_exists(oHero)) {
           <argument>
             <kind>1</kind>
             <string>/// postion
-if (room == atk02) {
+if (room == atk02 &amp;&amp; instance_exists(oHero) &amp;&amp; instance_exists(oEX)) {
     var buffer = buffer_create(BUFFERSIZE,buffer_fixed,1);
     buffer_seek(buffer,buffer_seek_start,0);
     

@@ -420,8 +420,6 @@ if (state == scr_attack_state &amp;&amp; attacked == true) {
           <argument>
             <kind>1</kind>
             <string>
-//winheight = 100;
-//winwidth = 100;
 winheight = window_get_height();
 winwidth = window_get_width();
 windx = winheight/10;

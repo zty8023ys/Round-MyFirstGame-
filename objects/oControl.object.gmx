@@ -164,7 +164,7 @@ if (status != -1) {
             <kind>1</kind>
             <string>if(room == atk03) {
     draw_set_halign(fa_center);
-    draw_text_transformed(oHero.winatkx,.5 * oHero.windx,"耗时:" + string(global.timecost/room_speed) + "秒",oHero.fontscale,oHero.fontscale,0);
+    draw_text_transformed(oHero.winwidth - 2* oHero.windx,.5 * oHero.windx,"耗时:" + string(global.timecost/room_speed) + "秒",oHero.fontscale,oHero.fontscale,0);
 }
 </string>
           </argument>

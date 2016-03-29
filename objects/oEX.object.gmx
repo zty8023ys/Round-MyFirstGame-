@@ -326,7 +326,7 @@ if (state == scr_attack_state_new &amp;&amp; attacked == true) {
             <kind>1</kind>
             <string>if(instance_exists(oClient) &amp;&amp; oClient.ping &gt;= 0) {
     draw_set_halign(fa_center);
-    draw_text_transformed(oHero.winatkx,.5 * oHero.windx,"Ping:" + string(oClient.ping) + "ms",oHero.fontscale,oHero.fontscale,0);
+    draw_text_transformed(oHero.winwidth - 2* oHero.windx,.5 * oHero.windx,"Ping:" + string(oClient.ping) + "ms",oHero.fontscale,oHero.fontscale,0);
 }
 </string>
           </argument>
