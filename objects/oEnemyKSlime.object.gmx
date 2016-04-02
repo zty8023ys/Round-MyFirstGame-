@@ -199,7 +199,7 @@ event_inherited();
 if (dashisready) {
     state = scr_slime_dash_state;
     dashisready = false;
-    alarm[3] = room_speed / 4; // 冲刺时间
+    alarm[3] = room_speed / 3; // 冲刺时间
     alarm[2] = room_speed * dashcd;
 }
 script_execute(state);

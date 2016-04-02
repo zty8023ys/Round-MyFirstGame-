@@ -2,7 +2,7 @@
 
 if (instance_exists(oHero)){
     dir = point_direction(x, y, oHero.x, oHero.y);
-    len = oHero.spd * 4; // 冲刺速度和玩家相同
+    len = oHero.spd * 2; // 冲刺速度和玩家相同
 } else {
     dir = 0;
     len = 0;
