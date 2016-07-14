@@ -10,5 +10,6 @@ dir_key = (up_key || down_key || left_key || right_key);
 
 dash_key = keylist[ord("Z")];
 attack_key = keylist[ord("X")];
+phase_key = keylist[ord("C")];
 
 

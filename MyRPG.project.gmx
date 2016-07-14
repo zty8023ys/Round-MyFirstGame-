@@ -12,6 +12,7 @@
     <sound>sound\gainxp</sound>
     <sound>sound\hurt</sound>
     <sound>sound\nextlevel</sound>
+    <sound>sound\phase</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\sWall</sprite>
@@ -39,6 +40,7 @@
     <sprite>sprites\sGround</sprite>
     <sprite>sprites\sKey</sprite>
     <sprite>sprites\sStun</sprite>
+    <sprite>sprites\sBox</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bGrass</background>
@@ -57,6 +59,7 @@
         <script>scripts\scr_client.gml</script>
         <script>scripts\scr_received_packet.gml</script>
         <script>scripts\scr_send_key.gml</script>
+        <script>scripts\scr_send_key_to_socket.gml</script>
         <script>scripts\scr_wait_other.gml</script>
         <script>scripts\scr_read_buffer.gml</script>
         <script>scripts\scr_send_hp.gml</script>
@@ -64,6 +67,7 @@
         <script>scripts\scr_send_recovery_hp.gml</script>
         <script>scripts\scr_send_end.gml</script>
         <script>scripts\scr_ping.gml</script>
+        <script>scripts\scr_ready_buffer.gml</script>
       </scripts>
       <scripts name="information">
         <script>scripts\scr_draw_rune.gml</script>
@@ -71,6 +75,7 @@
         <script>scripts\scr_draw_herostats.gml</script>
         <script>scripts\scr_draw_wait.gml</script>
         <script>scripts\scr_draw_skills.gml</script>
+        <script>scripts\scr_draw_skills_2.gml</script>
         <script>scripts\scr_draw_wait_other.gml</script>
         <script>scripts\scr_draw_trueip.gml</script>
       </scripts>
@@ -111,6 +116,7 @@
       <script>scripts\scr_monster_stall_state.gml</script>
       <script>scripts\scr_monster_idle_state.gml</script>
       <script>scripts\scr_monster_wander_state.gml</script>
+      <script>scripts\scr_monster_dash.gml</script>
       <script>scripts\scr_slime_dash_state.gml</script>
     </scripts>
     <script>scripts\TODO_LIST.gml</script>
@@ -122,6 +128,7 @@
   <objects name="objects">
     <objects name="lifeform">
       <object>objects\oParent</object>
+      <object>objects\oMonster</object>
       <objects name="hero">
         <object>objects\oDashEffect</object>
         <object>objects\oHero</object>
@@ -139,6 +146,7 @@
       <object>objects\oRegenHp</object>
       <object>objects\oGround</object>
       <object>objects\oKey</object>
+      <object>objects\oBox</object>
     </objects>
     <object>objects\oControl</object>
     <object>objects\oDamage</object>

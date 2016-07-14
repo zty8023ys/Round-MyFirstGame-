@@ -137,38 +137,7 @@ if (isping) {
           <argument>
             <kind>1</kind>
             <string>/// send key to server
-if (instance_exists(oHero)) {
-    if (keyboard_check(vk_up)) {
-        scr_send_key(vk_up,1,server);
-    } else if (keyboard_check_released(vk_up)){
-        scr_send_key(vk_up,0,server);
-    }
-    if (keyboard_check(vk_down)) {
-        scr_send_key(vk_down,1,server);
-    } else if (keyboard_check_released(vk_down)){
-        scr_send_key(vk_down,0,server);
-    }
-    if (keyboard_check(vk_right)) {
-        scr_send_key(vk_right,1,server);
-    } else if (keyboard_check_released(vk_right)){
-        scr_send_key(vk_right,0,server);
-    }
-    if (keyboard_check(vk_left)) {
-        scr_send_key(vk_left,1,server);
-    } else if (keyboard_check_released(vk_left)){
-        scr_send_key(vk_left,0,server);
-    }
-    if (oHero.isdash) {
-        scr_send_key(ord("Z"),1,server);
-    } else if(!oHero.isdash) {
-        scr_send_key(ord("Z"),0,server);
-    }
-    if (oHero.isattack) {
-        scr_send_key(ord("X"),1,server);
-    } else if(!oHero.isattack) {
-        scr_send_key(ord("X"),0,server);
-    }
-}
+scr_send_key_to_socket(server);
 </string>
           </argument>
         </arguments>

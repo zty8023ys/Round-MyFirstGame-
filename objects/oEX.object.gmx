@@ -47,6 +47,7 @@ keylist[vk_left] = 0;
 keylist[vk_right] = 0;
 keylist[ord("X")] = 0;
 keylist[ord("Z")] = 0;
+keylist[ord("C")] = 0;
 </string>
           </argument>
         </arguments>
@@ -86,8 +87,11 @@ temphp = hp;
 
 defense = 10;
 
+isphase = false;
+canplayphase = true;
 //attack
 attack = 0;
+attackspeed = .5;
 
 knockback = 20;
 </string>
@@ -125,7 +129,32 @@ if (instance_exists(oServer)) {
 
 show_message("You win!");
 
-game_end();
+game_restart();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// phase
+isphase = false;
+
 </string>
           </argument>
         </arguments>
@@ -324,7 +353,7 @@ if (state == scr_attack_state_new &amp;&amp; attacked == true) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if(instance_exists(oClient) &amp;&amp; oClient.ping &gt;= 0) {
+            <string>if(instance_exists(oHero) &amp;&amp; instance_exists(oClient) &amp;&amp; oClient.ping &gt;= 0) {
     draw_set_halign(fa_center);
     draw_text_transformed(oHero.winwidth - 2* oHero.windx,.5 * oHero.windx,"Ping:" + string(oClient.ping) + "ms",oHero.fontscale,oHero.fontscale,0);
 }
@@ -351,12 +380,16 @@ if (state == scr_attack_state_new &amp;&amp; attacked == true) {
           <argument>
             <kind>1</kind>
             <string>/// Draw the shadow &amp; stats
-draw_sprite(sShadow,image_index,x,y);
-event_inherited();
-draw_set_font(font1);
-draw_set_halign(fa_center);
-draw_text(x,y-22,name);
-draw_set_font(font0);
+if (isphase) {
+    draw_text(x,y,"");
+} else {
+    draw_sprite(sShadow,image_index,x,y);
+    event_inherited();
+    draw_set_font(font1);
+    draw_set_halign(fa_center);
+    draw_text(x,y-22,name);
+    draw_set_font(font0);
+}
 </string>
           </argument>
         </arguments>

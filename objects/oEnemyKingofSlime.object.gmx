@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>oParent</parentName>
+  <parentName>oMonster</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,12 +27,15 @@
             <kind>1</kind>
             <string>/// create the slime
 event_inherited();
-maxhp = 5000;
+maxhp = 3000;
 hp = maxhp;
+gap = 500;
+nexthp = maxhp - gap;
+
 attack = 50;
 defense = 50;
 image_speed = .1;
-image_blend = c_orange;
+image_blend = c_fuchsia;
 spd = 2;
 state = scr_check_for_hero;
 alarm[0] = room_speed;
@@ -40,11 +43,12 @@ targetx = 0;
 targety = 0;
 sight = 96;
 knockback = 20;
-nexthp = 4500;
+
 dashisready = true;
 dashdamage = 200;
 dashstuntime = room_speed;
 dashcd = 5;
+dashtime = room_speed / 2;
 heavystrike = true;
 heavystrikedamage = 100;
 heavystrikestuntime = room_speed;
@@ -238,14 +242,10 @@ if (hp &lt;= nexthp) {
         instance_create(randomx,randomy,oEnemyKSlime);
         two--;
     }
-    nexthp -= 500;
+    nexthp -= gap;
 }
-if (dashisready) {
-    state = scr_slime_dash_state;
-    dashisready = false;
-    alarm[3] = room_speed / 2; // 冲刺时间
-    alarm[2] = room_speed * dashcd;
-}
+
+scr_monster_dash(dashtime);
 
 script_execute(state);
 

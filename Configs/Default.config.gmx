@@ -465,11 +465,11 @@
     <option_version_build>0</option_version_build>
     <option_version_company>Ztory Studio</option_version_company>
     <option_version_copyright>Ztory Studio</option_version_copyright>
-    <option_version_description>K.O. your friend.</option_version_description>
+    <option_version_description>K.O.</option_version_description>
     <option_version_major>1</option_version_major>
-    <option_version_minor>3</option_version_minor>
+    <option_version_minor>4</option_version_minor>
     <option_version_product>Ztory Studio</option_version_product>
-    <option_version_release>1</option_version_release>
+    <option_version_release>0</option_version_release>
     <option_win8_advertising_appid></option_win8_advertising_appid>
     <option_win8_advertising_enable>0</option_win8_advertising_enable>
     <option_win8_advertising_key></option_win8_advertising_key>
@@ -542,15 +542,15 @@
     <option_windows_company_info>Ztory Studio</option_windows_company_info>
     <option_windows_copyright_info>Ztory Studio</option_windows_copyright_info>
     <option_windows_create_textures_on_demand>False</option_windows_create_textures_on_demand>
-    <option_windows_description_info>K.O. your friend.</option_windows_description_info>
+    <option_windows_description_info>K.O.</option_windows_description_info>
     <option_windows_enable_steam>0</option_windows_enable_steam>
     <option_windows_game_icon>Configs\Default\windows\runner_icon.ico</option_windows_game_icon>
     <option_windows_license>Configs\Default\windows\License.txt</option_windows_license>
-    <option_windows_mainor_version>3</option_windows_mainor_version>
+    <option_windows_mainor_version>4</option_windows_mainor_version>
     <option_windows_major_version>1</option_windows_major_version>
     <option_windows_nsis_file>Configs\Default\windows\RunnerInstaller.nsi</option_windows_nsis_file>
     <option_windows_product_info>Ztory Studio</option_windows_product_info>
-    <option_windows_release_version>1</option_windows_release_version>
+    <option_windows_release_version>0</option_windows_release_version>
     <option_windows_runner_finished>Configs\Default\windows\Runner_finish.bmp</option_windows_runner_finished>
     <option_windows_runner_header>Configs\Default\windows\Runner_header.bmp</option_windows_runner_header>
     <option_windows_save_location>0</option_windows_save_location>
@@ -647,9 +647,10 @@
     <option_xbone_title_id></option_xbone_title_id>
   </Options>
   <ConfigConstants>
-    <constants number="22">
+    <constants number="23">
+      <constant name="SKILLGAP">75</constant>
       <constant name="BUFFERSIZE">64</constant>
-      <constant name="ISANDROID">1</constant>
+      <constant name="ISANDROID">0</constant>
       <constant name="GRD_MSGID">10</constant>
       <constant name="RECHP_MSGID">7</constant>
       <constant name="POS_MSGID">6</constant>

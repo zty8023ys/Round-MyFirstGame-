@@ -5,16 +5,26 @@ if (r < 10) {
         maxmovepoint = r;
         movepoint = maxmovepoint;
         lflag = true;
-        critchanceflag = true;
-        if(critchance_lv) critchance += raddcritchance; 
-        lifeleechflag = true;
-        if(lifeleech_lv) lifeleech += raddlifeleech;
-        dealperhpflag = true;
-        if(dealperhp_lv) dealperhp += radddelperhp;
-        dashreduceflag = true;
+        if(critchance_lv){
+            critchanceflag = true;
+            critchance += raddcritchance; 
+        }
+        if(lifeleech_lv) {
+            lifeleechflag = true;
+            lifeleech += raddlifeleech;
+        }
+        if(dealperhp_lv) {
+            dealperhpflag = true;
+            dealperhp += radddealperhp;
+        }
         if(dashreduce_lv && dashreduceeffect < updashreduce) {
+            dashreduceflag = true;
             dashreduceeffect = min(updashreduce,dashreduceeffect+rdashreduce);
             dashcost = DASH_COST - dashreduceeffect;
+        }
+        if(phase_lv) {
+            phasetime += raddphase;
+            phaseflag = true;
         }
     }
 } else {

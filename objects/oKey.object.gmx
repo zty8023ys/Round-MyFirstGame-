@@ -55,6 +55,7 @@ oHero.right_key = false;
 oHero.down_key = false;
 oHero.dash_key = false;
 oHero.attack_key = false;
+oHero.phase_key = false;
 </string>
           </argument>
         </arguments>
@@ -96,6 +97,9 @@ oHero.attack_key = false;
             break;
         case 5:
             oHero.attack_key = true;
+            break;
+        case 6:
+            oHero.phase_key = true;
             break;
     }
 }

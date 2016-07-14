@@ -34,6 +34,8 @@ visible = false;
 runepressed = false;
 backpressed = false;
 skillpressed = false;
+page2pressed = false;
+
 </string>
           </argument>
         </arguments>
@@ -59,6 +61,7 @@ skillpressed = false;
             <string>/// clear the pressed
 backpressed = false;
 runepressed = false;
+page2pressed = false;
 </string>
           </argument>
         </arguments>
@@ -92,6 +95,11 @@ if (visible) {
             visible = true;
         }
     }
+    if (page2pressed &amp;&amp; page2area) {
+        depth = -12;
+    }
+    
+    
     
     //go to begin page
     var runearea = (scr_area(128,320,32,32) || scr_area(192,320,32,32) || scr_area(256,320,32,32));
@@ -124,25 +132,25 @@ if (visible) {
     //learn skills
     if (skillpressed &amp;&amp; depth == -16 &amp;&amp; skillarea) {
         with(oHero) {
-            if (scr_area(450,100,32,32) &amp;&amp; movepoint &gt;= critchance_mp &amp;&amp; critchanceflag){
+            if (scr_area(firstbtnx,firstbtny,32,32) &amp;&amp; movepoint &gt;= critchance_mp &amp;&amp; critchanceflag){
                 critchance_lv += 1;
                 critchance += addcritchance;
                 movepoint -= critchance_mp;
                 critchanceflag = false;
             }
-            if (scr_area(450,175,32,32) &amp;&amp; movepoint &gt;= lifeleech_mp &amp;&amp; lifeleechflag){
+            if (scr_area(firstbtnx,firstbtny+SKILLGAP,32,32) &amp;&amp; movepoint &gt;= lifeleech_mp &amp;&amp; lifeleechflag){
                 lifeleech_lv += 1;
                 lifeleech += addlifeleech;
                 movepoint -= lifeleech_mp;
                 lifeleechflag = false;
             }
-            if (scr_area(450,250,32,32) &amp;&amp; movepoint &gt;= dealperhp_mp &amp;&amp; dealperhpflag){
+            if (scr_area(firstbtnx,firstbtny+SKILLGAP*2,32,32) &amp;&amp; movepoint &gt;= dealperhp_mp &amp;&amp; dealperhpflag){
                 dealperhp_lv += 1;
-                dealperhp += adddelperhp;
+                dealperhp += adddealperhp;
                 movepoint -= dealperhp_mp;
                 dealperhpflag = false;
             }
-            if (scr_area(450,325,32,32) &amp;&amp; movepoint &gt;= dashreduce_mp &amp;&amp; dashreduceflag &amp;&amp; dashreduceeffect  &lt; updashreduce){
+            if (scr_area(firstbtnx,firstbtny+SKILLGAP*3,32,32) &amp;&amp; movepoint &gt;= dashreduce_mp &amp;&amp; dashreduceflag &amp;&amp; dashreduceeffect  &lt; updashreduce){
                 dashreduce_lv += 1;
                 dashreduceeffect = min(updashreduce,dashreduceeffect+dashreduce);
                 dashcost = DASH_COST - dashreduceeffect;
@@ -151,8 +159,17 @@ if (visible) {
             }
         }
     }
-    
-    
+    if (skillpressed &amp;&amp; depth == -12 &amp;&amp; skillarea) {
+        with(oHero) {
+            if (scr_area(firstbtnx,firstbtny,32,32) &amp;&amp; movepoint &gt;= phase_mp &amp;&amp; phaseflag){
+                phase_lv += 1;
+                phasetime += addphase;
+                movepoint -= phase_mp;
+                phaseflag = false;
+                canphase = true;
+            }
+        }
+    }
     
 }
 </string>
@@ -192,9 +209,16 @@ if (runearea) {
 }
 
 //skill area
-skillarea = (scr_area(450,100,32,32) || scr_area(450,175,32,32) || scr_area(450,250,32,32) || scr_area(450,325,32,32));
+skillarea = (scr_area(oHero.firstbtnx,oHero.firstbtny,32,32) || scr_area(oHero.firstbtnx,oHero.firstbtny+SKILLGAP,32,32) || scr_area(oHero.firstbtnx,oHero.firstbtny+SKILLGAP*2,32,32) || scr_area(oHero.firstbtnx,oHero.firstbtny+SKILLGAP*3,32,32));
 if (skillarea) {
     skillpressed = true;
+}
+
+if (depth == -16) {
+    page2area = scr_area(576,280,64,32);
+    if (page2area) {
+        page2pressed = true;
+    }
 }
 </string>
           </argument>
@@ -250,17 +274,23 @@ switch(depth) {
         // show skills list
         scr_draw_skills();
         break;
+    
+    case -12:
+        scr_draw_skills_2();    
+        break;
         
     case -15:   // show wait for client
-       scr_draw_wait();
-       break;
+        scr_draw_wait();
+        break;
        
     case -14:   // show wait for other
-       scr_draw_wait_other();
-       break;
+        scr_draw_wait_other();
+        break;
     
     case -13:
         scr_draw_trueip();
+        break;
+    
 }
 </string>
           </argument>

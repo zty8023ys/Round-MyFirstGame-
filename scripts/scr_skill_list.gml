@@ -10,7 +10,7 @@ critchanceflag = true; // 当前回合是否可以学习技能
 //嗜血狂暴(吸血)
 lifeleech_mp = 2;
 lifeleech_lv = 0;
-addlifeleech = 2;
+addlifeleech = 1;
 raddlifeleech = .5;
 lifeleechflag = true;
 
@@ -18,8 +18,8 @@ lifeleechflag = true;
 dealperhp_mp = 3;
 dealperhp_lv = 0;
 dealperhp = 0; // 当前技能效果
-adddelperhp = 3;
-radddelperhp = 1;
+adddealperhp = 3;
+radddealperhp = 1;
 dealperhpflag = true;
 
 //凌波微步(减耗)
@@ -30,3 +30,15 @@ rdashreduce = .2;
 updashreduce = 3; // 减耗上限
 dashreduceeffect = 0; // 当前减耗数值
 dashreduceflag = true;
+
+
+
+// 暗影迷踪(隐身)
+canphase = false;
+phase_mp = 3;
+phase_lv = 0;
+phasetime = 0; // 当前技能效果
+addphase = 1;
+raddphase = .5;
+phaseflag = true;
+phasecost = 10;

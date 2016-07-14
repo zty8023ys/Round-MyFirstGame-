@@ -17,3 +17,4 @@ phy_position_y += vspd;
 var dash = instance_create(x, y, oDashEffect);
 dash.sprite_index = sprite_index;
 dash.image_index = image_index;
+dash.image_blend = image_blend;

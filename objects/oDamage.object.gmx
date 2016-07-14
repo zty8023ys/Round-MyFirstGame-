@@ -86,6 +86,14 @@ if (instance_exists(other) &amp;&amp; instance_exists(creator)) {
     if (other.sprite_index != creator.sprite_index) {
 
         //damage FROM the hero
+        with (oHero) {
+            isphase = false;
+        }
+        if (instance_exists(oEX)) {
+            with (oEX) {
+                isphase = false;
+            }
+        }
         if (creator.object_index == oHero) {
             other.hplost = oHero.truedamage * (1 - other.defense/(other.defense+50));
             with(oHero) {
@@ -93,15 +101,7 @@ if (instance_exists(other) &amp;&amp; instance_exists(creator)) {
                 hp = min(hp + liferecovery,maxhp);
             }
             other.hplost += min(other.maxhp * oHero.dealperhp/100, oHero.dealperhp_lv * 20);
-            // 1：焚 2：磐 3：怒
-            switch(global.rune) {
-                case 1: other.hplost *= oHero.fenatk;
-                break;
-                case 2: other.hplost *= oHero.panatk;
-                break;
-                case 3: if (scr_chance(oHero.nuchance)) other.hplost *= 2*oHero.nudamage;
-                break;
-            }
+
             if (damageto == other.id) {
                 other.hp -= other.hplost;
                 other.maxhp -= min(other.maxhp * oHero.dealperhp/100, oHero.dealperhp_lv * 20);
@@ -112,14 +112,7 @@ if (instance_exists(other) &amp;&amp; instance_exists(creator)) {
                 audio_play_sound(hurt,10,false);
             }
             if (other.object_index == oHero) {
-                switch(global.rune) {
-                case 1: other.hp -= (damage * (1 - other.defense/(other.defense+50)))/oHero.fendef;
-                break;
-                case 2: other.hp -= (damage * (1 - other.defense/(other.defense+50)))/oHero.pandef;
-                break;
-                case 3: other.hp -= damage * (1 - other.defense/(other.defense+50));
-                break;
-                }
+                other.hp -= (damage * (1 - other.defense/(other.defense+50)));
             }
         } 
         // apply the knockback

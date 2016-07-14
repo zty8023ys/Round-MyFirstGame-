@@ -10,10 +10,8 @@ switch(msgid) {
         if (room == r0 && oInformation.depth == -14) {
             scr_read_buffer(buffer);
             var buffer = buffer_create(BUFFERSIZE,buffer_fixed,1);
-            buffer_seek(buffer,buffer_seek_start,0);
-            buffer_write(buffer, buffer_u8, READY_MSGID);
-            buffer_write(buffer, buffer_f32, oHero.maxhp);
-            buffer_write(buffer, buffer_f32, oHero.defense);
+            buffer = scr_ready_buffer(buffer);
+            
             if (instance_exists(oServer)) {
                 var send = network_send_packet(client,buffer,buffer_tell(buffer));
                 buffer_delete(buffer);
@@ -61,7 +59,7 @@ switch(msgid) {
         
     case GAME_END :
         show_message("You lose!");
-        game_end();
+        game_restart();
         break;
         
     case PING_MSGID :

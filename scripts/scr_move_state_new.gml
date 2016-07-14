@@ -1,7 +1,7 @@
 ///scr_move_state
 // get the axis
 scr_get_input_network();
-if (dir_key && !audio_is_playing(wark1)) {
+if (dir_key && !audio_is_playing(wark1) && !phase_key) {
     audio_play_sound(wark1, 10, false);
 }
 
@@ -16,6 +16,20 @@ if (dash_key && dir_key ) {
 
 if (attack_key) {
     state = scr_attack_state_new;
+}
+
+
+
+if (phase_key) {
+    isphase = true;
+} else {
+    isphase = false;
+    canplayphase = true;
+}
+
+if (phase_key && canplayphase) {
+    canplayphase = false;
+    audio_play_sound(phase, 10, false);
 }
 
 // get direction

@@ -74,11 +74,11 @@ r = 1;
 lflag = true;
 
 // 符文相关参数
-fenatk = 1.45;
+fenatk = 1.5;
 fendef = 0.8;
 
 panatk = 0.8;
-pandef = 1.4;
+pandef = 1.35;
 
 nuchance = 30;
 nudamage = 0.8;
@@ -87,7 +87,7 @@ nudamage = 0.8;
 attacked = false;
 isdash = false;
 isattack = false;
-
+attackspeed = .5;
 
 
 
@@ -130,9 +130,9 @@ critchance = 5 ;
 critdamage = 200;
 crit = false;
 
+isphase = false;
 
 knockback = 20;
-
 
 // skill list
 scr_skill_list();
@@ -170,18 +170,79 @@ if (isandroid) {
     winupy = 0;
     windownx = 0;
     windowny = 0;
+    
     winatkx = 0;
     winatky = 0;
+    
     windashx = 0;
     windashy = 0;
+    
+    winphasex = 0;
+    winphasey = 0;
+    
     winleft = 0;
     winright = 0;
     winup = 0;
     windown = 0;
+    
     winatk = 0;
     windash = 0;
+    winphase = 0;
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// misc
+
+// for skills information
+firstbtnx = 480;
+firstbtny = 100;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// phase
+isphase = false;
+with(oMonster) {
+    blind = false;
+}
 </string>
           </argument>
         </arguments>
@@ -312,7 +373,7 @@ if (global.pause) exit;
 if (room != r0) {
     if (stamina &lt; maxstamina &amp;&amp; alarm[1] &lt;= 0) {
         stamina = min(stamina+1,maxstamina);
-        alarm[1] = room_speed / 3;
+        alarm[1] = room_speed / 2;
     }
 }
 </string>
@@ -349,6 +410,28 @@ if (hp &gt; temphp) {
     }
     temphp = hp;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// phase
+
 </string>
           </argument>
         </arguments>
@@ -419,7 +502,7 @@ if (state == scr_attack_state &amp;&amp; attacked == true) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
+            <string>/// set virtual key
 winheight = window_get_height();
 winwidth = window_get_width();
 windx = winheight/10;
@@ -435,19 +518,26 @@ winupx = winleftx + windx * 2;
 winupy = winlefty - windx * 2;
 windownx = winupx;
 windowny = winupy + windx * 4;
-winatkx = winheight - winleftx + 5 * windx ;
-winatky = winlefty;
-windashx = winheight - winrightx + 5 * windx ;
+
+windashx = winwidth - winrightx - 4*windx;
 windashy = winlefty;
+
+winatkx = winwidth - winupx - 3*windx;
+winatky = winlefty;
+
+winphasex = winwidth - winleftx - 2*windx ;
+winphasey = winlefty;
+
 winleft = virtual_key_add(winleftx,winlefty,3*windx,3*windx,vk_left);
 winright = virtual_key_add(winrightx,winrighty,3*windx,3*windx,vk_right);
 winup = virtual_key_add(winupx,winupy,3*windx,3*windx,vk_up);
 windown = virtual_key_add(windownx,windowny,3*windx,3*windx,vk_down);
 
+windash = virtual_key_add(winatkx,winatky,2*windx,2*windx,ord('X'));
 
 winatk = virtual_key_add(windashx,windashy,2*windx,2*windx,ord('Z'));
 
-windash = virtual_key_add(winatkx,winatky,2*windx,2*windx,ord('X'));
+winphase = virtual_key_add(winphasex,winphasey,2*windx,2*windx,ord('C'));
 /*
 virtual_key_show(winup);
 virtual_key_show(winatk);
@@ -499,6 +589,7 @@ if (room != r0) {
         draw_sprite_ext( sKey, 3, windownx+.5*windx, windowny+.5*windx, scale, scale, 0, c_white, .25 );
         draw_sprite_ext( sKey, 4, windashx, windashy+.5*windx, scale, scale, 0, c_white, .25 );
         draw_sprite_ext( sKey, 5, winatkx, winatky+.5*windx, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 6, winphasex, winphasey+.5*windx, scale, scale, 0, c_white, .25 );
     }
 }
 </string>
@@ -524,13 +615,19 @@ if (room != r0) {
           <argument>
             <kind>1</kind>
             <string>/// Draw the shadow &amp; stats
+if (isphase) {
+    image_blend = c_purple;
+} else {
+    image_blend = c_white;
+}
 event_inherited();
 draw_sprite(sShadow,image_index,x,y);
 draw_set_halign(fa_center);
 draw_set_font(font1);
 draw_text(x,y-22,name);
+draw_text(x,y-40,image_index);
 draw_set_font(font0);
-
+draw_healthbar(x-10, y-11, x+10, y-10, stamina/maxstamina * 100, c_black, c_silver, c_silver, 0, true, true);
 </string>
           </argument>
         </arguments>

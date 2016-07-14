@@ -10,6 +10,11 @@ dir_key = (up_key || down_key || left_key || right_key);
 if (dir_key && !audio_is_playing(wark1)) {
     audio_play_sound(wark1, 10, false);
 }
+
+if (canphase && phase_key && stamina >= phasecost && !audio_is_playing(phase)) {
+    audio_play_sound(phase, 10, false);
+}
+
 // get the axis
 xaxis = (right_key - left_key);
 yaxis = (down_key - up_key);
@@ -20,7 +25,14 @@ if (dash_key && dir_key && stamina >= dashcost) {
     stamina -= dashcost;
     alarm[0] = room_speed / 6;
 }
-
+if (canphase && phase_key && stamina >= phasecost) {
+    stamina -= phasecost;
+    isphase = true;
+    with(oMonster) {
+        blind = true;
+    }
+    alarm[3] = room_speed * phasetime;
+}
 if (attack_key) {
     isattack = true;
     state = scr_attack_state;
