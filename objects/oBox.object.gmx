@@ -87,10 +87,8 @@ timeout = false;
     1: ATK += (2,6);
     2: DEF += (1,3);
 */
-randomize();
-reward = irandom_range(0,2);
+reward = irandom_range(0,10000) % 3;
 if (image_index == 0) {
-    randomize();
     switch(reward) {
         case 0: 
             var hp = irandom_range(20,40);
@@ -104,7 +102,7 @@ if (image_index == 0) {
             break;
         case 2: 
             var def = irandom_range(1,3);
-            other.defense += def;
+            other.defence += def;
             rewardtips = "+" + string(def) + "DEF";
             break;
     }

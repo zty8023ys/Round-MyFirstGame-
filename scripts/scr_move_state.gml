@@ -37,6 +37,9 @@ if (attack_key) {
     isattack = true;
     state = scr_attack_state;
 }
+if (defence_key) {
+    state = scr_defence_state;
+}
 
 // get direction
 dir = point_direction(0, 0, xaxis, yaxis);

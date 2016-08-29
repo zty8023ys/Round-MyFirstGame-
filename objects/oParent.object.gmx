@@ -29,9 +29,16 @@
 phy_fixed_rotation = true; // 自动修正转向
 maxhp = 50;
 hp = maxhp;
-defense = 0;
+defence = 0;
 
 hplost = 0;
+attackpersec = 3;// Attack how many times in One sec
+attackspeed = (attackpersec / (room_speed/(image_number))); 
+//per step(room_speed) X/7 times  (sprite has 7 frames)
+// X*(room_speed/7) / sec
+//    30/7=4.285714
+//  1/4.285714=0.233333
+isdefence = false;
 </string>
           </argument>
         </arguments>
@@ -54,22 +61,20 @@ hplost = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-/// cotrol depth
+            <string>/// step
+
+// pause
+if (pause) exit;
+
+// depth
 depth = -y;
 
-hp = min(maxhp, hp);
 hp = max(hp,0);
-    if (hp &lt;= 0) {
-        if (oHero.hp &lt;=0 &amp;&amp; room == atk01) {
-        
-        with(oHero){
-            scr_go_room(r0);
-        }
-    } else {
-            instance_destroy();
-        }
-    }
+hp = min(maxhp, hp);
+
+if (hp &lt;= 0) {
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>
@@ -140,7 +145,7 @@ hp = max(hp,0);
             <kind>1</kind>
             <string>/// draw hp bar
 draw_self();
-draw_healthbar(x-10, y-15, x+10, y-12, hp/maxhp * 100, c_black, c_red, c_green, 0, true, true);
+draw_healthbar(x-10, y-15, x+10, y-12, max(0,hp)/maxhp * 100, c_black, c_red, c_green, 0, true, true);
 </string>
           </argument>
         </arguments>

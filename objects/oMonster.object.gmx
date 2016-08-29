@@ -28,6 +28,7 @@
             <string>/// all Monster
 event_inherited();
 blind = false;
+damage = noone;
 </string>
           </argument>
         </arguments>
@@ -76,6 +77,42 @@ event_inherited();
           <argument>
             <kind>1</kind>
             <string>///collision
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="4" ename="oPlayer">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Hit player
+if (state != scr_monster_stall_state &amp;&amp; other.state != scr_attack_state) {
+    if (instance_exists(other)) {
+        var dir = point_direction(x, y, other.x, other.y);
+        var xdir = lengthdir_x(1, dir);
+        var ydir = lengthdir_y(1, dir);
+        damage = instance_create(other.x+xdir, other.y+ydir, oDamage);
+        damage.creator = id;
+        damage.damage = attack;
+        damage.knockback = knockback;
+        state = scr_monster_stall_state;
+        alarm[1] = room_speed;    
+    }
+}
 </string>
           </argument>
         </arguments>

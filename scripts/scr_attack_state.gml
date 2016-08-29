@@ -43,13 +43,7 @@ if (image_index >= 3 && attacked == false) {
     var damage = instance_create(xx, yy, oDamage);
     damage.creator = id;
     crit = scr_chance(critchance/100);
-    if (crit) {
-        truedamage = attack * (critdamage/100);
-    } else {
-        truedamage = attack;
-    }
-
-    damage.damage = truedamage;
+    damage.damage = scr_if(crit,attack * (critdamage/100),attack);
     damage.knockback = knockback;
     
 if (!attacked) {

@@ -1,21 +1,15 @@
-/// scr_send_key(key,DownOrUp,socket);
+/// scr_send_key(key, state);
 /*
-send a key through socket
+set a key to buffer and send
 */
-///  arg0 : key
-///  arg1 : down=0, up=1
-///  arg2 : socket
-
-var buffer = buffer_create(BUFFERSIZE,buffer_fixed,1);
-
-buffer_seek(buffer, buffer_seek_start, 0);
-
+// arg0 : key
+// arg1 : 0 for up ; 1 for down
 
 // KEY_MSGID = 1;
-buffer_write(buffer, buffer_u8, KEY_MSGID );
-buffer_write(buffer, buffer_u8, argument[0] );
+var buffer = scr_buffer_create(KEY_MSGID);
+
+buffer_write(buffer, buffer_u16, argument[0] );
 buffer_write(buffer, buffer_u8, argument[1] );
-var socket = argument[2];
+
 // Send to the socket
-network_send_packet( socket, buffer, buffer_tell(buffer) );
-buffer_delete(buffer);
+scr_send_buffer(buffer);

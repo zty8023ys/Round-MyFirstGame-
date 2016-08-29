@@ -1,11 +1,13 @@
-///scr_send_hp(hp,socket);
-var hp = argument[0];
-var buffer = buffer_create(BUFFERSIZE,buffer_fixed,1);
-buffer_seek(buffer,buffer_seek_start,0);
+/// scr_send_hp(MSGID, who,hp);
+var MSGID = argument[0];
+var who = argument[1];
+var hp = argument[2];
 
-buffer_write(buffer, buffer_u8, HP_MSGID);
-buffer_write(buffer, buffer_f32, hp);
+var netobject = scr_if(instance_exists(oServer), oServer, oClient);
 
-var socket = argument[1];
-network_send_packet(socket,buffer,buffer_tell(buffer));
-buffer_delete(buffer);
+with (netobject) {
+    var buffer = scr_buffer_create(MSGID);
+    buffer_write(buffer, buffer_u32, who);
+    buffer_write(buffer, buffer_f32, hp);
+    scr_send_buffer(buffer);
+}

@@ -1,5 +1,6 @@
 /// scr_button_ip();
-http_get("http://ip-api.com/json");
+
+http_get("http://ip.3322.net/");
 getip = true;
 
 with(oButton) {

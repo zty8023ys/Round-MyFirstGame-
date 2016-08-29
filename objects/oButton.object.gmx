@@ -153,21 +153,7 @@ trueip = "0.0.0.0";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Get the answer
-var json = async_load[? "result"];
-
-
-// Convert the json to a ds_map;
-var map = json_decode(json);
-if(map == -1) {
-    show_message("Invalid result");
-    exit;
-}
-
-if(ds_map_exists(map, "query")) {
-    trueip = map[? "query"];
-}
-
+            <string>trueip = async_load[? "result"];
 </string>
           </argument>
         </arguments>

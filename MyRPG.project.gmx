@@ -27,6 +27,12 @@
         <sprite>sprites\sHeroAttackDown</sprite>
         <sprite>sprites\sHeroAttackUp</sprite>
       </sprites>
+      <sprites name="SHeroDefence">
+        <sprite>sprites\sHeroDefenceUp</sprite>
+        <sprite>sprites\sHeroDefenceLeft</sprite>
+        <sprite>sprites\sHeroDefenceRight</sprite>
+        <sprite>sprites\sHeroDefenceDown</sprite>
+      </sprites>
       <sprite>sprites\sShadow</sprite>
     </sprites>
     <sprite>sprites\sEnemySlime</sprite>
@@ -53,7 +59,11 @@
       <script>scripts\scr_chance.gml</script>
       <script>scripts\scr_next_round.gml</script>
       <script>scripts\scr_area.gml</script>
+      <script>scripts\scr_area_at.gml</script>
       <script>scripts\scr_go_room.gml</script>
+      <script>scripts\scr_if.gml</script>
+      <script>scripts\scr_deal_damage.gml</script>
+      <script>scripts\scr_impulse.gml</script>
       <scripts name="network">
         <script>scripts\scr_server.gml</script>
         <script>scripts\scr_client.gml</script>
@@ -61,13 +71,16 @@
         <script>scripts\scr_send_key.gml</script>
         <script>scripts\scr_send_key_to_socket.gml</script>
         <script>scripts\scr_wait_other.gml</script>
-        <script>scripts\scr_read_buffer.gml</script>
+        <script>scripts\scr_read_ready_buffer.gml</script>
         <script>scripts\scr_send_hp.gml</script>
-        <script>scripts\scr_send_maxhp.gml</script>
-        <script>scripts\scr_send_recovery_hp.gml</script>
         <script>scripts\scr_send_end.gml</script>
         <script>scripts\scr_ping.gml</script>
         <script>scripts\scr_ready_buffer.gml</script>
+        <script>scripts\scr_send_pos.gml</script>
+        <script>scripts\scr_chose_socket.gml</script>
+        <script>scripts\scr_send_buffer.gml</script>
+        <script>scripts\scr_set_key.gml</script>
+        <script>scripts\scr_buffer_create.gml</script>
       </scripts>
       <scripts name="information">
         <script>scripts\scr_draw_rune.gml</script>
@@ -95,6 +108,7 @@
         <script>scripts\scr_passitive.gml</script>
         <script>scripts\scr_get_face.gml</script>
         <scripts name="rune">
+          <script>scripts\scr_all_rune.gml</script>
           <script>scripts\scr_fen.gml</script>
           <script>scripts\scr_pan.gml</script>
           <script>scripts\scr_nu.gml</script>
@@ -102,6 +116,8 @@
       </scripts>
       <script>scripts\scr_attack_state.gml</script>
       <script>scripts\scr_attack_state_new.gml</script>
+      <script>scripts\scr_defence_state.gml</script>
+      <script>scripts\scr_defence_state_new.gml</script>
       <script>scripts\scr_dash_state.gml</script>
       <script>scripts\scr_move_state.gml</script>
       <script>scripts\scr_move_state_new.gml</script>
@@ -128,6 +144,9 @@
   <objects name="objects">
     <objects name="lifeform">
       <object>objects\oParent</object>
+      <object>objects\oPlayer</object>
+      <object>objects\oPlayer1</object>
+      <object>objects\oPlayer2</object>
       <object>objects\oMonster</object>
       <objects name="hero">
         <object>objects\oDashEffect</object>

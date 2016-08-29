@@ -5,7 +5,7 @@
   <visible>0</visible>
   <depth>0</depth>
   <persistent>-1</persistent>
-  <parentName>oParent</parentName>
+  <parentName>oPlayer2</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>/// Set Fixed Rotation
 event_inherited();
-
+parent = oPlayer2;
 vspd = 0;
 hspd = 0;
 xaxis = 0; // X轴方向，水平(h)
@@ -48,6 +48,7 @@ keylist[vk_right] = 0;
 keylist[ord("X")] = 0;
 keylist[ord("Z")] = 0;
 keylist[ord("C")] = 0;
+keylist[ord("D")] = 0;
 </string>
           </argument>
         </arguments>
@@ -85,15 +86,38 @@ tempmaxhp = maxhp;
 hp = maxhp;
 temphp = hp;
 
-defense = 10;
+defence = 10;
+isdefence = false;
 
 isphase = false;
 canplayphase = true;
+phasetime = 0;
 //attack
 attack = 0;
-attackspeed = .5;
 
 knockback = 20;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// misc
+
 </string>
           </argument>
         </arguments>
@@ -116,7 +140,8 @@ knockback = 20;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (instance_exists(oClient)) {
+            <string>event_inherited();
+if (instance_exists(oClient)) {
     with (oClient) {
         scr_send_end(server);
     }
@@ -130,6 +155,54 @@ if (instance_exists(oServer)) {
 show_message("You win!");
 
 game_restart();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// shiled image
+image_index = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>isphase = false;
+canplayphase = true;
 </string>
           </argument>
         </arguments>
@@ -226,7 +299,6 @@ state = scr_move_state_new;
           <argument>
             <kind>1</kind>
             <string>/// step
-if (global.pause) exit;
 if (room == r0) exit;
 
 /// Move the player
@@ -253,33 +325,16 @@ script_execute(state);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-if (hp != temphp &amp;&amp; hp &gt; 0) {
-    if (instance_exists(oClient)) {
-        with (oClient) {
-            scr_send_hp(oEX.hp,server);
-        }
-    }
-    if (instance_exists(oServer)) {
-        with (oServer) {
-            scr_send_hp(oEX.hp,client);
-        }
-    }
+            <string>/// send reduce hp
+if (!lan || room != atk02) exit;
+if (hp &lt; temphp) {
+    scr_send_hp(HP_MSGID, oHero, hp);
     temphp = hp;
 }
 
-if (maxhp != tempmaxhp &amp;&amp; instance_exists(self)) {
-    if (instance_exists(oClient)) {
-        with (oClient) {
-            scr_send_maxhp(oEX.maxhp,server);
-        }
-    }
-    if (instance_exists(oServer)) {
-        with (oServer) {
-            scr_send_maxhp(oEX.maxhp,client);
-        }
-    }
+if (maxhp &lt; tempmaxhp) {
     tempmaxhp = maxhp;
+    scr_send_hp(MAXHP_MSGID, oHero ,maxhp);
 }
 </string>
           </argument>
@@ -388,6 +443,7 @@ if (isphase) {
     draw_set_font(font1);
     draw_set_halign(fa_center);
     draw_text(x,y-22,name);
+    //draw_text(x,y-40,temphp);
     draw_set_font(font0);
 }
 </string>

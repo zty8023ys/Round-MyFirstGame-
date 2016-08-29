@@ -79,57 +79,62 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// deal the damage
+            <string>if (instance_exists(other) &amp;&amp; instance_exists(creator)) {
 
-if (instance_exists(other) &amp;&amp; instance_exists(creator)) {
-    damageto = other.id;
-    if (other.sprite_index != creator.sprite_index) {
-
-        //damage FROM the hero
-        with (oHero) {
-            isphase = false;
-        }
-        if (instance_exists(oEX)) {
-            with (oEX) {
-                isphase = false;
-            }
-        }
-        if (creator.object_index == oHero) {
-            other.hplost = oHero.truedamage * (1 - other.defense/(other.defense+50));
-            with(oHero) {
-                liferecovery = oHero.truedamage * lifeleech/100;
-                hp = min(hp + liferecovery,maxhp);
-            }
-            other.hplost += min(other.maxhp * oHero.dealperhp/100, oHero.dealperhp_lv * 20);
-
-            if (damageto == other.id) {
-                other.hp -= other.hplost;
-                other.maxhp -= min(other.maxhp * oHero.dealperhp/100, oHero.dealperhp_lv * 20);
-            }
-        } else {
-            //damage TO the hero
-            if (!audio_is_playing(hurt)) {
-                audio_play_sound(hurt,10,false);
-            }
-            if (other.object_index == oHero) {
-                other.hp -= (damage * (1 - other.defense/(other.defense+50)));
-            }
-        } 
-        // apply the knockback
-        if(instance_exists(creator)) {
-            var dir = point_direction(creator.x, creator.y, other.x, other.y); 
-        } else {
-            var dir = point_direction(x, y, other.x, other.y); 
-        }
-        //scr_impulse(other,dir,knockback);
-        var xforce = lengthdir_x(knockback,dir);
-        var yforce = lengthdir_y(knockback,dir);
-        with(other) {
-            physics_apply_impulse(x, y, xforce, yforce);
+    if (other.parent == creator.parent) exit;
+    
+    if (creator.parent == oPlayer1) { // player1 Hit
+        // 伤害计算
+        var tempDamage = scr_deal_damage(damage, other.defence);
+        var dealperhp = min(other.maxhp * creator.dealperhp/100, creator.dealperhp_lv * 20);
+        
+        // 伤害结算
+        other.hp -= (tempDamage + dealperhp);
+        other.maxhp -= dealperhp;
+        
+        // 恢复结算
+        var liferecovery = damage * creator.lifeleech/100;
+        creator.hp = min(creator.hp + liferecovery, creator.maxhp);
+    } else {
+        if (creator.parent == oMonster) { // Monster Hit
+            other.hp -= scr_deal_damage(damage,other.defence);
         }
     }
 }
 
+// 状态结算
+if (instance_exists(other) &amp;&amp; instance_exists(creator)) {
+    
+    // 破隐
+    if (creator.parent == oPlayer1) { 
+        creator.isphase = false;
+    }
+    if (other.parent == oPlayer1) {
+        other.isphase = false;
+    }
+
+    // 音效
+    if (other.parent == oPlayer1 || other.parent == oPlayer2) {
+        with (other) {
+            if (!audio_is_playing(hurt)) {
+                audio_play_sound(hurt, 10, false);
+            }
+        }
+    }
+    // 击退
+    if (other.parent == oPlayer1 || other.parent == oPlayer2) {
+        if (!other.isdefence) {
+            scr_impulse(creator,other,knockback);
+        } else {
+            other.image_index = 1;
+            other.alarm[4] = room_speed/6;
+        }
+    } else {
+        scr_impulse(creator,other,knockback);
+    }
+} else {
+    instance_destroy();
+}
 </string>
           </argument>
         </arguments>
@@ -149,6 +154,6 @@ if (instance_exists(other) &amp;&amp; instance_exists(creator)) {
   <PhysicsObjectKinematic>0</PhysicsObjectKinematic>
   <PhysicsShapePoints>
     <point>12,12</point>
-    <point>12,12</point>
+    <point>14,12</point>
   </PhysicsShapePoints>
 </object>

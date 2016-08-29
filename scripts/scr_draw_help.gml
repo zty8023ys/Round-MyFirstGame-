@@ -14,8 +14,3 @@
     更多信息请访问http://ztory.cn/game/round
     ");
     draw_set_valign(fa_middle);
-    virtual_key_add(260,300,260,25,ord('Z'));
-    virtual_key_add(260,300,260,25,ord('T'));
-    virtual_key_add(260,300,260,25,ord('O'));
-    virtual_key_add(260,300,260,25,ord('R'));
-    virtual_key_add(260,300,260,25,ord('Y'));

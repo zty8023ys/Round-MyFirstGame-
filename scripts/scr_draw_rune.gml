@@ -3,9 +3,9 @@
     #磐 （增35%生命与防御，减20%攻击力）
     #怒 （增30%全域暴击几率，减20%全域暴击伤害）");
     draw_set_colour(c_red);
-    draw_button(128-16,320-16,128+16,320+16,!(mouse_check_button(mb_left)&&scr_area(128,320,32,32)));
-    draw_button(192-16,320-16,192+16,320+16,!(mouse_check_button(mb_left)&&scr_area(192,320,32,32)));
-    draw_button(256-16,320-16,256+16,320+16,!(mouse_check_button(mb_left)&&scr_area(256,320,32,32)));
+    draw_button(128-16,320-16,128+16,320+16,!(mouse_check_button(mb_left)&& scr_area_at(FEN)));
+    draw_button(192-16,320-16,192+16,320+16,!(mouse_check_button(mb_left)&& scr_area_at(PAN)));
+    draw_button(256-16,320-16,256+16,320+16,!(mouse_check_button(mb_left)&& scr_area_at(NU)));
     draw_set_colour(c_black);
     draw_text(128,320,"焚");
     draw_text(192,320,"磐");

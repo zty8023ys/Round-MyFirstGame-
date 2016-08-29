@@ -5,6 +5,6 @@ with(oHero) {
     maxhp *= fendef;
     hp = maxhp;
     addhp *= fendef;
-    defense *= fendef;
-    adddefense *= fendef;
+    defence *= fendef;
+    adddefence *= fendef;
 }

@@ -1,21 +1,32 @@
 ///scr_go_room(room);
 var goroom = argument[0];
 
-
-if (goroom == r0) {
-    oHero.visible = false;
-} else {
-    oHero.x = 192;
-    oHero.y = 192;
-    oHero.visible = true;
-    if (global.lan && goroom ==atk02) {
-        oEX.x = 384;
-        oEX.y = 192;
+switch(goroom) {
+    case r0 :
+        with(oHero) {
+            hp = maxhp;
+        }
+        oHero.x = 224;
+        oHero.y = 192;
+        oHero.visible = false;
+    break;
+    
+    case atk01:
+        oHero.visible = true;
+    break;
+    
+    case atk02:
+        instance_create(256,160,oGround);
+        oHero.x = scr_if(instance_exists(oServer),300,192);
+        oHero.y = 192;
+        oHero.visible = true;
+        oEX.x = scr_if(instance_exists(oServer),192,300);
         oEX.visible = true;
-    }
-}
-with(oHero) {
-    hp = maxhp;
+    break;
+    
+    case atk03: 
+        oHero.visible = true;
+    break;
 }
 
 room = goroom;

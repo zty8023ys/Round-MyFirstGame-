@@ -26,23 +26,28 @@
           <argument>
             <kind>1</kind>
             <string>
-globalvar lan, pause, isReady, version, timecost, runename;
+globalvar seed,lan, pause, isReady, version, timecost, runename;
 
+randomize();
+seed = random_get_seed();
 
 lan = 0;
 pause = 0;
 isReady = 0;
 timecost = -1;
 gameend = false;
-
-version = "1.4.0";
+website = "http://ztory.cn/game/round";
+version = "1.4.1";
 newversion = "";
 status = -1;
 checkversion = http_get("http://ztory.cn/game/round/version.php");
 checked = false;
 ask = false;
 
+canBack = true;
 isandroid = ISANDROID;
+
+
 </string>
           </argument>
         </arguments>
@@ -90,12 +95,11 @@ isandroid = ISANDROID;
             <kind>1</kind>
             <string>///game state
 if(gameend) exit;
-pause_key = keyboard_check_pressed(ord("P"));
-if (pause_key &amp;&amp; global.pause == 1) {
-    global.pause = 0;
-} else if (pause_key &amp;&amp; global.pause == 0) {
-    global.pause = 1;
+global.pause = keyboard_check_pressed(ord("P"));
+if (pause) {
+     show_message_async("1");
 }
+
 if (room == atk03) {
     global.timecost++;
     if(!gameend &amp;&amp; !instance_exists(oHero)) {
@@ -119,29 +123,6 @@ if (room == atk03) {
             game_restart();
         }
     }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if (keyboard_check_pressed(ord('Z'))&amp;&amp;keyboard_check_pressed(ord('T'))&amp;&amp;keyboard_check_pressed(ord('O'))&amp;&amp;keyboard_check_pressed(ord('R'))&amp;&amp;keyboard_check_pressed(ord('Y'))) {
-    url_open("http://ztory.cn/game/round");
 }
 </string>
           </argument>
@@ -193,7 +174,7 @@ if (async_load[? "id"] != checkversion) exit;
 status = async_load[? "status"];
 if (status &gt;= 0) {
     newversion = string(async_load[? "result"])
-    if (version != newversion) {
+    if (version != newversion &amp;&amp; newversion != '0' &amp;&amp; newversion != '') {
         ask = true;
         if (show_question("您的旧版本已不可用, 是否下载最新版？")) {
             if (isandroid) {
@@ -234,6 +215,32 @@ checked = true;
             <string>if(room == atk03 &amp;&amp; !gameend) {
     draw_set_halign(fa_center);
     draw_text_transformed(oHero.winwidth - 2* oHero.windx,.5 * oHero.windx,"耗时:" + string(global.timecost/room_speed) + "秒",oHero.fontscale,oHero.fontscale,0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//draw_text(room_width/2,room_height/2,string(mouse_x)+"/" + string(mouse_y));
+if (room == r0 &amp;&amp; oButton.visible &amp;&amp; oButton.depth == -20) {
+    draw_text(room_width * .9, room_height * .95 ,"Ver "+ version);
 }
 </string>
           </argument>

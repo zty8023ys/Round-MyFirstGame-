@@ -5,7 +5,7 @@
   <visible>0</visible>
   <depth>0</depth>
   <persistent>-1</persistent>
-  <parentName>oParent</parentName>
+  <parentName>oPlayer</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -59,7 +59,6 @@ face = DOWN;
           <argument>
             <kind>1</kind>
             <string>///Herostats
-/// hero stats
 // font0
 draw_set_font(font0);
 
@@ -74,21 +73,12 @@ r = 1;
 lflag = true;
 
 // 符文相关参数
-fenatk = 1.5;
-fendef = 0.8;
 
-panatk = 0.8;
-pandef = 1.35;
-
-nuchance = 30;
-nudamage = 0.8;
-
+scr_all_rune();
 
 attacked = false;
 isdash = false;
 isattack = false;
-attackspeed = .5;
-
 
 
 isstun = false;
@@ -116,8 +106,9 @@ temphp = hp;
 lifeleech = 0;
 liferecovery = 0;
 
-defense = 15;
-adddefense = 2;
+defence = 15;
+adddefence = 2;
+isdefence = false;
 
 //attack
 attack = 30;
@@ -126,7 +117,7 @@ truedamage = attack;
 
 //accuracy = 1;
 
-critchance = 5 ;
+critchance = 5;
 critdamage = 200;
 crit = false;
 
@@ -212,10 +203,37 @@ if (isandroid) {
             <kind>1</kind>
             <string>/// misc
 
+parent = oPlayer1;
 // for skills information
 firstbtnx = 480;
 firstbtny = 100;
 
+sendrec = 0;
+red = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// shiled image
+image_index = 0;
 </string>
           </argument>
         </arguments>
@@ -338,10 +356,8 @@ state = scr_move_state;
           <argument>
             <kind>1</kind>
             <string>/// Move the player
-if (global.pause) exit;
-
-
 event_inherited();
+
 if (room != r0) {
     script_execute(state);
 }
@@ -366,10 +382,7 @@ if (room != r0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// recovery
-/// recovery
-if (global.pause) exit;
-
+            <string>/// recovery stamina
 if (room != r0) {
     if (stamina &lt; maxstamina &amp;&amp; alarm[1] &lt;= 0) {
         stamina = min(stamina+1,maxstamina);
@@ -396,42 +409,12 @@ if (room != r0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// send hp
+            <string>/// send recovery hp
+if (!lan || room != atk02) exit;
 if (hp &gt; temphp) {
-    if (instance_exists(oClient)) {
-        with (oClient) {
-            scr_send_recovery_hp(oHero.hp,server);
-        }
-    }
-    if (instance_exists(oServer)) {
-        with (oServer) {
-            scr_send_recovery_hp(oHero.hp,client);
-        }
-    }
+    scr_send_hp(HP_MSGID, oEX,hp);
     temphp = hp;
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// phase
-
 </string>
           </argument>
         </arguments>
@@ -502,12 +485,33 @@ if (state == scr_attack_state &amp;&amp; attacked == true) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// set virtual key
+            <string>/// Set scale
 winheight = window_get_height();
 winwidth = window_get_width();
 windx = winheight/10;
 scale = 1 * windx*2/64;
 fontscale = scale * 0.8;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// set virtual key
 if (isandroid &amp;&amp; room != r0) {
 winleftx = windx * .5;
 winlefty = windx * 5;
@@ -519,14 +523,17 @@ winupy = winlefty - windx * 2;
 windownx = winupx;
 windowny = winupy + windx * 4;
 
-windashx = winwidth - winrightx - 4*windx;
+windashx = winwidth -  3*windx;
 windashy = winlefty;
 
-winatkx = winwidth - winupx - 3*windx;
+winatkx = winwidth - 5.5*windx;
 winatky = winlefty;
 
-winphasex = winwidth - winleftx - 2*windx ;
+winphasex = winwidth -  8*windx ;
 winphasey = winlefty;
+
+windefencex = windashx;
+windefencey = windashy - 2.5*windx;
 
 winleft = virtual_key_add(winleftx,winlefty,3*windx,3*windx,vk_left);
 winright = virtual_key_add(winrightx,winrighty,3*windx,3*windx,vk_right);
@@ -538,6 +545,8 @@ windash = virtual_key_add(winatkx,winatky,2*windx,2*windx,ord('X'));
 winatk = virtual_key_add(windashx,windashy,2*windx,2*windx,ord('Z'));
 
 winphase = virtual_key_add(winphasex,winphasey,2*windx,2*windx,ord('C'));
+
+windefence = virtual_key_add(windefencex,windefencey,2*windx,2*windx,ord('D'));
 /*
 virtual_key_show(winup);
 virtual_key_show(winatk);
@@ -580,7 +589,7 @@ if (room != r0) {
     draw_text_transformed(.5 * windx,2 * windx,"生命值：" + string(hp) + "/" + string(maxhp),fontscale,fontscale,0);
     draw_text_transformed(.5 * windx,2.5 * windx,"耐力：" + string(stamina) + "/" + string(maxstamina),fontscale,fontscale,0);
     draw_text_transformed(.5 * windx,3 * windx,"攻击力：" + string(attack),fontscale,fontscale,0);
-    draw_text_transformed(.5 * windx,3.5 * windx,"防御力：" + string(defense),fontscale,fontscale,0);
+    draw_text_transformed(.5 * windx,3.5 * windx,"防御力：" + string(defence),fontscale,fontscale,0);
 
     if (isandroid) {
         draw_sprite_ext( sKey, 0, winleftx+.5*windx, winlefty+.5*windx, scale, scale, 0, c_white, .25 );
@@ -590,6 +599,7 @@ if (room != r0) {
         draw_sprite_ext( sKey, 4, windashx, windashy+.5*windx, scale, scale, 0, c_white, .25 );
         draw_sprite_ext( sKey, 5, winatkx, winatky+.5*windx, scale, scale, 0, c_white, .25 );
         draw_sprite_ext( sKey, 6, winphasex, winphasey+.5*windx, scale, scale, 0, c_white, .25 );
+        draw_sprite_ext( sKey, 7, windefencex, windefencey+.5*windx, scale, scale, 0, c_white, .25 );
     }
 }
 </string>
@@ -620,12 +630,13 @@ if (isphase) {
 } else {
     image_blend = c_white;
 }
-event_inherited();
 draw_sprite(sShadow,image_index,x,y);
+event_inherited();
 draw_set_halign(fa_center);
 draw_set_font(font1);
 draw_text(x,y-22,name);
-draw_text(x,y-40,image_index);
+   // draw_text(x,y-40,temphp);
+// draw_text(x,y-40,image_index);
 draw_set_font(font0);
 draw_healthbar(x-10, y-11, x+10, y-10, stamina/maxstamina * 100, c_black, c_silver, c_silver, 0, true, true);
 </string>

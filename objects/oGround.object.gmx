@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,14 +25,18 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0;
+            <string>/// 1 recovery
+//  2 reduce
+
+image_speed = 0;
 image_alpha = .5;
-if (instance_exists(oServer)) {
-    randomize();
-    alarm[0] = 90;
-}
 ground = 0;
-life = oEX.maxhp*.1/room_speed;
+if (instance_exists(oServer)) {
+    groundTime = room_speed * 3;
+    alarm[0] = groundTime;
+}
+lifePerSec = .1;
+life = lifePerSec / room_speed;
 </string>
           </argument>
         </arguments>
@@ -56,13 +60,14 @@ life = oEX.maxhp*.1/room_speed;
           <argument>
             <kind>1</kind>
             <string>ground = irandom(2);
-var buffer = buffer_create(BUFFERSIZE,buffer_fixed,1);
-buffer_seek(buffer, buffer_seek_start,0);
-buffer_write(buffer, buffer_u8, GRD_MSGID);
-buffer_write(buffer,buffer_u8, ground);
-network_send_packet(oServer.client,buffer,buffer_tell(buffer));
-buffer_delete(buffer);
-alarm[0] = 90;
+with (oServer) {
+    var buffer = scr_buffer_create(GRD_MSGID);
+    buffer_write(buffer, buffer_u8, oGround.ground);
+    scr_send_buffer(buffer);
+}
+image_index = ground;
+
+alarm[0] = groundTime;
 </string>
           </argument>
         </arguments>
@@ -85,36 +90,24 @@ alarm[0] = 90;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_index = ground;
-if (place_meeting(x,y,oHero)) {
-    switch(image_index) {
-        case 0:
-            break;
-        
-        case 1:
-            oHero.hp += life;
-            break;
-            
-        case 2:
-            oHero.hp -= life;
-            break;
+            <string>switch(ground) {
+    case 0:
+    // nothing
+        break;
     
-    }
-}
-if (place_meeting(x,y,oEX)) {
-    switch(image_index) {
-        case 0:
-            break;
+    case 1:
+    // recovery
+        if (place_meeting(x,y,oHero)) {
+            oHero.hp += oHero.maxhp * life;
+        }
+        break;
         
-        case 1:
-            oEX.hp += life;
-            break;
-            
-        case 2:
-            oEX.hp -= life;
-            break;
-    
-    }
+    case 2:
+    // reduce
+        if (place_meeting(x,y,oEX)) {
+            oEX.hp -= oEX.maxhp * life;
+        }
+        break;
 }
 </string>
           </argument>

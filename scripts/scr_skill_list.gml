@@ -20,6 +20,7 @@ dealperhp_lv = 0;
 dealperhp = 0; // 当前技能效果
 adddealperhp = 3;
 radddealperhp = 1;
+maxperlevel = 20;
 dealperhpflag = true;
 
 //凌波微步(减耗)

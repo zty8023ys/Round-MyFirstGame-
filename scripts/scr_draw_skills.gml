@@ -1,7 +1,7 @@
     draw_set_halign(fa_center);
     draw_set_valign(fa_middle);
     draw_set_colour(c_red);
-    draw_button(576-32,280-16,576+32,280+16,!(mouse_check_button(mb_left)&&scr_area(576,280,64,32)));
+    draw_button(576-32,280-16,576+32,280+16,!(mouse_check_button(mb_left) && scr_area_at(PAGE2)));
     draw_set_colour(c_black);
     draw_text(576,280,"下一页");
     draw_text(320,32,"技能列表");    
@@ -23,10 +23,10 @@
         + "##凌波微步：冲刺技能消耗耐力减少"+string(dashreduceeffect)+"点 #目前等级： " + string(dashreduce_lv)+ "(升级所需行动点：" + string(dashreduce_mp)+")"
         */
         draw_set_colour(c_red);
-        draw_button(firstbtnx-16,firstbtny-16,firstbtnx+16,firstbtny+16,!(mouse_check_button(mb_left)&&scr_area(firstbtnx,firstbtny,32,32)));
-        draw_button(firstbtnx-16,firstbtny+SKILLGAP-16,firstbtnx+16,firstbtny+SKILLGAP+16,!(mouse_check_button(mb_left)&&scr_area(firstbtnx,firstbtny+SKILLGAP,32,32)));
-        draw_button(firstbtnx-16,firstbtny+SKILLGAP*2-16,firstbtnx+16,firstbtny+SKILLGAP*2+16,!(mouse_check_button(mb_left)&&scr_area(firstbtnx,firstbtny+SKILLGAP*2,32,32)));
-        draw_button(firstbtnx-16,firstbtny+SKILLGAP*3-16,firstbtnx+16,firstbtny+SKILLGAP*3+16,!(mouse_check_button(mb_left)&&scr_area(firstbtnx,firstbtny+SKILLGAP*3,32,32)));
+        draw_button(firstbtnx-16,firstbtny-16,firstbtnx+16,firstbtny+16,!(mouse_check_button(mb_left)&& scr_area_at(SKILL0)));
+        draw_button(firstbtnx-16,firstbtny+SKILLGAP-16,firstbtnx+16,firstbtny+SKILLGAP+16,!(mouse_check_button(mb_left) && scr_area_at(SKILL1)));
+        draw_button(firstbtnx-16,firstbtny+SKILLGAP*2-16,firstbtnx+16,firstbtny+SKILLGAP*2+16,!(mouse_check_button(mb_left) && scr_area_at(SKILL2)));
+        draw_button(firstbtnx-16,firstbtny+SKILLGAP*3-16,firstbtnx+16,firstbtny+SKILLGAP*3+16,!(mouse_check_button(mb_left) && scr_area_at(SKILL3)));
         draw_set_colour(c_black);
         draw_set_halign(fa_center);
         draw_text(firstbtnx,firstbtny,"+");

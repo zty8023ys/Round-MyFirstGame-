@@ -13,7 +13,7 @@
         draw_text(64,128,"等级：  " + string(level) + "(" + string(xp) + "/" + string(maxxp) + ")");
         draw_text(64,160,"生命值：" + string(hp) + "/" + string(maxhp));
         draw_text(64,192,"攻击力：" + string(attack));
-        draw_text(64,224,"防御力：" + string(defense));
+        draw_text(64,224,"防御力：" + string(defence));
         if (lifeleech > 0) {
             draw_text(64,256,"生命偷取：" + string(lifeleech) + "%");
             if (critchance > 0) {

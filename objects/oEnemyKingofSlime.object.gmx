@@ -4,7 +4,7 @@
   <solid>0</solid>
   <visible>-1</visible>
   <depth>0</depth>
-  <persistent>0</persistent>
+  <persistent>-1</persistent>
   <parentName>oMonster</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -27,13 +27,14 @@
             <kind>1</kind>
             <string>/// create the slime
 event_inherited();
+parent = oMonster;
 maxhp = 3000;
 hp = maxhp;
 gap = 500;
 nexthp = maxhp - gap;
 
 attack = 50;
-defense = 50;
+defence = 50;
 image_speed = .1;
 image_blend = c_fuchsia;
 spd = 2;
@@ -76,8 +77,6 @@ heavystrikecd = 5;
           <argument>
             <kind>1</kind>
             <string>///  Regen hp
-randomize();
-/// instance oRegenHp
 instance_create(x, y, oRegenHp);
 </string>
           </argument>
@@ -225,7 +224,6 @@ instance_create(x, y, oRegenHp);
           <argument>
             <kind>1</kind>
             <string>/// step
-if (global.pause) exit;
 if (!instance_exists(oHero)) exit; 
 /// run current state
 event_inherited();
@@ -274,32 +272,45 @@ script_execute(state);
             <string>/// damage the hero
 event_inherited();
 
-if (state != scr_monster_stall_state &amp;&amp; other.state != scr_attack_state) {
-    if (instance_exists(other)) {
-        var dir = point_direction(x, y, other.x, other.y);
-        var xdir = lengthdir_x(1, dir);
-        var ydir = lengthdir_y(1, dir);
-        var damage = instance_create(other.x+xdir, other.y+ydir, oDamage);
-        damage.creator = id;
-        if (state == scr_slime_dash_state) {
-            other.isstun = true;
-            other.stuntime = dashstuntime;
-            damage.damage = dashdamage;
-        } else {
-            damage.damage = attack;
-        }
-        if (heavystrike) {
-            other.isstun = true;
-            other.stuntime = heavystrikestuntime;
-            damage.damage = heavystrikedamage;
-            heavystrike = false;
-            alarm[4] = room_speed * heavystrikecd;
-        }
-        damage.knockback = knockback;
-        state = scr_monster_stall_state;
-        alarm[1] = room_speed;
-    }
+if (state == scr_slime_dash_state) {
+    other.isstun = true;
+    other.stuntime = dashstuntime;
+    var damage = instance_create(x,y,oDamage);
+    damage.damage = dashdamage;
 }
+if (state != scr_slime_dash_state &amp;&amp; heavystrike &amp;&amp; other.state != scr_attack_state) {
+    other.isstun = true;
+    other.stuntime = heavystrikestuntime;
+    var damage = instance_create(x,y,oDamage);
+    damage.damage = heavystrikedamage;
+    heavystrike = false;
+    alarm[4] = room_speed * heavystrikecd;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>event_inherited();
+/*draw_text(x,y-20,string(hp) + "/" +string(maxhp));
+
 </string>
           </argument>
         </arguments>

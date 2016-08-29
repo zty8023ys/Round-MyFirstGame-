@@ -27,12 +27,13 @@
             <kind>1</kind>
             <string>/// create the slime
 event_inherited();
+parent = oMonster;
 image_speed = .1;
 spd = 1.5;
 attack = 20;
 maxhp = 200;
 hp = maxhp;
-defense = 20;
+defence = 20;
 state = scr_check_for_hero;
 alarm[0] = room_speed * irandom_range(2, 5);
 targetx = 0;
@@ -67,7 +68,6 @@ dashtime = room_speed / 3;
           <argument>
             <kind>1</kind>
             <string>/// instance oRegenHp
-randomize();
 if (scr_chance(.2)) {
     instance_create(x, y, oRegenHp);
 }
@@ -191,20 +191,12 @@ if (scr_chance(.2)) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// pause
-if (global.pause) exit;
-/// run current state
+            <string>/// run current state
 event_inherited();
 
 scr_monster_dash(dashtime);
-/*if (dashisready &amp;&amp; !blind) {
-    state = scr_slime_dash_state;
-    dashisready = false;
-    alarm[3] = room_speed / 3; // 冲刺时间
-    alarm[2] = room_speed * dashcd;
-}*/
-script_execute(state);
 
+script_execute(state);
 </string>
           </argument>
         </arguments>
@@ -230,26 +222,11 @@ script_execute(state);
             <string>/// damage the hero
 event_inherited();
 
-
-if (state != scr_monster_stall_state &amp;&amp; other.state != scr_attack_state) {
-    if (instance_exists(other)) {
-        var dir = point_direction(x, y, other.x, other.y);
-        var xdir = lengthdir_x(1, dir);
-        var ydir = lengthdir_y(1, dir);
-        var damage = instance_create(other.x+xdir, other.y+ydir, oDamage);
-        damage.creator = id;
-        if (state == scr_slime_dash_state) {
-            other.isstun = true;
-            other.stuntime = dashstuntime;
-            damage.damage = dashdamage;
-        } else {
-            damage.damage = attack;
-        }
-        damage.knockback = knockback;
-        state = scr_monster_stall_state;
-        alarm[1] = room_speed;
-    }
-
+if (state == scr_slime_dash_state) {
+    other.isstun = true;
+    other.stuntime = dashstuntime;
+    var damage = instance_create(x,y,oDamage);
+    damage.damage = dashdamage;
 }
 </string>
           </argument>

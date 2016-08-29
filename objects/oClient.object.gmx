@@ -27,34 +27,41 @@
             <kind>1</kind>
             <string>/// Create client
 port = PORT;
+scr_set_key();
 var type = network_socket_tcp;
 
 server = network_create_socket(type);
+client = noone;
+ip = get_string("请输入主机IP：","127.0.0.1");
+if (ip == "") {
+    show_message("连接失败.");
+    game_restart();
+}
 
-var ip = get_string("请输入主机IP：","127.0.0.1");
-    
-connetion = network_connect(server, ip, port);
+connection = -1;
+connection = network_connect(server, ip, port);
 
-    if (connetion &gt;= 0) {
-        with(oInformation){
-            depth = -18;
-            visible = true;
-        }
-        global.lan = true;
-        with(oHero) {phy_position_x += 40;}
-        instance_create(oHero.x, oHero.y, oEX);
-    } else {
-        show_message("连接失败.");
-        game_end();
+if (connection &lt; 0 || connection == 11001) {
+    show_message("连接失败.");
+    game_restart();
+} else {
+    with(oInformation){
+        depth = -18;
+        visible = true;
+        oControl.canBack = false;
     }
-sendstats = false;
-
-
-isping = false;
-sendping = false;
-letsping = true;
-ping = 0;
-pingtimes = 0;
+    global.lan = true;
+    instance_create(oHero.x, oHero.y, oEX);
+    
+    sendstats = false;
+    
+    isping = false;
+    sendping = false;
+    letsping = true;
+    ping = 0;
+    pingtimes = 0;
+    sendReady = false;
+}
 </string>
           </argument>
         </arguments>
@@ -101,88 +108,38 @@ letsping = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///keep alive (ping)
-if (!isping &amp;&amp; !sendping &amp;&amp; letsping) {
-    scr_ping(server);
-    sendping = true;
-    temptime = current_time;
-    pingtimes += 1; 
-    letsping = false;
-}
+            <string>/// keep send something
 
-if (isping) {
-    ping = round((current_time - temptime)/room_speed);
-    isping = false;
-    sendping = false;
-    alarm[0] = room_speed;
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// send key to server
-scr_send_key_to_socket(server);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// wait for other
+// wait for other
 scr_wait_other();
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// when you win
-if (room != r0 &amp;&amp; oEX.hp &lt;= 0) {
-    scr_send_hp(-1,server);
+
+if (room == atk02) {
+    // send key to server
+    scr_send_key_to_socket(server);
+    
+    // send pos to server
+    scr_send_pos();
+    
+    // when you win
+    if (room != r0 &amp;&amp; oEX.hp &lt;= 0) {
+        scr_send_hp(-1,server);
+    }
+
+    ///keep alive (ping)
+    if (!isping &amp;&amp; !sendping &amp;&amp; letsping) {
+        scr_ping();
+        sendping = true;
+        temptime = current_time;
+        pingtimes += 1; 
+        letsping = false;
+    }
+    
+    if (isping) {
+        ping = round((current_time - temptime)/room_speed);
+        isping = false;
+        sendping = false;
+        alarm[0] = room_speed;
+    }
 }
 </string>
           </argument>
@@ -245,8 +202,7 @@ switch(type_event) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>network_destroy(connetion);
-network_destroy(server);
+            <string>network_destroy(server);
 </string>
           </argument>
         </arguments>

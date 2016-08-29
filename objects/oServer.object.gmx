@@ -26,6 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>/// Create server
+scr_set_key();
 var port = PORT;
 var type = network_socket_tcp;
 maxclients = 1;
@@ -37,22 +38,18 @@ client = noone;
 sendstats = false;
 
 // create the other player
-instance_create(oHero.x + 40,oHero.y,oEX);
+instance_create(oHero.x,oHero.y,oEX);
 
 
 
 //show the local IP adress
-randomize();
 var udpport = 6511;
 var host = network_create_server(network_socket_udp, udpport, 5);
 
-if (host &lt; 0)
-{
+if (host&lt;0) {
     show_message('Failed to create a broadcast server');
     game_end();
-}
-else
-{
+} else {
     var sock = network_create_socket(network_socket_udp);
     var buff = buffer_create(32, buffer_fixed, 1);
 
@@ -64,6 +61,33 @@ else
 }
 hostip = "0.0.0.0";
 findip = false;
+oControl.canBack = false;
+    sendReady = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>network_destroy(server);
+network_destroy(client);
+network_destroy(host);
 </string>
           </argument>
         </arguments>
@@ -86,86 +110,18 @@ findip = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// wait for other
+            <string>/// keep send something
+// wait for other
 scr_wait_other();
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// send key
-scr_send_key_to_socket(client);
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// postion
-if (room == atk02 &amp;&amp; instance_exists(oHero) &amp;&amp; instance_exists(oEX)) {
-    var buffer = buffer_create(BUFFERSIZE,buffer_fixed,1);
-    buffer_seek(buffer,buffer_seek_start,0);
+if (room == atk02) {
+    scr_send_pos();
     
-    buffer_write(buffer,buffer_u8,POS_MSGID);
-    buffer_write(buffer,buffer_f32,oHero.x);
-    buffer_write(buffer,buffer_f32,oHero.y);
-    buffer_write(buffer,buffer_f32,oEX.x);
-    buffer_write(buffer,buffer_f32,oEX.y);
+    scr_send_key_to_socket();
     
-    network_send_packet(client,buffer,buffer_tell(buffer));
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// when you win
-if (oEX.hp &lt;= 0) {
-    scr_send_hp(-1,client);
+    /// when you win
+    if (oEX.hp &lt;= 0) {
+        scr_send_hp(-1,client);
+    }
 }
 </string>
           </argument>
@@ -236,8 +192,7 @@ switch(type_event) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>network_destroy(server);
-network_destroy(client);
+            <string>network_destroy(client);
 </string>
           </argument>
         </arguments>

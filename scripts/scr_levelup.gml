@@ -6,7 +6,7 @@ with(oHero){
     xp -= maxxp;
     level += 1;    
     attack += addattack;
-    defense += adddefense;
+    defence += adddefence;
     maxhp += addhp;
     hp = maxhp;
     stamina = maxstamina;

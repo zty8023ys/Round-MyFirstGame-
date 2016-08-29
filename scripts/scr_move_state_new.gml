@@ -29,9 +29,12 @@ if (phase_key) {
 
 if (phase_key && canplayphase) {
     canplayphase = false;
+    alarm[3] = room_speed * phasetime;
     audio_play_sound(phase, 10, false);
 }
-
+if (defence_key) {
+    state = scr_defence_state_new;
+}
 // get direction
 dir = point_direction(0, 0, xaxis, yaxis);
 
