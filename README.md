@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Round-MyFirstGame-
 
 使用Gamemaker:Studio制作的一款局域网对战策略类Arpg游戏。
