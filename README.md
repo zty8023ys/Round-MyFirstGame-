@@ -1,4 +1,4 @@
-# Round-MyFirstGame-
+﻿# Round-MyFirstGame-
 
 使用Gamemaker:Studio制作的一款局域网对战策略类Arpg游戏。
 基本架构已经完成,正在对数值进行平衡,增加新技能与天赋系统。
@@ -286,7 +286,3 @@
 #广域网联机方案:
 * 1.VPN,以WIN8.1为例,网络右键-属性-设置新的连接或网络-连接到工作区-否,创建新连接-使用我的Internet连接-Internet地址:ztory.f3322.net-创建-在右侧单击新出现的VPN-连接-帐号round-密码round-确定-已连接后打开游戏即可（有时候不稳定）
 * 2.Hamchi,使用方法以及下载地址: [点我下载Hamachi](http://ztory.cn/game/hamachi.zip)
-
-=======
-#Round
->>>>>>> 88658f7532590000c867ece63328c40ea7311ee4
