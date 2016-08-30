@@ -1,0 +1,45 @@
+depth {
+
+    oInformation :
+    -12 : 技能第二页
+    -13 : 广域网联机(Hamachi)
+    -14 : 等待对方结束回合
+    -15 : 主机等待界面
+    -16 : 技能
+    -17 : 状态
+    -18 : 符文选择
+    -19 : 帮助
+
+    oButtom :
+    -20 : 初始界面
+    -21 : 游戏界面
+    -22 : 升级界面
+    -23 : 局域网
+    
+}
+
+rune {
+    1 : 焚
+    2 : 磐
+    3 : 怒
+}
+
+hero stats {
+
+    rune,
+    movepoint,
+    passtitiveskill,
+    stamina,
+    level,
+    xp,
+
+    hp,
+    defense,
+
+    attack,
+    critchance,
+    critdamage,
+    lifeleech,
+    knockback,
+    
+}
