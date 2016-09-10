@@ -47,6 +47,7 @@
     <sprite>sprites\sKey</sprite>
     <sprite>sprites\sStun</sprite>
     <sprite>sprites\sBox</sprite>
+    <sprite>sprites\sMoveKey</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bGrass</background>
@@ -174,6 +175,7 @@
     <object>objects\oServer</object>
     <object>objects\oClient</object>
     <object>objects\oStun</object>
+    <object>objects\oMoveKey</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r0</room>

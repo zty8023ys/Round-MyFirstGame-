@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-99</depth>
   <persistent>-1</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -152,6 +152,31 @@ if (room == atk03) {
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (isandroid &amp;&amp; room != r0 &amp;&amp; scr_area(room_width/4,room_height/2,room_width/2,room_height)) {
+    instance_create(mouse_x,mouse_y,oMoveKey);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="62">
       <action>
         <libid>1</libid>
@@ -176,7 +201,7 @@ if (status &gt;= 0) {
     newversion = string(async_load[? "result"])
     if (version != newversion &amp;&amp; newversion != '0' &amp;&amp; newversion != '') {
         ask = true;
-        if (show_question("您的旧版本已不可用, 是否下载最新版？")) {
+        if (show_question("游戏已更新到"+newversion+", 您的旧版本已不可用, 是否下载最新版？")) {
             if (isandroid) {
                 url_open("http://ztory.cn/game/round/Round_v" + newversion + ".apk");
             } else {
