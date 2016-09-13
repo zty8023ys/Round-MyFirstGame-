@@ -29,4 +29,5 @@ switch(goroom) {
     break;
 }
 
-room = goroom;
+var trans = instance_create(0,0,oTransitionSlide);
+trans.nextRoom = goroom;

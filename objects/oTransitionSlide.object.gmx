@@ -25,20 +25,43 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// all lifeform
-phy_fixed_rotation = true; // 自动修正转向
-maxhp = 50;
-hp = maxhp;
-defence = 0;
+            <string>currentframe = 0;
+maxframes = 30;
 
-hplost = 0;
-attackpersec = 3;// Attack how many times in One sec
-attackspeed = (attackpersec / (room_speed/(image_number))); 
-//per step(room_speed) X/7 times  (sprite has 7 frames)
-// X*(room_speed/7) / sec
-//    30/7=4.285714
-//  1/4.285714=0.233333
-isdefence = false;
+persistent = true;
+
+surOldroom = surface_create(room_width,room_height);
+surface_copy(surOldroom,0,0,application_surface);
+
+
+nextRoom = atk01;
+room = nextRoom;
+global.pause = true;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>surface_free(surOldroom);
+surface_free(surNewroom);
+oControl.alarm[1] = room_speed * 10;
 </string>
           </argument>
         </arguments>
@@ -61,28 +84,21 @@ isdefence = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// step
-
-// pause
-if (global.pause) {
-    exit;
-}
-
-// depth
-depth = -y;
-
-hp = max(hp,0);
-hp = min(maxhp, hp);
-
-if (hp &lt;= 0) {
+            <string>currentframe ++;
+if (currentframe &gt; maxframes) {
     instance_destroy();
 }
+
+if (currentframe == 2) {
+    surNewroom = surface_create(room_width,room_height);
+    surface_copy(surNewroom,0,0,application_surface);
+}
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="oWall">
+    <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -99,55 +115,28 @@ if (hp &lt;= 0) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///collision
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="4" ename="oParent">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///collision
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// draw hp bar
-draw_self();
-draw_healthbar(x-10, y-15, x+10, y-12, max(0,hp)/maxhp * 100, c_black, c_red, c_green, 0, true, true);
+            <string>if (currentframe &gt; 1) {
+
+    // convert the number of frames that have passed into a number between 0 and the room width
+    var slideamount = currentframe*room_width/maxframes;
+
+    if (surface_exists(surOldroom)) {
+        draw_surface(surOldroom,-slideamount,0)
+    }
+
+    if (surface_exists(surNewroom)) {
+        draw_surface(surNewroom,room_width-slideamount,0)
+    }
+}
+
+
+/// I do this to hide the flicker where the next room pops up for 1 frame 
+if (currentframe == 1) { 
+    if (surface_exists(surOldroom)) {
+        draw_surface(surOldroom,0,0)
+    }
+}
+
 </string>
           </argument>
         </arguments>
@@ -155,9 +144,9 @@ draw_healthbar(x-10, y-15, x+10, y-12, max(0,hp)/maxhp * 100, c_black, c_red, c_
     </event>
   </events>
   <PhysicsObject>0</PhysicsObject>
-  <PhysicsObjectSensor>-1</PhysicsObjectSensor>
-  <PhysicsObjectShape>1</PhysicsObjectShape>
-  <PhysicsObjectDensity>0</PhysicsObjectDensity>
+  <PhysicsObjectSensor>0</PhysicsObjectSensor>
+  <PhysicsObjectShape>0</PhysicsObjectShape>
+  <PhysicsObjectDensity>0.5</PhysicsObjectDensity>
   <PhysicsObjectRestitution>0.100000001490116</PhysicsObjectRestitution>
   <PhysicsObjectGroup>0</PhysicsObjectGroup>
   <PhysicsObjectLinearDamping>0.100000001490116</PhysicsObjectLinearDamping>

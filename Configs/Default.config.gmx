@@ -660,7 +660,7 @@
       <constant name="GRD_MSGID">10</constant>
       <constant name="HEROSTATS">1</constant>
       <constant name="HP_MSGID">4</constant>
-      <constant name="ISANDROID">1</constant>
+      <constant name="ISANDROID">0</constant>
       <constant name="KEY_MSGID">3</constant>
       <constant name="LEFT">2</constant>
       <constant name="MAXHP_MSGID">5</constant>

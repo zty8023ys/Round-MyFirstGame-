@@ -51,9 +51,7 @@ damage = noone;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>
-/// cotrol depth
-event_inherited();
+            <string>event_inherited();
 </string>
           </argument>
         </arguments>

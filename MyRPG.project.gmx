@@ -46,8 +46,8 @@
     <sprite>sprites\sGround</sprite>
     <sprite>sprites\sKey</sprite>
     <sprite>sprites\sStun</sprite>
-    <sprite>sprites\sBox</sprite>
     <sprite>sprites\sMoveKey</sprite>
+    <sprite>sprites\sBox</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bGrass</background>
@@ -168,14 +168,17 @@
       <object>objects\oKey</object>
       <object>objects\oBox</object>
     </objects>
-    <object>objects\oControl</object>
     <object>objects\oDamage</object>
     <object>objects\oButton</object>
     <object>objects\oInformation</object>
-    <object>objects\oServer</object>
-    <object>objects\oClient</object>
     <object>objects\oStun</object>
     <object>objects\oMoveKey</object>
+    <objects name="help">
+      <object>objects\oControl</object>
+      <object>objects\oClient</object>
+      <object>objects\oServer</object>
+      <object>objects\oTransitionSlide</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\r0</room>
