@@ -27,7 +27,33 @@
             <kind>1</kind>
             <string>image_speed = 0;
 creator = noone;
+spd = 20;
 //alarm[0] = room_speed*3;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>
+image_angle += spd/10;
+alarm[1] = room_speed / 5;
 </string>
           </argument>
         </arguments>
@@ -85,7 +111,7 @@ creator = noone;
 */
 x = creator.x;
 y = creator.y;
-image_angle += 15;
+alarm[1] = room_speed / 5;
 if (creator.image_index &gt;= 4.9) {
     instance_destroy();
 }

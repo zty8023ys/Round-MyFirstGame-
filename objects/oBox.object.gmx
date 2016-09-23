@@ -33,6 +33,7 @@ image_index = 0;
     1: ATK += (2,6);
     2: DEF += (1,3);
 */
+needkey = true;
 reward = -1;
 rewardtips = "";
 timeout = false;
@@ -82,6 +83,12 @@ timeout = false;
           <argument>
             <kind>1</kind>
             <string>/// reward
+if(needkey) {
+    with(oHero) {
+        draw_text(x,y-10,"Need Key To Open");
+    }
+    exit;
+}
 /* rewardList 
     0: HP += (20,40);
     1: ATK += (2,6);

@@ -71,6 +71,9 @@ while (xp &gt; 0) {
 if (scr_chance(.3)) {
     instance_create(x, y, oRegenHp);
 }
+if (instance_exists(oBox)) {
+    oBox.needkey = false;
+}
 </string>
           </argument>
         </arguments>
