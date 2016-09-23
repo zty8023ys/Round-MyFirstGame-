@@ -26,11 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>
-globalvar seed,lan, pause, isReady, version, timecost, runename;
+globalvar seed,lan, pause, isReady, version, timecost, runename, weaponList;
 
 randomize();
 seed = random_get_seed();
-
+weaponList = ds_list_create();
+ds_list_add(weaponList,noone);
+ds_list_add(weaponList,oWeaponBloodMoment);
 lan = 0;
 pause = false;
 isReady = 0;
@@ -120,7 +122,9 @@ global.pause = false;
             <kind>1</kind>
             <string>///game state
 if(gameend) exit;
-
+if (keyboard_check_pressed(vk_escape)) {
+    pause = !pause;
+}
 if (room == atk03) {
     global.timecost++;
     if(!gameend &amp;&amp; !instance_exists(oHero)) {

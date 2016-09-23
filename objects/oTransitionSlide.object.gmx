@@ -26,17 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>currentframe = 0;
-maxframes = 30;
+maxframes = room_speed/3;
 
 persistent = true;
 
 surOldroom = surface_create(room_width,room_height);
 surface_copy(surOldroom,0,0,application_surface);
 
-
-nextRoom = atk01;
-room = nextRoom;
-global.pause = true;
 </string>
           </argument>
         </arguments>

@@ -15,7 +15,17 @@
     <sound>sound\phase</sound>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\sWall</sprite>
+    <sprites name="Enemy">
+      <sprite>sprites\sEnemySlime</sprite>
+      <sprite>sprites\sEnemyBat</sprite>
+      <sprite>sprites\sEnemyKey</sprite>
+      <sprite>sprites\sEnemyBox</sprite>
+      <sprite>sprites\sSkeleton0</sprite>
+      <sprite>sprites\sSkeleton1</sprite>
+    </sprites>
+    <sprites name="Weapon">
+      <sprite>sprites\sWeaponBloodMoment</sprite>
+    </sprites>
     <sprites name="Hero">
       <sprite>sprites\sHeroLeft</sprite>
       <sprite>sprites\sHeroUp</sprite>
@@ -35,8 +45,8 @@
       </sprites>
       <sprite>sprites\sShadow</sprite>
     </sprites>
-    <sprite>sprites\sEnemySlime</sprite>
     <sprite>sprites\sDamage</sprite>
+    <sprite>sprites\sWall</sprite>
     <sprite>sprites\sXp</sprite>
     <sprite>sprites\sNextroom</sprite>
     <sprite>sprites\sRegenHp</sprite>
@@ -114,6 +124,7 @@
           <script>scripts\scr_pan.gml</script>
           <script>scripts\scr_nu.gml</script>
         </scripts>
+        <script>scripts\scr_draw_weapon.gml</script>
       </scripts>
       <script>scripts\scr_attack_state.gml</script>
       <script>scripts\scr_attack_state_new.gml</script>
@@ -154,9 +165,12 @@
         <object>objects\oHero</object>
         <object>objects\oEX</object>
       </objects>
-      <object>objects\oEnemySlime</object>
-      <object>objects\oEnemyKSlime</object>
-      <object>objects\oEnemyKingofSlime</object>
+      <objects name="Monster">
+        <object>objects\oEnemyKSlime</object>
+        <object>objects\oEnemySlime</object>
+        <object>objects\oEnemyKey</object>
+        <object>objects\oEnemyKingofSlime</object>
+      </objects>
     </objects>
     <objects name="ground">
       <object>objects\oNextRoom</object>
@@ -179,6 +193,7 @@
       <object>objects\oServer</object>
       <object>objects\oTransitionSlide</object>
     </objects>
+    <object>objects\oWeaponBloodMoment</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\r0</room>

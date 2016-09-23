@@ -21,8 +21,8 @@ switch(sprite_index) {
     var yy = y;
 if (image_index >= 3 && attacked == false) {
     switch(sprite_index) {
-        case sHeroAttackUp :  
-        yy = yy - 10; 
+        case sHeroAttackUp :
+        yy = yy - 10;
         break;
         
         case sHeroAttackDown :
@@ -39,17 +39,21 @@ if (image_index >= 3 && attacked == false) {
         yy += 2;
         break;
     }
+    var weapon = instance_create(x,y,oWeaponBloodMoment);
+    weapon.creator = id;
+    weapon.depth = id.depth - 1;
+    weapon.image_angle = face * 90;
     temphp = hp;
     var damage = instance_create(xx, yy, oDamage);
     damage.creator = id;
     crit = scr_chance(critchance/100);
     damage.damage = scr_if(crit,attack * (critdamage/100),attack);
     damage.knockback = knockback;
-    
-if (!attacked) {
-    var atksound = choose(atk1,atk2);
-    audio_play_sound(atksound,10,false);
-}
+        
+    if (!attacked) {
+        var atksound = choose(atk1,atk2);
+        audio_play_sound(atksound,10,false);
+    }
     attacked = true;
     isattack = false;
 }

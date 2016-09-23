@@ -5,7 +5,7 @@
   <visible>0</visible>
   <depth>0</depth>
   <persistent>-1</persistent>
-  <parentName>oPlayer</parentName>
+  <parentName>oPlayer1</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -61,6 +61,14 @@ face = DOWN;
             <string>///Herostats
 // font0
 draw_set_font(font0);
+enum SATE {
+    MOVE_STATE,
+    ATTACK_STATE,
+    DEFENCE_STATE,
+    DASH_STATE,
+    PHASE_STATE,
+    STUN_STATE
+}
 
 state = scr_move_state;
 //hero stats
@@ -79,7 +87,9 @@ scr_all_rune();
 attacked = false;
 isdash = false;
 isattack = false;
-
+weapon = 1;
+wpxx = x;
+wpyy = y;
 
 isstun = false;
 stuntime = 0;

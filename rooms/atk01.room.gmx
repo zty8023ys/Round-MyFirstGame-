@@ -58,13 +58,14 @@
     <instance objName="oWall" x="160" y="224" name="inst_676D8624" locked="0" code="" scaleX="2" scaleY="4" colour="4294967295" rotation="0"/>
     <instance objName="oWall" x="416" y="0" name="inst_460C2715" locked="0" code="" scaleX="3" scaleY="4" colour="4294967295" rotation="0"/>
     <instance objName="oEnemySlime" x="64" y="96" name="inst_4E9C6492" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oEnemySlime" x="256" y="128" name="inst_8F0791EA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oEnemySlime" x="64" y="192" name="inst_8F0791EA" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oEnemySlime" x="192" y="64" name="inst_7CBBD899" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oEnemySlime" x="288" y="224" name="inst_E8273C45" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="oEnemySlime" x="256" y="192" name="inst_DF89F468" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oEnemySlime" x="224" y="96" name="inst_E8273C45" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oEnemySlime" x="320" y="96" name="inst_DF89F468" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oWall" x="96" y="64" name="inst_01D74C12" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oNextRoom" x="64" y="288" name="inst_68B87031" locked="0" code="&#xA;next_room = r0;&#xA;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="oBox" x="64" y="224" name="inst_2941E02F" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="oEnemyKey" x="192" y="160" name="inst_8F4E1310" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>-1</PhysicsWorld>
