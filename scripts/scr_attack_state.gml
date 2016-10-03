@@ -39,11 +39,11 @@ if (image_index >= 3 && attacked == false) {
         yy += 2;
         break;
     }
-    var weapon = instance_create(x,y,oWeaponBloodMoment);
+    /*var weapon = instance_create(x,y,oWeaponBloodMoment);
     weapon.creator = id;
     weapon.depth = id.depth - 1;
     weapon.image_angle = face * 90 - 2 * weapon.spd;
-    temphp = hp;
+    */temphp = hp;
     var damage = instance_create(xx, yy, oDamage);
     damage.creator = id;
     crit = scr_chance(critchance/100);

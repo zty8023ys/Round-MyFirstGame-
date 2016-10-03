@@ -170,6 +170,7 @@
         <object>objects\oEnemySlime</object>
         <object>objects\oEnemyKey</object>
         <object>objects\oEnemyKingofSlime</object>
+        <object>objects\oSkeleton0</object>
       </objects>
     </objects>
     <objects name="ground">
@@ -195,6 +196,7 @@
     </objects>
     <object>objects\oWeaponBloodMoment</object>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\r0</room>
     <room>rooms\atk01</room>

@@ -220,6 +220,7 @@ firstbtny = 100;
 
 sendrec = 0;
 red = 0;
+
 </string>
           </argument>
         </arguments>
@@ -649,6 +650,7 @@ draw_text(x,y-22,name);
 // draw_text(x,y-40,image_index);
 draw_set_font(font0);
 draw_healthbar(x-10, y-11, x+10, y-10, stamina/maxstamina * 100, c_black, c_silver, c_silver, 0, true, true);
+
 </string>
           </argument>
         </arguments>

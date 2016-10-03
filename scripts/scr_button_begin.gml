@@ -10,6 +10,7 @@ switch(identity) {
     
     case 2: 
         // 局域网
+        if (ISHTML5) exit;
         with(oButton) {
             depth = -23;
         }

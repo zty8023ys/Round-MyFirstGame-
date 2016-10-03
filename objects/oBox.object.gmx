@@ -33,10 +33,14 @@ image_index = 0;
     1: ATK += (2,6);
     2: DEF += (1,3);
 */
-needkey = true;
+needkey = false;
 reward = -1;
 rewardtips = "";
 timeout = false;
+
+draw_set_font(font0);
+draw_set_halign(fa_center);
+draw_set_valign(fa_middle);
 </string>
           </argument>
         </arguments>
@@ -83,10 +87,10 @@ timeout = false;
           <argument>
             <kind>1</kind>
             <string>/// reward
-if(needkey) {
-    with(oHero) {
-        draw_text(x,y-10,"Need Key To Open");
-    }
+timeout = false;
+if(instance_exists(oEnemyKey)) {
+    needkey = true;
+    alarm[0] = room_speed * 2;
     exit;
 }
 /* rewardList 
@@ -144,6 +148,9 @@ if (image_index == 1 &amp;&amp; !timeout) {
         draw_set_font(font1);
         draw_text(x + 7,y, oBox.rewardtips);
     }
+}
+if (needkey &amp;&amp; !timeout) {
+    draw_text(x,y - 20, "需要击杀钥匙！");
 }
 </string>
           </argument>

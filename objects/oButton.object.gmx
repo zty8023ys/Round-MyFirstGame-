@@ -185,7 +185,7 @@ draw_set_colour(c_black);
 if (depth == -20) {
     switch(identity) {
         case 1:draw_text(x,y,"单人游戏"); break;
-        case 2:draw_text(x,y,"局域网"); break;
+        case 2:if(ISHTML5){draw_text(x,y,"H5无联机"); }else{draw_text(x,y,"局域网"); }break;
         case 3:draw_text(x,y,"帮助"); break;
         case 4:draw_text(x,y,"退出"); break;
     }

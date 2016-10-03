@@ -47,9 +47,10 @@ checked = false;
 ask = false;
 
 canBack = true;
-isandroid = ISANDROID;
-
-
+isandroid = scr_if(os_type == os_android,true,false);
+if (ISHTML5 &amp;&amp; isandroid) {
+    show_message("html5暂时无法在移动设备上正常游戏！请到官网下载安卓版");
+}
 </string>
           </argument>
         </arguments>
