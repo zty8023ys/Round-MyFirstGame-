@@ -196,6 +196,7 @@
     </objects>
     <object>objects\oWeaponBloodMoment</object>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\r0</room>
     <room>rooms\atk01</room>
