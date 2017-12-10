@@ -34,7 +34,7 @@ maxclients = 1;
 server = network_create_server(type, port,maxclients);
 client = noone;
 
-
+frameCount = 0
 sendstats = false;
 
 // create the other player
@@ -112,7 +112,13 @@ network_destroy(host);
             <kind>1</kind>
             <string>/// keep send something
 // wait for other
-scr_wait_other();
+//scr_wait_other();
+
+frameCount = frameCount + 1
+if (frameCount != FRAMEGAP) {
+    return 0;
+}
+frameCount = 0
 if (room == atk02) {
     scr_send_pos();
     

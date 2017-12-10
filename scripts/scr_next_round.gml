@@ -31,5 +31,8 @@ if (r < 10) {
     r = 99;
     if (!global.lan) {
         scr_go_room(atk03);
+    }else{
+        scr_wait_other();
     }
 }
+

@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>
 globalvar seed,lan, pause, isReady, version, timecost, runename, weaponList;
-
 randomize();
+var protocol = instance_create(0,0,oProtocol);
 seed = random_get_seed();
 weaponList = ds_list_create();
 ds_list_add(weaponList,noone);
@@ -39,7 +39,7 @@ isReady = 0;
 timecost = -1;
 gameend = false;
 website = "http://ztory.cn/game/round";
-version = "1.4.1";
+version = "1.4.2";
 newversion = "";
 status = -1;
 checkversion = http_get("http://ztory.cn/game/round/version.php");
