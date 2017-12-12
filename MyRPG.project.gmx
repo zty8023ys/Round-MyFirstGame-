@@ -120,6 +120,7 @@
       </scripts>
       <script>scripts\assert.gml</script>
       <script>scripts\handle.gml</script>
+      <script>scripts\dumpMap.gml</script>
     </scripts>
     <scripts name="HeroStates">
       <scripts name="help">

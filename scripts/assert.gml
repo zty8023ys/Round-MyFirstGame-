@@ -1,11 +1,12 @@
 /// assert(cond, msg);
+return argument[0];
 if (!argument[0]) {
     if (argument_count < 2){
-        show_message("assert failed!");
+        print("assert failed!");
     } else {
-        show_message(argument[1]);
+        print("assert failed!" + string(argument[1]));
     }
-} else {
-    return argument[0];
 }
+return argument[0];
+
 

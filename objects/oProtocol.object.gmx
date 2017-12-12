@@ -28,8 +28,6 @@
             <string>/// protocols
 protocols = ds_map_create();
 scr_protocol_add(MSG_PING, 1, buffer_u32);
-var buffer = scr_create_buffer_by_protocol_id(MSG_PING, current_time);
-assert(buffer,buffer);
 </string>
           </argument>
         </arguments>
