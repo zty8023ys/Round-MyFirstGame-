@@ -26,20 +26,21 @@
           <argument>
             <kind>1</kind>
             <string>/// Create client
-port = PORT;
+port = 8080;
 scr_set_key();
 var type = network_socket_tcp;
 
 server = network_create_socket(type);
 client = noone;
-ip = get_string("请输入主机IP：","127.0.0.1");
+ip = get_string("请输入主机IP：","192.168.244.129");
 if (ip == "") {
     show_message("连接失败.");
     game_restart();
 }
 
 connection = -1;
-connection = network_connect(server, ip, port);
+connection = network_connect_raw(server, ip, port);
+frameCount = 0
 
 if (connection &lt; 0 || connection == 11001) {
     show_message("连接失败.");
@@ -61,7 +62,39 @@ if (connection &lt; 0 || connection == 11001) {
     ping = 0;
     pingtimes = 0;
     sendReady = false;
+    msgQueue = ds_queue_create();
+    var oProtocols = instance_create(0,0,oProtocol);
+    protocols = oProtocols.protocols
+    alarm[1] = room_speed * 0.1;
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>while (!ds_queue_empty(msgQueue)) {
+    scr_send_buffer_to_server(ds_queue_dequeue(msgQueue));
+}
+var buffer = scr_create_buffer_by_protocol_id(MSG_PING, current_time);
+scr_send_buffer_to_server(buffer);
+alarm[1] = room_speed * 0.1;
 </string>
           </argument>
         </arguments>
@@ -111,7 +144,12 @@ letsping = true;
             <string>/// keep send something
 
 // wait for other
-scr_wait_other();
+//scr_wait_other();
+frameCount = frameCount + 1
+if (frameCount != FRAMEGAP) {
+    return 0;
+}
+frameCount = 0
 
 if (room == atk02) {
     // send key to server

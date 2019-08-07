@@ -92,6 +92,13 @@
         <script>scripts\scr_send_buffer.gml</script>
         <script>scripts\scr_set_key.gml</script>
         <script>scripts\scr_buffer_create.gml</script>
+        <script>scripts\scr_send_buffer_to_server.gml</script>
+        <scripts name="protocol">
+          <script>scripts\scr_protocol_get.gml</script>
+          <script>scripts\scr_create_buffer_by_protocol_id.gml</script>
+          <script>scripts\scr_protocol_add.gml</script>
+          <script>scripts\scr_protocol_remove.gml</script>
+        </scripts>
       </scripts>
       <scripts name="information">
         <script>scripts\scr_draw_rune.gml</script>
@@ -111,6 +118,9 @@
         <script>scripts\scr_button_level.gml</script>
         <script>scripts\scr_button_ip.gml</script>
       </scripts>
+      <script>scripts\assert.gml</script>
+      <script>scripts\handle.gml</script>
+      <script>scripts\dumpMap.gml</script>
     </scripts>
     <scripts name="HeroStates">
       <scripts name="help">
@@ -148,6 +158,7 @@
       <script>scripts\scr_slime_dash_state.gml</script>
     </scripts>
     <script>scripts\TODO_LIST.gml</script>
+    <script>scripts\print.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font0</font>
@@ -191,12 +202,13 @@
     <objects name="help">
       <object>objects\oControl</object>
       <object>objects\oClient</object>
+      <object>objects\oWlan</object>
       <object>objects\oServer</object>
       <object>objects\oTransitionSlide</object>
+      <object>objects\oProtocol</object>
     </objects>
     <object>objects\oWeaponBloodMoment</object>
   </objects>
-  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\r0</room>
     <room>rooms\atk01</room>

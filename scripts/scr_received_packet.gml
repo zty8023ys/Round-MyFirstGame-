@@ -44,6 +44,7 @@ switch(msgid) {
             with(oEX) {
                 phy_position_x = buffer_read(buffer,buffer_f32);
                 phy_position_y = buffer_read(buffer,buffer_f32);
+                face = buffer_read(buffer,buffer_u8);
             }
         break;
         
@@ -58,7 +59,9 @@ switch(msgid) {
         oGround.image_index = oGround.ground;
         break;
             
-    case PING_MSGID :
+    case MSG_PING :
+        var ping = handle(protocol, scr_protocol_get(MSG_PING));
+        
         if (instance_exists(oServer)) {
             scr_ping();
         } else{
